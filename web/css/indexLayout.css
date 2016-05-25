@@ -1,0 +1,87 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+
+body{
+    margin: 0px;
+}
+
+#navigatorDiv{
+    color:blanchedalmond;
+    width: 100%;
+    background: indianred;
+    height: 80px;
+}
+
+
+#navigatorDiv .leftBotton{
+    font-size: 2.3em;
+    width:70%;
+    background: indianred;
+    display:inline-block;
+    float: left;
+}
+
+#navigatorDiv .leftBotton li{
+    margin: 15px 5px 5px 5px;
+    float: left;
+    padding: 5px;
+    background: indianred;
+}
+#navigatorDiv .leftBotton li a{
+    display: block;
+    width: 100px;
+}
+
+
+
+#navigatorDiv .rightBotton{
+    list-style: none;
+    font-size: 1.5em;
+    background: indianred;
+    width: 20%;
+    float: right;
+    display:inline-block;
+    margin: 25px 30px 5px 5px;
+
+}
+
+#navigatorDiv .rightBotton li{
+    margin: 5px;
+    float: right;
+    padding: 0px;
+    background: indianred;
+}
+
+#navigatorDiv .rightBotton li a{
+    display: block;
+}
+
+
+
+#indexContentDiv{
+    background: url("");
+    font-size: 5em;
+    text-align: center;
+    margin: 20% 10% -10% 0%;
+
+    width: 100%;
+    height: 600px; 
+    background: white;
+    
+}
+
+#indexContentDiv span{
+    color:brown;
+    
+}
+
+#officailInfoContent{
+    font-size:1em;
+    width: 100%;
+    height: 200px; 
+    background: indianred;
+    
+}

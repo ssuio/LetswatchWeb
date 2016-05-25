@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="../js/jquery-1.12.4.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <script>
+
+            //https://maps.googleapis.com/maps/api/geocode/json?latlng=25.0579981,121.5426982
+            function getPosition() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(showPosition);
+                }
+            }
+
+            function showPosition(position){
+                $("#position").text("Latitude: " + position.coords.latitude + 
+                    "<br>Longitude: " + position.coords.longitude);
+
+            }
+</script>
+        <button onclick="getPosition()">取得現在位置</button>
+        <div id="position"></div>
+    </body>
+</html>
