@@ -6,9 +6,16 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>LW註冊</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/refreshCheckCode.js" type="text/javascript"></script>
+        <script>
+            function refreshHandler(){
+                var check_img = document.getElementById("check_code_image");
+                check_img.src="Image/check.jpg?get=" + new Date();
+            }
+        </script>
     </head>
     <body>
         <div>
@@ -23,7 +30,11 @@ and open the template in the editor.
             </p>
             <p>
             <label for="checkBox">Check Code:</label>
-            <input type="text" id="checkCode" name="checkCode" placeholder="輸入驗證碼">        
+            <input type="text" id="checkCode" name="checkCode" placeholder="輸入驗證碼"> 
+            </p>
+            <p>
+            <img src="Image/check.jpg" id="check_code_image">
+            <input type="button" onclick="refreshHandler()" value="refresh">
             </p>
         
         </div>

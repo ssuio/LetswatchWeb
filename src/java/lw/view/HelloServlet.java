@@ -7,6 +7,7 @@ package lw.view;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author adm
  */
-@WebServlet(name = "HelloServlet", urlPatterns = {"/hello.view"})
+@WebServlet(name = "HelloServlet", urlPatterns = {"/hello.view","/hellow.watch"})
 public class HelloServlet extends HttpServlet {
 
     /**
