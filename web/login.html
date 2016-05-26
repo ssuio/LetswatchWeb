@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Login Page</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="css/indexLayout.css" rel="stylesheet" type="text/css">
@@ -16,6 +16,12 @@ and open the template in the editor.
                 
             }    
         </style>
+        <script>
+            function refreshHandler(){
+                var check_img = document.getElementById("check_code_image");
+                check_img.src="Image/check.jpg?get=" + new Date();
+            }
+        </script>
     </head>
     <body>
         <div id="navigatorDiv">
@@ -30,10 +36,17 @@ and open the template in the editor.
             <label for="password">Password:</label>
             <input type="password" id="pwd" name="password" placeholder="輸入密碼">        
             </p>
-<!--            <p>
+            <p>
             <label for="checkBox">Check Code:</label>
             <input type="text" id="checkCode" name="checkCode" placeholder="輸入驗證碼">        
-            </p>-->
+            </p>
+            <p>
+            <img src="Image/check.jpg" id="check_code_image">
+            <input type="button" onclick="refreshHandler()" value="refresh">
+            </p>
+            <p>
+               <input type="submit" value="Confirm">
+            </p>
         </form>
     </body>
 </html>
