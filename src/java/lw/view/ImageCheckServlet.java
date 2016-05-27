@@ -27,6 +27,26 @@ import javax.servlet.http.HttpSession;
 public class ImageCheckServlet extends HttpServlet {
     private int len = 6 , width = 16*2 + 12*len, height =20;
     
+    public ImageCheckServlet(){
+        System.out.println("ImageCheckServlet created... the len is "+ len + " now.");
+    }
+    
+    @Override
+    public void init(){
+        System.out.println(this.getServletName());
+        System.out.println(this.getInitParameter("len"));
+        String len= getInitParameter("len");
+        if (len!=null && len.matches("\\d+")){
+            this.len = Integer.parseInt(len);
+            
+        this.width = this.len * 12 + 16*2;
+        }
+        
+//        String width= getInitParameter("width");
+//        if(width!=null && width.matches("\\d+")){
+//            this.width = Integer.parseInt(width);
+//        }
+    }
     private BufferedImage generateImage(String rand, int width, int height) {
     BufferedImage image =
                 new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);

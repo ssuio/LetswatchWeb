@@ -42,9 +42,10 @@ public class DumpServlet extends HttpServlet {
             out.println("<title>Servlet DumpServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>ContextPath: " + request.getContextPath() + request.getContextPath() + "</h1>");
-            out.println("<h1>RemoteHost: " + request.getRemoteHost() + request.getContextPath() + "</h1>");
-            out.println("<h1>RequestURL: " + request.getRequestURL() + request.getContextPath() + "</h1>");
+            out.println("<h1>ContextPath: " + request.getContextPath()  + "</h1>");
+            out.println("<h1>RemoteHost: " + request.getRemoteHost() + "</h1>");
+            out.println("<h1>RequestURL: " + request.getRequestURL()  + "</h1>");
+            out.println("<h1>Request Class Name: " + request.getClass()  + "</h1>");
             
             out.println("<table border='1'>");
             out.println("<caption>Headers List</caption>");

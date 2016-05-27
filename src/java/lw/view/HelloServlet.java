@@ -5,9 +5,10 @@
  */
 package lw.view;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import static java.lang.System.out;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,7 +21,12 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "HelloServlet", urlPatterns = {"/hello.view","/hellow.watch"})
 public class HelloServlet extends HttpServlet {
-
+    public HelloServlet(){
+        //System.out.println("HelloServlet created..." + this.getServletName());
+        System.out.println("HelloServlet created..." );
+    }
+    
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -43,6 +49,19 @@ public class HelloServlet extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>你好" + request.getContextPath() + "</h1>");
+            ServletContext application = this.getServletContext();
+            Object o = application.getAttribute("lw.app.visitors.count");
+            String path = application.getRealPath("/WEB-INF/lw.properties");
+            File file = new File(path);
+                
+            if(o instanceof Integer){
+                int visitorsCount = (Integer)o;
+                out.println("<p>Visit Counter: " + visitorsCount + "</p>");
+                application.setAttribute("lw.app.visitors.count", ++visitorsCount);
+            }else{
+                application.setAttribute("lw.app.visitors.count", 10);
+                        
+            }
             out.println("</body>");
             out.println("</html>");
         }
