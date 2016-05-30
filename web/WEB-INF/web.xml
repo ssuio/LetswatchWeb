@@ -12,18 +12,38 @@
             <param-value>4</param-value>
         </init-param>
     </servlet>
-    <servlet>
+     <servlet>
         <servlet-name>registerImageCheckServlet</servlet-name>
         <servlet-class>lw.view.ImageCheckServlet</servlet-class>
         <init-param>
             <param-name>len</param-name>
-            <param-value>10</param-value>
-        </init-param>
-        <init-param>
-            <param-name>width</param-name>
-            <param-value>300</param-value>
+            <param-value>8</param-value>
         </init-param>
     </servlet>
+    <servlet>
+        <servlet-name>helloJSP</servlet-name>
+        <jsp-file>/hello.jsp</jsp-file>
+        <init-param>
+            <param-name>title</param-name>
+            <param-value>你好</param-value>
+        </init-param>
+    </servlet>
+     <servlet>
+    <servlet-name>HelloToMeServlet</servlet-name>
+    <servlet-class>lw.view.HelloServlet</servlet-class>
+        <init-param>
+            <param-name>title</param-name>
+            <param-value>我好</param-value>
+        </init-param>
+    </servlet>
+     <servlet-mapping>
+        <servlet-name>helloJSP</servlet-name>
+        <url-pattern>/hello.php</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HelloToMeServlet</servlet-name>
+        <url-pattern>/hello.tome</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ImageCheckServlet</servlet-name>
         <url-pattern>/Image/check.jpg</url-pattern>

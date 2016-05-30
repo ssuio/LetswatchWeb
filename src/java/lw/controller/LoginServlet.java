@@ -9,6 +9,7 @@ import java.util.List;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -61,23 +62,11 @@ public class LoginServlet extends HttpServlet {
                try{
                    MemberService service = new MemberService();
                    Member m = service.login(email, password);
-                //3. Show login successfully or login failed
-                response.setContentType("text/html");
-                response.setCharacterEncoding("utf-8");
-                try (PrintWriter out = response.getWriter()) {
-                    /* TODO output your page here. You may use following sample code. */
-                    out.println("<!DOCTYPE html>");
-                    out.println("<html>");
-                    out.println("<head>");
-                    out.println("<title>Login Successful!!!</title>");            
-                    out.println("</head>");
-                    out.println("<body>");
-                    out.println("<h1>Login Successful!!!" + "</h1>");
-                    out.println("<h1>Hi, "+ m.getName() + "</h1>");
-                    out.println("</body>");
-                    out.println("</html>");
-                }
-                return;
+                //3. Show login successfully or login failed forward to success page
+                   request.setAttribute("member", m);
+                   RequestDispatcher dispatcher = request.getRequestDispatcher("login_ok.jsp");
+                   dispatcher.forward(request, response);
+                   return;
                }catch(LWException ex){
                    errors.add(ex.getMessage());
                    
@@ -94,20 +83,11 @@ public class LoginServlet extends HttpServlet {
         
         response.setContentType("text/html");
                 response.setCharacterEncoding("utf-8");
-                try (PrintWriter out = response.getWriter()) {
-                    /* TODO output your page here. You may use following sample code. */
-                    out.println("<!DOCTYPE html>");
-                    out.println("<html>");
-                    out.println("<head>");
-                    out.println("<title>Login Failed!!!</title>");            
-                    out.println("</head>");
-                    out.println("<body>");
-                    out.println("<h1>Login Failed!!!" + "</h1>");
-                    out.println(errors);
-                    out.println("</body>");
-                    out.println("</html>");
-                }
+                
         //3.2 show login failed and Exception error
+        request.setAttribute("errors", errors);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+        dispatcher.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
