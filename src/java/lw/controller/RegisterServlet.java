@@ -5,27 +5,26 @@
  */
 package lw.controller;
 
-import java.util.List;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import lw.domain.LWException;
 import lw.domain.Member;
-import lw.model.MemberService;
+import lw.model.IdGenerateService;
+import lw.model.RDBMemberDAO;
 
 /**
  *
  * @author adm
  */
-@WebServlet(name = "LoginServlet", urlPatterns = {"/login.do"})
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "RegisterServlet", urlPatterns = {"/register.do"})
+public class RegisterServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,58 +37,50 @@ public class LoginServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<String> errors = new ArrayList<>();
-//1. read and check the query stream/formdata/parameters from form 
-       String email = request.getParameter("email");
-       String password = request.getParameter("password");
-       String checkCode = request.getParameter("checkCode");
-        //when errors list ar not wrong
-        if( email==null || (email=email.trim()).length()==0){
-            errors.add("Must input email!");
-        }
-        
-        if( password==null || (password=password.trim()).length()==0){
-            errors.add("Must input password!");
-        }
-        
-        if( checkCode==null || (checkCode=checkCode.trim()).length()==0){
-            errors.add("Must input checkCode!");
-        }else{
-            //Add checkCode business logic
-        }
-        
-        if(errors.isEmpty()){ 
-               //2. Call MemberService business logic : login(u,p)
-               try{
-                   MemberService service = new MemberService();
-                   Member m = service.login(email, password);
-                //3. Show login successfully or login failed forward to success page
-                   //request.setAttribute("member", m);
-                   HttpSession session = request.getSession();
-                   session.setAttribute("member", m);
-                   RequestDispatcher dispatcher = request.getRequestDispatcher("login_ok.jsp");
-                   dispatcher.forward(request, response);
-                   return;
-               }catch(LWException ex){
-                   errors.add(ex.getMessage());
-                   
-                   if(ex.getCause()!=null){
-                    ex.printStackTrace();
-                   }
-               }
-               catch(Exception ex){
-                   errors.add(ex.toString());
-               }
-               
-        }
-
-        
-        response.setContentType("text/html");
-                response.setCharacterEncoding("utf-8");
+            List<String> errors = new ArrayList<>();
+            RDBMemberDAO dao = new RDBMemberDAO();
+            Member m = new Member();
+            IdGenerateService idGernerator = new IdGenerateService();
+//1. read and check register.jsp form data
+            
+            String email = request.getParameter("uid");
+            String password1 = request.getParameter("password1");
+            String password2 = request.getParameter("password2");
+            String name = request.getParameter("name");
+            request.setAttribute("test", email);
+            if(email==null || (email=email.trim()).length()==0){
+                errors.add("會員信箱必須輸入");
+            }
+//            
+            if(password1==null || password2==null || !password1.equals(password2)){
+                errors.add("會員密碼與確認密碼必須輸入且內容一致");
+            }
+            
+            
+            
+            if (errors.isEmpty()){
+                //2. Call MemberService register(Member)
+                try{
+                    m.setEmail(email);
+                    m.setPwd(password2);
+                    m.setId(idGernerator.generateMemberId());
+                    m.setName(name);
+                    dao.insert(m);
+                    
+                    //3.1 forward to register_ok.jsp
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/register_ok.jsp");
+                    dispatcher.forward(request, response);
+                    return;
+                }catch (Exception ex){
+                    errors.add(ex.toString());
                 
-        //3.2 show login failed and Exception error
-        request.setAttribute("errors", errors);
-        response.sendRedirect(request.getContextPath());
+                }
+            }
+        
+            //3.2 forward to register.jsp
+            request.setAttribute("errors", errors);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/register.jsp");
+            dispatcher.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

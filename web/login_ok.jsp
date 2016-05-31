@@ -15,9 +15,11 @@
 <body>
 <h1>Login Successful!!!</h1>
 <h1>Hi, <% 
-        Member m = (Member)request.getAttribute("member");
+        Member m = (Member)session.getAttribute("member");
         out.print(m.getName());
         %></h1>
-
+        <form action="/LetsWatchWeb">
+            <input type="submit" value="Home">
+        </form>
 
 </html>

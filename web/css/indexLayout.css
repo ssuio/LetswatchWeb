@@ -85,3 +85,8 @@ body{
     background: indianred;
     
 }
+
+#greeting{
+    font-size:0.5em;
+    color: green;
+}
