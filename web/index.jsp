@@ -20,25 +20,29 @@ and open the template in the editor.
                 <li> <a class='menu' href="about.html" title="關於">ABOUT</a></li>
                 <li ><a class='menu' href="about.html" title="房間瀏覽">ROOMS</a></li>
                 <li ><a class='menu' href="about.html" title="建議">FORUM</a></li>
-                <li ><a class='menu' href="about.html" title="購買W幣">BuyWcoin</a></li>
-                
+                <li ><a class='menu' href="shop.jsp" title="購買W幣">BuyWcoin</a></li>
             </ul>
             <%
             Member m = (Member)session.getAttribute("member");
             %>
             <ul class="rightBotton">
                 
-                <%if(m!=null){
-                    out.print("Hello,"+m.getName());%>
+                <%if(m!=null){%>
+                
                 <li><a class='menu' href="/LetsWatchWeb/logout.do" title="登出">Logout</a></li>
                 <%}else{%>
                 <li><a class='menu' href="login.jsp" title="登入">Login</a></li>
                 <li><a class='menu' href="register.jsp" title="登出">Register</a></li>
-                  <%}%>
-                
-                <li><a class='menu' href="MemberInfo.html" title="登出">Member</a></li>
+                <%}%>
+                <%if(m!=null){%>
+                <li><a class='menu' href="Profile.jsp" title="登出">Profile</a></li>
+                 
             </ul>
-        
+            <ul id="greeting">
+                <li><%out.print("Hello,"+m.getName());%></li>
+                <li><%out.print("wCoin: "+m.getwCoin());%></li>
+            </ul>
+                <%}%>
         
         
         </div>

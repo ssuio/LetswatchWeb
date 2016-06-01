@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import lw.domain.Member;
 import lw.model.IdGenerateService;
+import lw.model.MemberService;
 import lw.model.RDBMemberDAO;
 
 /**
@@ -39,6 +40,7 @@ public class RegisterServlet extends HttpServlet {
             throws ServletException, IOException {
             List<String> errors = new ArrayList<>();
             RDBMemberDAO dao = new RDBMemberDAO();
+            MemberService memberService = new MemberService();
             Member m = new Member();
             IdGenerateService idGernerator = new IdGenerateService();
 //1. read and check register.jsp form data
@@ -65,7 +67,7 @@ public class RegisterServlet extends HttpServlet {
                     m.setPwd(password2);
                     m.setId(idGernerator.generateMemberId());
                     m.setName(name);
-                    dao.insert(m);
+                    memberService.register(m);
                     
                     //3.1 forward to register_ok.jsp
                     RequestDispatcher dispatcher = request.getRequestDispatcher("/register_ok.jsp");

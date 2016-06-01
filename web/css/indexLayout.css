@@ -4,9 +4,6 @@
     list-style: none;
 }
 
-body{
-    margin: 0px;
-}
 
 #navigatorDiv{
     color:blanchedalmond;
@@ -17,8 +14,8 @@ body{
 
 
 #navigatorDiv .leftBotton{
-    font-size: 2.3em;
-    width:70%;
+    font-size: 2em;
+    width:60%;
     background: indianred;
     display:inline-block;
     float: left;
@@ -87,6 +84,9 @@ body{
 }
 
 #greeting{
-    font-size:0.5em;
+    float:right;
+    font-size:1.5em;
     color: green;
+    height: 200px; 
+    margin-top: 15px;
 }
