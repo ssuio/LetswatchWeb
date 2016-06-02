@@ -82,7 +82,32 @@ public class VisitorsCountListener implements ServletContextListener, HttpSessio
 
     @Override
     public void sessionCreated(HttpSessionEvent se) {
-        //TODO
+        System.out.println("lw contextInitialized...");
+        ServletContext application = se.getSession().getServletContext();
+        Properties props= new Properties();
+        String path = application.getRealPath("/WEB-INF/lw.properties");
+        File file = new File(path);
+        try(FileReader reader = new FileReader(file); ) {
+            props.load(reader);
+            application.log("Read Visit Count SUCCESSFULLY!");
+        } catch (Exception ex) {
+            application.log("Read Visit Counter FAILED!");
+        }
+        Enumeration names = props.propertyNames();
+        while(names.hasMoreElements()){
+            String name = (String)names.nextElement();
+            String value = props.getProperty(name);
+            
+            if(value!=null && value.matches("\\d+")){
+                application.setAttribute(name, Integer.parseInt(value));
+            }else if(value!=null){
+                application.setAttribute(name, value);
+            }else{
+                application.log("Read visit counter failed!!");
+            }
+        }
+        
+        
     }
 
     @Override

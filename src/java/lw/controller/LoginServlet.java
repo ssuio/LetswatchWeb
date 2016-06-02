@@ -7,11 +7,11 @@ package lw.controller;
 
 import java.util.List;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -43,6 +43,7 @@ public class LoginServlet extends HttpServlet {
        String email = request.getParameter("email");
        String password = request.getParameter("password");
        String checkCode = request.getParameter("checkCode");
+       String remember = request.getParameter("remember");
         //when errors list ar not wrong
         if( email==null || (email=email.trim()).length()==0){
             errors.add("Must input email!");
@@ -65,6 +66,24 @@ public class LoginServlet extends HttpServlet {
                    Member m = service.login(email, password);
                 //3. Show login successfully or login failed forward to success page
                    //request.setAttribute("member", m);
+                   //add cookie (optional)
+                   Cookie cookie = new Cookie("email", email);
+                   
+                   if(remember != null){
+                       cookie.setMaxAge(30*24*60*60);
+                   }else{
+                       cookie.setMaxAge(0);
+                   }
+                   response.addCookie(cookie);
+                   
+                   Cookie cookie2 = new Cookie("remember", "checked");
+                    if(remember != null){
+                       cookie2.setMaxAge(30*24*60*60);
+                   }else{
+                       cookie2.setMaxAge(0);
+                    }
+                   response.addCookie(cookie2);
+                   
                    HttpSession session = request.getSession();
                    session.setAttribute("member", m);
                    RequestDispatcher dispatcher = request.getRequestDispatcher("login_ok.jsp");

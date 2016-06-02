@@ -41,12 +41,27 @@ and open the template in the editor.
             <%}%>
              
             </ul>
-            <%}%> 
+            <%}
+                //Member m = (Member)session.getAttribute("member");
+                String email="";
+                String remember="";
+                Cookie[] cookies =request.getCookies();
+                for(Cookie c:cookies){
+                    if(c.getName().equals("email")){
+                        email=c.getValue();
+                    }else if(c.getName().equals("remember")){
+                    remember = c.getValue();
+                    }
+                    
+                }
+            
+            %> 
             
         <form method="POST" action="login.do">
             <p>
             <label for="email">E-mail:</label>
-            <input type="text" id="userid" name="email" placeholder="輸入信箱" value="">
+            <input type="text" id="userid" name="email" placeholder="輸入信箱" value="<%=request.getParameter("email")!=null?request.getParameter("email"):email%>">  
+            <input type="checkbox" name="remember" id="remember" <%=remember%>><label for="remember" >  Remember</label>
             </p>
             <p>
             <label for="password">Password:</label>

@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8" session="true" info ="JSPhello"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <!-- saved from url=(0045)http://localhost:8084/LetsWatchWeb/hello.view -->
 <html><head>
@@ -34,9 +34,7 @@
         
         
         <p>tittle:  <%=this.getInitParameter("title")%> </p>
-        <% out.flush();
-            Thread.sleep(3000);
-        %>
+        
         <p>servlet name: <%= config.getInitParameter(title)%></p>
         <h2>pageContext/x</h2>
         <p>session: <%=session.getId()%></p>
@@ -47,13 +45,11 @@
         <p>this.i:<%= this.i%></p>
         <p>this==page: <%= this == page%></p>
         
-        <% for(int i=0; i<10; i++){%>
-        <script> document.write('heyman');</script>
-        <%}%>
-        
         
         <%
-        out.println("dddd");
+        int count = (Integer)application.getAttribute("lw.app.visitors.count");
+        application.setAttribute("lw.app.visitors.count", count);
+        out.println("Visitor Count:"+ count);
         %>
     </body>
 </html>

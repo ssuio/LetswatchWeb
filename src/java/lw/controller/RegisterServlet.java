@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import lw.domain.Member;
 import lw.model.IdGenerateService;
 import lw.model.MemberService;
@@ -44,11 +45,12 @@ public class RegisterServlet extends HttpServlet {
             Member m = new Member();
             IdGenerateService idGernerator = new IdGenerateService();
 //1. read and check register.jsp form data
-            
+            HttpSession session = request.getSession();
             String email = request.getParameter("uid");
             String password1 = request.getParameter("password1");
             String password2 = request.getParameter("password2");
             String name = request.getParameter("name");
+            String checkCode = request.getParameter("checkCode");
             request.setAttribute("test", email);
             if(email==null || (email=email.trim()).length()==0){
                 errors.add("會員信箱必須輸入");
@@ -58,6 +60,10 @@ public class RegisterServlet extends HttpServlet {
                 errors.add("會員密碼與確認密碼必須輸入且內容一致");
             }
             
+            if(checkCode == null || !checkCode.matches((String)session.getAttribute("ImageCheckServlet")) ){
+                errors.add("驗證碼為空或不符合" );
+                session.removeAttribute("ImageCheckServlet");
+            }
             
             
             if (errors.isEmpty()){
@@ -68,7 +74,7 @@ public class RegisterServlet extends HttpServlet {
                     m.setId(idGernerator.generateMemberId());
                     m.setName(name);
                     memberService.register(m);
-                    
+                    session.removeAttribute("ImageCheckServlet");
                     //3.1 forward to register_ok.jsp
                     RequestDispatcher dispatcher = request.getRequestDispatcher("/register_ok.jsp");
                     dispatcher.forward(request, response);
