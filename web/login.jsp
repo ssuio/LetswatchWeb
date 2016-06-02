@@ -1,35 +1,30 @@
 <%@page import="lw.domain.Member"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>Login Page</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="css/indexLayout.css" rel="stylesheet" type="text/css">
-        <style>
-            div{
-                widtch:100%;
-                
-            }    
-        </style>
+<jsp:include page="/WEB-INF/subview/header.jsp">
+<jsp:param name="sub_title" value="Login!P"/>
+</jsp:include>
         <script>
             function refreshHandler(){
                 var check_img = document.getElementById("check_code_image");
                 check_img.src="Image/check.jpg?get=" + new Date();
             }
         </script>
-    </head>
+        <style>
+            #login{
+                width: 100%;
+                height: 600px; 
+                
+            }
+            form{
+                padding: 10%;
+                
+            }
+            form p{
+                margin:20px;
+            }
+        </style>
     
-        <div id="navigatorDiv">
-            
-        </div>
         <%
             List<String> errors = (List<String>)request.getAttribute("errors");
             if(errors!=null && errors.size()>0){
@@ -56,7 +51,7 @@ and open the template in the editor.
                 }
             
             %> 
-            
+    <div id="login">
         <form method="POST" action="login.do">
             <p>
             <label for="email">E-mail:</label>
@@ -79,7 +74,6 @@ and open the template in the editor.
                <input type="submit" value="Confirm">
             </p>
         </form>
-            <p>
-                <%out.println(request.getAttribute("email")==null?"111":request.getAttribute("email"));%>
-            </p>
-</html>
+            
+    </div>  
+<%@include file="/WEB-INF/subview/footer.jsp"%>

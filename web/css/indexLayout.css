@@ -5,7 +5,7 @@
 }
 
 
-#navigatorDiv{
+#header{
     color:blanchedalmond;
     width: 100%;
     background: indianred;
@@ -13,7 +13,7 @@
 }
 
 
-#navigatorDiv .leftBotton{
+#header .leftBotton{
     font-size: 2em;
     width:60%;
     background: indianred;
@@ -21,20 +21,20 @@
     float: left;
 }
 
-#navigatorDiv .leftBotton li{
+#header .leftBotton li{
     margin: 15px 5px 5px 5px;
     float: left;
     padding: 5px;
     background: indianred;
 }
-#navigatorDiv .leftBotton li a{
+#header .leftBotton li a{
     display: block;
     width: 100px;
 }
 
 
 
-#navigatorDiv .rightBotton{
+#header .rightBotton{
     list-style: none;
     font-size: 1.5em;
     background: indianred;
@@ -45,14 +45,14 @@
 
 }
 
-#navigatorDiv .rightBotton li{
+#header .rightBotton li{
     margin: 5px;
     float: right;
     padding: 0px;
     background: indianred;
 }
 
-#navigatorDiv .rightBotton li a{
+#header .rightBotton li a{
     display: block;
 }
 
@@ -75,7 +75,7 @@
     
 }
 
-#officailInfoContent{
+#footer{
     font-size:1em;
     width: 100%;
     height: 200px; 
@@ -89,4 +89,10 @@
     color: green;
     height: 200px; 
     margin-top: 15px;
+}
+
+#menu_middle{
+    width: 100%;
+    height: 600px; 
+    
 }

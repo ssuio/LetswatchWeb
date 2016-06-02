@@ -1,31 +1,26 @@
 <%@page import="lw.domain.Member"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <link href="css/indexLayout.css" rel="stylesheet" type="text/css"/>
-        <title>Profile</title>
+<jsp:include page="/WEB-INF/subview/header.jsp">
+<jsp:param name="sub_title" value="Profile!P"/>
+</jsp:include>
+
         <style>
-            #profileDiv{
-                margin: 5px;
+            div{
+                 width: 100%;
+                height: 600px; 
+            }
+            form{
+                float:right;
+                padding: 5%;
                 
             }
-            
-            div p{
+            form p{
+                margin:20px;
                 font-size: 1.5em;
-                padding:5px;
-                
             }
-            
         </style>
-    </head>
-    <body>
-        <div id="profileDiv">
+   
+        <div>
             <%Member m = (Member)session.getAttribute("member");%>
             <form method="POST">
             <ul>
@@ -53,10 +48,5 @@ and open the template in the editor.
                 Introduction: <%=m.getIntroduction()%>
             </p>
             </form>
-            <form action="/LetsWatchWeb">
-            <input type="submit" value="Home">
-            </form>
-        
-        </div>
-    </body>
-</html>
+        </div>   
+<%@include file="/WEB-INF/subview/footer.jsp"%>

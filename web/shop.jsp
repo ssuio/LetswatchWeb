@@ -1,20 +1,15 @@
-<%-- 
-    Document   : shop
-    Created on : 2016/6/1, 下午 02:37:55
-    Author     : adm
---%>
-
+<%@page import="lw.domain.Member"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>wShop</title>
-    </head>
-    <body>
+<jsp:include page="/WEB-INF/subview/header.jsp">
+<jsp:param name="sub_title" value="Shop!P"/>
+</jsp:include>
+ <style>
+            div{
+                 width: 100%;
+                height: 600px; 
+            }
+</style>
+<div>
         <h1>Hello World!</h1>
-        <form action="/LetsWatchWeb">
-            <input type="submit" value="Home">
-        </form>
-    </body>
-</html>
+</div>       
+<%@include file="/WEB-INF/subview/footer.jsp"%>        

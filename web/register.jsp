@@ -1,25 +1,21 @@
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>LW註冊</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script>
-        function refreshHandler(){
-                var check_img = document.getElementById("check_code_image");
-                check_img.src="Image/check.jpg?get=" + new Date();
+<jsp:include page="/WEB-INF/subview/header.jsp">
+<jsp:param name="sub_title" value="Register!P"/>
+</jsp:include>
+<style>
+    form{
+                padding: 10%;
+                
+            }
+            form p{
+                margin:20px;
             }
         
-        </script>
-    </head>
-    <body>
+        
+    
+    
+</style>
         <form method="POST" action="register.do">
         
             <p>
@@ -61,5 +57,4 @@ and open the template in the editor.
             </ul>
             <%}%> 
         </form>
-    </body>
-</html>
+    <%@include file="/WEB-INF/subview/footer.jsp"%>

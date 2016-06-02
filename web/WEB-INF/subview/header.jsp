@@ -10,9 +10,13 @@
 <html>
     <head>
         <link href="css/indexLayout.css" rel="stylesheet" type="text/css">
+        <title>
+        <%=request.getParameter("sub_title")%>
+    </title>
     </head>
+    
     <body>
-        <div id="navigatorDiv">
+        <div id="header">
             <ul class="leftBotton">
                 <li ><a class='menu' href="/LetsWatchWeb" title="首頁">HOME</a></li>
                 <li> <a class='menu' href="about.html" title="關於">ABOUT</a></li>
@@ -41,9 +45,7 @@
                 <li><%out.print("wCoin: "+m.getwCoin());%></li>
             </ul>
                 <%}%>
-        
+       
         
         </div>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+       
