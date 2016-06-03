@@ -19,7 +19,7 @@
 </head>
 <body>
 <h1>Register Successful!!!</h1>
-<h1>Hi, </h1>
+<h1>Hi, ${requestScope.member.name}</h1>
 <%
             List<String> errors = (List<String>)request.getAttribute("errors");
             if(errors!=null && errors.size()>0){

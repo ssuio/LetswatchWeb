@@ -1,5 +1,5 @@
 <%@page import="java.util.List"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/subview/header.jsp">
 <jsp:param name="sub_title" value="Register!P"/>
 </jsp:include>

@@ -4,7 +4,7 @@
     Author     : adm
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8" isErrorPage="true" %>
+<%@page pageEncoding="UTF-8" isErrorPage="true" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>系統發生錯誤:<%= exception%><%=100/0%></h1>
+        <h1>系統發生錯誤:<%= exception%></h1>
     </body>
 </html>

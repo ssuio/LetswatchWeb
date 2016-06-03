@@ -1,8 +1,8 @@
 <%@page import="lw.domain.Member"%>
 <%@page import="java.util.List"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page  pageEncoding="UTF-8" info="會員登入"%>
 <jsp:include page="/WEB-INF/subview/header.jsp">
-<jsp:param name="sub_title" value="Login!P"/>
+    <jsp:param name="sub_title" value="<%= this.getServletInfo() %>"/>
 </jsp:include>
         <script>
             function refreshHandler(){
@@ -55,7 +55,7 @@
         <form method="POST" action="login.do">
             <p>
             <label for="email">E-mail:</label>
-            <input type="text" id="userid" name="email" placeholder="輸入信箱" value="<%=request.getParameter("email")!=null?request.getParameter("email"):email%>">  
+            <input type="text" id="userid" name="email" placeholder="輸入信箱" value="${cookie.email.value}">  
             <input type="checkbox" name="remember" id="remember" <%=remember%>><label for="remember" >  Remember</label>
             </p>
             <p>

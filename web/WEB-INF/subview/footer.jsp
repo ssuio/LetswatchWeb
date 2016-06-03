@@ -4,9 +4,9 @@
     Author     : adm
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page pageEncoding="UTF-8"%>
 
         
-        <div id="footer">TODO contact or some infomation about this site</div>
+        <div id="footer">TODO contact or some infomation about this site哈囉</div>
     </body>
 </html>
