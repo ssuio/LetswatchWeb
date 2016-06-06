@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link href="css/indexLayout.css" rel="stylesheet" type="text/css">
+        <link href="/LetsWatchWeb/css/indexLayout.css" rel="stylesheet" type="text/css">
         <title>
         <%=request.getParameter("sub_title")%>
     </title>
@@ -33,7 +33,7 @@
                 
                 <li><a class='menu' href="/LetsWatchWeb/logout.do" title="登出">Logout</a></li>
                 <%}else{%>
-                <li><a class='menu' href="login.jsp" title="登入">Login</a></li>
+                <li><a class='menu' href="/LetsWatchWeb/login.jsp" title="登入">Login</a></li>
                 <li><a class='menu' href="register.jsp" title="登出">Register</a></li>
                 <%}%>
                 <%if(m!=null){%>

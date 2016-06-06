@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import javax.servlet.DispatcherType;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -25,7 +26,8 @@ import javax.servlet.http.HttpServletRequest;
  */
 @WebFilter(filterName = "CharSetFilter", 
         urlPatterns = {"*.jsp","*.view","*.do","*.php","*.asp"}, initParams = {
-    @WebInitParam(name = "charset", value = "big5")})
+    @WebInitParam(name = "charset", value = "big5")},
+        dispatcherTypes = {DispatcherType.REQUEST, DispatcherType.ERROR})
 
 public class CharsetFilter implements Filter {
     private FilterConfig filterConfig;
