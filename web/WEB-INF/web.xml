@@ -138,11 +138,7 @@
         </auth-constraint>
     </security-constraint>
     <login-config>
-        <auth-method>FORM</auth-method>
-        <form-login-config>
-            <form-login-page>/WEB-INF/login.jsp</form-login-page>
-            <form-error-page>/WEB-INF/login_failed.jsp</form-error-page>
-        </form-login-config>
+        <auth-method>BASIC</auth-method>
     </login-config>
     <security-role>
         <description>admin</description>

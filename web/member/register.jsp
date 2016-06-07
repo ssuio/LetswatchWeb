@@ -39,7 +39,7 @@
             <input type="text" id="checkCode" name="checkCode" placeholder="輸入驗證碼" required> 
             </p>
             <p>
-            <img src="Image/check.jpg" id="check_code_image">
+            <img src="/LetsWatchWeb/Image/check.jpg" id="check_code_image">
             <input type="button" onclick="refreshHandler()" value="refresh">
             </p>
              <p>
