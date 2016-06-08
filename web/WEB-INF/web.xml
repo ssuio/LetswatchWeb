@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app metadata-complete="false" version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-    <error-page>
+<!--    <error-page>
         <exception-type>java.lang.Exception</exception-type>
         <location>/WEB-INF/error.jsp</location>
     </error-page>
     <error-page>
         <error-code>404</error-code>
         <location>/WEB-INF/error.jsp</location>
-    </error-page>
+    </error-page>-->
     <filter>
         <filter-name>PerformanceFilter</filter-name>
         <filter-class>lw.web.PerformanceFilter</filter-class>
@@ -87,6 +87,10 @@
             <param-value>我好</param-value>
         </init-param>
     </servlet>
+    <servlet>
+        <servlet-name>RoomCreateServlet</servlet-name>
+        <servlet-class>lw.controller.RoomCreateServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>helloJSP</servlet-name>
         <url-pattern>/hello.php</url-pattern>
@@ -102,6 +106,10 @@
     <servlet-mapping>
         <servlet-name>registerImageCheckServlet</servlet-name>
         <url-pattern>/Image/registerCheck.jpg</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RoomCreateServlet</servlet-name>
+        <url-pattern>/roomCreate.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -16,7 +16,7 @@
     
     
 </style>
-        <form method="POST" action="register.do">
+        <form method="POST" action="/LetsWatchWeb/register.do">
         
             <p>
             <label for="email">E-mail:</label>

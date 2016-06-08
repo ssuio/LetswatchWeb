@@ -86,7 +86,7 @@ public class LoginServlet extends HttpServlet {
                    
                    HttpSession session = request.getSession();
                    session.setAttribute("member", m);
-                   RequestDispatcher dispatcher = request.getRequestDispatcher("Profile.jsp");
+                   RequestDispatcher dispatcher = request.getRequestDispatcher("/member/Profile.jsp");
                    dispatcher.forward(request, response);
                    return;
                }catch(LWException ex){

@@ -11,7 +11,7 @@
         <div id="indexContentDiv">
               
             <span>LetsWatch哈囉</span><br>
-            Create Room
+            <a href="/LetsWatchWeb/member/createRoom.jsp"><span>Create Room</span></a>
           
         </div>
         

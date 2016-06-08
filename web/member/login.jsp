@@ -52,7 +52,7 @@
             
             %> 
     <div id="login">
-        <form method="POST" action="login.do">
+        <form method="POST" action="/LetsWatchWeb/login.do">
             <p>
             <label for="email">E-mail:</label>
             <input type="text" id="userid" name="email" placeholder="輸入信箱" value="${cookie.email.value}">  
