@@ -32,7 +32,7 @@
             </p>
             <p>
             <label for="email">Room Password:</label>
-            <input type="text" id="roomPwd" name="roomPwd" placeholder="輸入房間密碼">
+            <input type="password" id="roomPwd" name="roomPwd" placeholder="輸入房間密碼">
             </p>
             <p>
             <label for="email">Room Price:</label>

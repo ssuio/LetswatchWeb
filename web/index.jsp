@@ -12,7 +12,7 @@
               
             <span>LetsWatch哈囉</span><br>
             <a href="/LetsWatchWeb/member/createRoom.jsp"><span>Create Room</span></a>
-          
+        
         </div>
         
 <%@include file="/WEB-INF/subview/footer.jsp"%>

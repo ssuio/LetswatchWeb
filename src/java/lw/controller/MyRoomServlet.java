@@ -7,12 +7,16 @@ package lw.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import lw.domain.LWException;
 import lw.domain.Member;
+import lw.model.RDBMemberDAO;
 
 /**
  *
@@ -31,15 +35,27 @@ public class MyRoomServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         String roomId = request.getRequestURI();
-         Member m ;
+        
+            RDBMemberDAO mDAO = new RDBMemberDAO();
+            String roomId = request.getRequestURI();
             roomId = roomId.replaceAll(".*/", "");
             roomId = roomId.replaceAll(".room", "");
-        HttpSession session = request.getSession();
-        m = (Member)session.getAttribute("member");
-        m.setRoomId(roomId);
-        session.setAttribute("member", m);
-        response.sendRedirect("/LetsWatchWeb/member/myroom.jsp");
+            HttpSession session = request.getSession();
+            Member m = (Member)session.getAttribute("member");
+            if(m==null){
+                response.sendRedirect("/LetsWatchWeb/member/login.jsp");
+                return;
+            }
+            if(m!=null)
+                m.setRoomId(roomId);
+            session.setAttribute("member", m);
+            try {
+                mDAO.update(m, m.getId());
+            } catch (LWException ex) {
+            Logger.getLogger(MyRoomServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            response.sendRedirect("/LetsWatchWeb/member/myroom.jsp");
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

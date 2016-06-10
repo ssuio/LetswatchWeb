@@ -6,6 +6,8 @@
 package lw.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -16,6 +18,7 @@ import javax.servlet.http.HttpSession;
 import lw.domain.LWException;
 import lw.domain.Member;
 import lw.domain.Room;
+import lw.model.RDBMemberDAO;
 import lw.model.RoomMemberListDAO;
 import lw.model.RoomService;
 
@@ -38,33 +41,42 @@ public class RoomCreateServlet extends HttpServlet {
             throws ServletException, IOException {
         RoomService rs = new RoomService();
         RoomMemberListDAO rmDAO = new RoomMemberListDAO();
+        RDBMemberDAO mDAO = new RDBMemberDAO();
         Room r = new Room();
         Member m;
+        List<String> errors = new ArrayList<>();
         HttpSession session = request.getSession();
         try {
+
             String roomName = request.getParameter("roomName");
             String roomPwd = request.getParameter("roomPwd");
             String roomPrice = request.getParameter("roomPrice");
             String roomType = request.getParameter("roomType");
+            String roomId;
+            System.out.println("!!!!!!!!!!!!!!! "+ "roomname: " + roomName +  "roomPwd:" + roomPwd + "roomPrice: " + roomPrice);
             m = (Member)session.getAttribute("member");
-            r.setRoomName(roomName);
+            if(roomName!=null)
+                r.setRoomName(roomName);
+            else
+                errors.add("Room name is null");
             
             if(roomPwd!=null)
                 r.setRoomPwd(roomPwd);
             else
-                r.setRoomId("");
+                r.setRoomPwd("");
             
             if(roomPrice.matches("\\d++"))
                 r.setwCoin(Integer.parseInt(roomPrice));
             else
                 r.setwCoin(0);
-
                 r.setRoomType(Integer.parseInt(roomType));
-            String roomId = rs.createRoom(r);
-            System.out.println(m);
-            System.out.println(roomId);
+                
+            r.setOwnerId(m.getId());
+            roomId = rs.createRoom(r);
+            m.setRoomId(roomId);
+            session.setAttribute("member", m);
+            mDAO.update(m, m.getId());
             rmDAO.insert(m, roomId);
-            session.setAttribute("roomId", roomId);
             response.sendRedirect("/LetsWatchWeb/member/myroom.jsp");
             
         } catch (LWException ex) {
