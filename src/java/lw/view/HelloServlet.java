@@ -27,7 +27,7 @@ public class HelloServlet extends HttpServlet {
         
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("hello.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/other/hello.jsp");
         dispatcher.forward(request, response);
         
         }

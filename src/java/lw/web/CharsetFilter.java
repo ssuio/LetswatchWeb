@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author adm
  */
 @WebFilter(filterName = "CharSetFilter", 
-        urlPatterns = {"*.jsp","*.view","*.do","*.php","*.asp"}, initParams = {
+        urlPatterns = {"*.jsp","*.view","*.do","*.php","*.asp","*.room"}, initParams = {
     @WebInitParam(name = "charset", value = "big5")},
         dispatcherTypes = {DispatcherType.REQUEST, DispatcherType.ERROR})
 

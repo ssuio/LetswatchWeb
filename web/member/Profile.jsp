@@ -15,7 +15,7 @@
                 
             }
             form p{
-                margin:20px;
+                margin:15px;
                 font-size: 1.5em;
             }
         </style>
@@ -24,7 +24,7 @@
             <%Member m = (Member)session.getAttribute("member");%>
             <form method="POST">
             <ul>
-                <li><img src="picture/ninja.png"></li>
+                <li><img src="/LetsWatchWeb/picture/ninja.png"></li>
             </ul>
             <p>
                 Name: <%=m.getName()%>

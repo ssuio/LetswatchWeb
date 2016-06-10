@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app metadata-complete="false" version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-<!--    <error-page>
+    <!--    <error-page>
         <exception-type>java.lang.Exception</exception-type>
         <location>/WEB-INF/error.jsp</location>
     </error-page>
@@ -47,6 +47,7 @@
         <url-pattern>*.view</url-pattern>
         <url-pattern>*.php</url-pattern>
         <url-pattern>*.asp</url-pattern>
+        <url-pattern>*.room</url-pattern>
         <dispatcher>ERROR</dispatcher>
         <dispatcher>INCLUDE</dispatcher>
         <dispatcher>FORWARD</dispatcher>
@@ -73,23 +74,23 @@
     </servlet>
     <servlet>
         <servlet-name>helloJSP</servlet-name>
-        <jsp-file>/hello.jsp</jsp-file>
+        <jsp-file>/other/hello.jsp</jsp-file>
         <init-param>
             <param-name>title</param-name>
             <param-value>你好</param-value>
         </init-param>
     </servlet>
     <servlet>
-        <servlet-name>HelloToMeServlet</servlet-name>
-        <servlet-class>lw.view.HelloServlet</servlet-class>
-        <init-param>
-            <param-name>title</param-name>
-            <param-value>我好</param-value>
-        </init-param>
-    </servlet>
-    <servlet>
         <servlet-name>RoomCreateServlet</servlet-name>
         <servlet-class>lw.controller.RoomCreateServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HelloToMeServlet</servlet-name>
+        <jsp-file>/other/hello.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>MyRoomServlet</servlet-name>
+        <servlet-class>lw.controller.MyRoomServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>helloJSP</servlet-name>
@@ -107,9 +108,14 @@
         <servlet-name>registerImageCheckServlet</servlet-name>
         <url-pattern>/Image/registerCheck.jpg</url-pattern>
     </servlet-mapping>
+    
     <servlet-mapping>
         <servlet-name>RoomCreateServlet</servlet-name>
         <url-pattern>/roomCreate.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MyRoomServlet</servlet-name>
+        <url-pattern>*.room</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
