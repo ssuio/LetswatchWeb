@@ -69,9 +69,13 @@ public class RoomCreateServlet extends HttpServlet {
             else
                 r.setwCoin(0);
                 r.setRoomType(Integer.parseInt(roomType));
-                
+            
             r.setOwnerId(m.getId());
             roomId = rs.createRoom(r);
+            //Leaving the room user was in 
+            if (m.getRoomId()!=null){
+                    rs.leaveRoom(m, m.getRoomId());
+                }
             m.setRoomId(roomId);
             session.setAttribute("member", m);
             mDAO.update(m, m.getId());

@@ -66,17 +66,13 @@ public class MyRoomServlet extends HttpServlet {
             try{
             mlist = mlDAO.getOneById(m.getRoomId());
             if(mlist.isEmpty()){
-                
-                
-            
-            
+                rs.deleteRoom(m.getRoomId());
             }
-            
             }catch (SQLException ex){
                 Logger.getLogger(MyRoomServlet.class.getName()).log(Level.SEVERE, null, ex);
             } catch (LWException ex) {
             Logger.getLogger(MyRoomServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            }
             
             
             if(m!=null)
