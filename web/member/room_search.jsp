@@ -8,7 +8,8 @@
 </jsp:include>
 <style>
     p{
-        margin:50px 0px 0px 100px;
+        float:left;
+        margin:10px;
     }
 </style>
 <div>        

@@ -7,6 +7,9 @@ package lw.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -16,7 +19,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import lw.domain.LWException;
 import lw.domain.Member;
+import lw.model.PlayListDAO;
 import lw.model.RDBMemberDAO;
+import lw.model.RoomMemberListDAO;
+import lw.model.RoomService;
 
 /**
  *
@@ -37,6 +43,9 @@ public class MyRoomServlet extends HttpServlet {
             throws ServletException, IOException {
         
             RDBMemberDAO mDAO = new RDBMemberDAO();
+            RoomService rs = new RoomService();
+            RoomMemberListDAO mlDAO = new RoomMemberListDAO();
+            PlayListDAO pDAO = new PlayListDAO();
             String roomId = request.getRequestURI();
             roomId = roomId.replaceAll(".*/", "");
             roomId = roomId.replaceAll(".room", "");
@@ -46,11 +55,37 @@ public class MyRoomServlet extends HttpServlet {
                 response.sendRedirect("/LetsWatchWeb/member/login.jsp");
                 return;
             }
+            
+            //Leaving the room user was in 
+            if (m.getRoomId()!=null){
+                    rs.leaveRoom(m, m.getRoomId());
+                }
+            
+            //Check the old room if still hav member , if it's empty, delete it 
+            List<Member> mlist = new ArrayList<>();
+            try{
+            mlist = mlDAO.getOneById(m.getRoomId());
+            if(mlist.isEmpty()){
+                
+                
+            
+            
+            }
+            
+            }catch (SQLException ex){
+                Logger.getLogger(MyRoomServlet.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (LWException ex) {
+            Logger.getLogger(MyRoomServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+            
             if(m!=null)
                 m.setRoomId(roomId);
             session.setAttribute("member", m);
             try {
                 mDAO.update(m, m.getId());
+                rs.enterRoom(m, m.getRoomId());
+               
             } catch (LWException ex) {
             Logger.getLogger(MyRoomServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

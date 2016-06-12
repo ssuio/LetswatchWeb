@@ -53,7 +53,6 @@ public class RoomCreateServlet extends HttpServlet {
             String roomPrice = request.getParameter("roomPrice");
             String roomType = request.getParameter("roomType");
             String roomId;
-            System.out.println("!!!!!!!!!!!!!!! "+ "roomname: " + roomName +  "roomPwd:" + roomPwd + "roomPrice: " + roomPrice);
             m = (Member)session.getAttribute("member");
             if(roomName!=null)
                 r.setRoomName(roomName);

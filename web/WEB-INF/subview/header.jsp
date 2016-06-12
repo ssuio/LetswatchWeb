@@ -4,6 +4,7 @@
     Author     : adm
 --%>
 
+<%@page import="lw.domain.Room"%>
 <%@page import="lw.domain.Member"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -38,6 +39,7 @@
                 <%}%>
                 <%if(m!=null){%>
                 <li><a class='menu' href="/LetsWatchWeb/member/Profile.jsp" title="登出">Profile</a></li>
+                
                 <li><a class='menu' href="${sessionScope.member.roomId==null?"/LetsWatchWeb/member/room_search.jsp":"/LetsWatchWeb/member/myroom.jsp"}" title="登出">myRoom</a></li>
             </ul>
             <ul id="greeting">

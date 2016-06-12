@@ -1,3 +1,4 @@
+<%@page import="lw.domain.Room"%>
 <%@page import="lw.model.RoomDAO"%>
 <%@page import="lw.domain.Member"%>
 <%@page  pageEncoding="UTF-8"%>
@@ -17,6 +18,10 @@
            Room : <%
                String roomId = m.getRoomId();
                RoomDAO dao = new RoomDAO();
+               Room r = dao.getOneById(roomId);
+               if (r.getRoomId() == null){
+                   response.sendRedirect("/LetsWatchWeb/member/room_search.jsp");
+               }
            %>
            <%=dao.getOneById(roomId)%>
         </p>
