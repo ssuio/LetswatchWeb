@@ -75,15 +75,27 @@
         background: activecaption;
     }
 </style>
+
+<script>
+      window.onload=function(){
+                  document.getElementById('vid').addEventListener('loadedmetadata', function() {
+                  this.currentTime = 10;
+            }, false  );
+
+       };             
+     </script>
 <div>
         <h1><%=r.getRoomName()%></h1>
         
         
-        <video width="600" controls>
-            <source src ="/LetsWatchWeb/video/boa.mp4" type="video/mp4">
+<!--        <video width="600" id="vid" autoplay>
+            <source src ="http://www.youtube.com/watch?v=nTkdj7XBD8A" type="video/youtube">
             Your browser doesn't support HTML5 video.
             
-        </video>
+        </video>-->
+<iframe width="420" height="315"
+src="http://www.youtube.com/embed/nTkdj7XBD8A?autoplay=1">
+</iframe>
         
         <div id="memberlist">
             <h1>Member List</h1>
