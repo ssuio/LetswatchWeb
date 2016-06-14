@@ -77,13 +77,71 @@
 </style>
 
 <script>
-      window.onload=function(){
-                  document.getElementById('vid').addEventListener('loadedmetadata', function() {
-                  this.currentTime = 10;
-            }, false  );
-
-       };             
-     </script>
+        window.addEventListener("load",init);
+        var url = 'https://www.youtube.com/embed/qFgy_21wQuE?enablejsapi=1';
+        function init(){
+            document.getElementById("seek").addEventListener("click",clickHandler);
+        }
+        
+        var videoId = 'j68LY3fKbrg';
+        var playTime=156.474545;
+        
+        function syncPlay(videoId,playTime){
+            player.cueVideoById(videoId,playTime,'default').playVideo();
+        }
+        
+        function clickHandler(e){
+            //player.seekTo(60, true);
+            syncPlay(videoId,playTime);
+        }
+        
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        var player;
+        
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+          height: '390',
+          width: '640',
+          videoId: 'j68LY3fKbrg',
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+        }
+        
+        function onPlayerReady(e){
+            e.target.playVideo();
+        }
+        
+        function onPlayerStateChange(e){
+            switch (e.data) {
+                case YT.PlayerState.UNSTARTED:
+                  console.log('unstarted');
+                  break;
+                case YT.PlayerState.ENDED:
+                  console.log('ended');
+                  break;
+                case YT.PlayerState.PLAYING:
+                  console.log('playing on: ' + player.getCurrentTime() );
+                  break;
+                case YT.PlayerState.PAUSED:
+                  console.log('paused'  + player.getCurrentTime());
+                  
+                  break;
+                case YT.PlayerState.BUFFERING:
+                  console.log('buffering');
+                  break;
+                case YT.PlayerState.CUED:
+                  console.log('video cued');
+                  break;
+              }
+        }
+        
+        </script>
 <div>
         <h1><%=r.getRoomName()%></h1>
         
@@ -93,9 +151,10 @@
             Your browser doesn't support HTML5 video.
             
         </video>-->
-<iframe width="420" height="315"
+<div id="player"></div>
+<!--<iframe width="420" height="315"
 src="http://www.youtube.com/embed/nTkdj7XBD8A?autoplay=1">
-</iframe>
+</iframe>-->
         
         <div id="memberlist">
             <h1>Member List</h1>

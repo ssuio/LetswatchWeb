@@ -10,10 +10,31 @@
         
     </head>
     <body>
-        <iframe id="player" src="https://www.youtube.com/embed/j68LY3fKbrg?enablejsapi=1" width="560" height="315" ></iframe>
-        <!--<div id="player"></div>-->
+        <!--<script>-->
+            
+            
+        <!--</script>-->
+        <!--<iframe id="player" src="https://www.youtube.com/embed/j68LY3fKbrg?enablejsapi=1" width="560" height="315" ></iframe>-->
+        <div id="player"></div>
         <script>
-                    
+        window.addEventListener("load",init);
+        var url = 'https://www.youtube.com/embed/qFgy_21wQuE?enablejsapi=1';
+        function init(){
+            document.getElementById("seek").addEventListener("click",clickHandler);
+        }
+        
+        var videoId = 'j68LY3fKbrg';
+        var playTime=156.474545;
+        
+        function syncPlay(videoId,playTime){
+            player.cueVideoById(videoId,playTime,'default').playVideo();
+        }
+        
+        function clickHandler(e){
+            //player.seekTo(60, true);
+            syncPlay(videoId,playTime);
+        }
+        
         var tag = document.createElement('script');
         tag.src = "https://www.youtube.com/iframe_api";
         var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -24,7 +45,7 @@
             player = new YT.Player('player', {
           height: '390',
           width: '640',
-          videoId: 'G4UYRvIL7Fw',
+          videoId: 'j68LY3fKbrg',
           events: {
             'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange
@@ -49,6 +70,7 @@
                   break;
                 case YT.PlayerState.PAUSED:
                   console.log('paused'  + player.getCurrentTime());
+                  
                   break;
                 case YT.PlayerState.BUFFERING:
                   console.log('buffering');
@@ -58,7 +80,9 @@
                   break;
               }
         }
+        
         </script>
         <h1>Hello World!</h1>
+        <button id="seek">seek to 1min</button>
     </body>
 </html>
