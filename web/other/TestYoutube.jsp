@@ -21,9 +21,12 @@
 /*        //width: 20px;*/
         height: 20px;
         border-radius: 10px;
-        cursor: pointer;
+        cursor : pointer;
         }
         
+        .searchVideo{
+            cursor: pointer;
+        }
         
     </style>
     <script src="../js/search.js" type="text/javascript"></script>
@@ -37,11 +40,22 @@
             
             document.getElementById("videoBar").addEventListener("click",playAt);
             document.getElementById("searchVideo").addEventListener("click",searchResult);
-            document.getElementById("create").addEventListener("click", createSearchList);
+            document.getElementById("play").addEventListener("click", player.play);
+            document.getElementById("stop").addEventListener("click", removeHandler);
+            
         }
         
         setInterval(syncRangeWithVideo,500);
          
+         function playByClickDiv(){
+             var videoId = $(this).attr('data-videoId');
+             player.cueVideoById(videoId,0,'default').playVideo();
+             
+         }
+         
+         function removeHandler(){
+             
+         }
          
          function searchResult(){
              searchYoutube();
@@ -58,12 +72,15 @@
     
           
         </script>
-        
-        <h1>Hello World!</h1>
+        <button id="play">play</button>
+        <button id="stop">stop</button>
+        <input type="range" min="0" max="1000" id="videoBar">
+        <h1>Search Here</h1>
         <input type="text" id="searchKey"/>
         <button id="searchVideo">search</button>
-        <button id="create">Create Search List</button>
-        <input type="range" min="0" max="1000" id="videoBar">
+        
+        
+        
         <div id="searchList"></div>
     </body>
 </html>

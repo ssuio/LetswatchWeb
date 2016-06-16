@@ -2,21 +2,20 @@ function searchYoutube(){
     //alert(document.getElementById('searchKey').value);
     var q = document.getElementById('searchKey').value;
     var url = 'https://www.googleapis.com/youtube/v3/search?type=video&relevanceLanguage=zh-TW&part=snippet&maxResults=10&key=AIzaSyCwiaBKKfW6T-4dousuknjKMglL9ES-sxA&q='+q;
-    var searchStr;
+    var searchObj;
     $.ajax({
         url: url,
         type: 'GET',
-        dataType: 'html',
+        dataType: 'json',
         global: false,
         async:false,
         success: getData
       }).responseText;
                       
         function getData(data){
-            searchStr = data;
+            searchObj = data;
         }       
           
-     var searchObj = JSON.parse(searchStr);
 //     console.log(searchStr);
 //     console.log(searchObj);
      var videosId=[];
@@ -49,6 +48,7 @@ function searchYoutube(){
 
 
 function createSearchList(){
+            $('.searchVideo').remove();
             var t;
             console.log(resultObj);
             for (i=0;i<10;i++){
@@ -65,6 +65,8 @@ function createSearchList(){
             t = resultObj.videosTime[i];
             videoTime.appendChild(document.createTextNode(t));
             videoDiv.appendChild(videoTime); 
+            videoDiv.setAttribute("data-videoId", resultObj.videosId[i]);
             document.getElementById('searchList').appendChild(videoDiv);
              }
+             $('.searchVideo').on("click",playByClickDiv);
         }
