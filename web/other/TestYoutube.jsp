@@ -12,6 +12,7 @@
     <style>
         body{
             background:black;
+            color:white;
         }
         #videoBar{
         width: 100%;
@@ -22,33 +23,47 @@
         border-radius: 10px;
         cursor: pointer;
         }
+        
+        
     </style>
     <script src="../js/search.js" type="text/javascript"></script>
     <script src="../js/youtubeDAO.js" type="text/javascript"></script>
     <body>
-        <!--<script>-->
-            
-            
-        <!--</script>-->
-        <!--<iframe id="player" src="https://www.youtube.com/embed/j68LY3fKbrg?enablejsapi=1" width="560" height="315" ></iframe>-->
         <div id="player"></div>
         <script>
         window.addEventListener("load",init);
+        var resultObj;
         function init(){
+            
             document.getElementById("videoBar").addEventListener("click",playAt);
-            document.getElementById("searchVideo").addEventListener("click",searchYoutube);
-            var q='cat mouse';
-//            console.log(searchYoutube(q));
+            document.getElementById("searchVideo").addEventListener("click",searchResult);
+            document.getElementById("create").addEventListener("click", createSearchList);
         }
         
         setInterval(syncRangeWithVideo,500);
          
+         
+         function searchResult(){
+             searchYoutube();
+             createSearchList();
+             
+         }
+         
+        function createHandler(){
+            createSearchList();
+            alert(0);
+        }
+          
+          
+    
           
         </script>
-        <div id="info"></div>
+        
         <h1>Hello World!</h1>
         <input type="text" id="searchKey"/>
         <button id="searchVideo">search</button>
+        <button id="create">Create Search List</button>
         <input type="range" min="0" max="1000" id="videoBar">
+        <div id="searchList"></div>
     </body>
 </html>
