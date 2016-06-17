@@ -18,7 +18,6 @@
         width: 100%;
         background: #ecf0f1;
         border: 1px solid #bdc3c7;
-/*        //width: 20px;*/
         height: 20px;
         border-radius: 10px;
         cursor : pointer;
@@ -40,47 +39,21 @@
             
             document.getElementById("videoBar").addEventListener("click",playAt);
             document.getElementById("searchVideo").addEventListener("click",searchResult);
-            document.getElementById("play").addEventListener("click", player.play);
-            document.getElementById("stop").addEventListener("click", removeHandler);
+            document.getElementById("play").addEventListener("click", play);
+            document.getElementById("stop").addEventListener("click", stop);
+            document.getElementById("pause").addEventListener("click", pause);
             
         }
         
         setInterval(syncRangeWithVideo,500);
-         
-         function playByClickDiv(){
-             var videoId = $(this).attr('data-videoId');
-             player.cueVideoById(videoId,0,'default').playVideo();
-             
-         }
-         
-         function removeHandler(){
-             
-         }
-         
-         function searchResult(){
-             searchYoutube();
-             createSearchList();
-             
-         }
-         
-        function createHandler(){
-            createSearchList();
-            alert(0);
-        }
-          
-          
-    
-          
         </script>
-        <button id="play">play</button>
-        <button id="stop">stop</button>
+        <button id="play" >play</button>
+        <button id="stop" >stop</button>
+        <button id="pause" >pause</button>
         <input type="range" min="0" max="1000" id="videoBar">
         <h1>Search Here</h1>
         <input type="text" id="searchKey"/>
         <button id="searchVideo">search</button>
-        
-        
-        
         <div id="searchList"></div>
     </body>
 </html>

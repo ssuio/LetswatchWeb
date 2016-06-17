@@ -66,7 +66,36 @@ function createSearchList(){
             videoTime.appendChild(document.createTextNode(t));
             videoDiv.appendChild(videoTime); 
             videoDiv.setAttribute("data-videoId", resultObj.videosId[i]);
+            var videoAdd = document.createElement('BUTTON');
+            var t = document.createTextNode('Add');
+            videoAdd.appendChild(t);
+            videoAdd.className= 'searchAdd';
+            videoDiv.appendChild(videoAdd);
             document.getElementById('searchList').appendChild(videoDiv);
              }
              $('.searchVideo').on("click",playByClickDiv);
+             $('.searchAdd').on("click",addToPlayList);
+        }
+        
+        function addToPlayList(e){
+            var playListvideo = $(this).closest("div").clone();
+            var playListButton = $(playListvideo).find('button').html("remove").attr("class","searchRemove");
+            $(playListvideo).attr("class","playListDiv").appendTo('#playlist');
+            $('.searchRemove').on("click",removeFromPlayList);
+            $('.playListDiv').on("click",playlist);
+            //alert();.clone().appendTo('#playlist')
+//            document.getElementById('playlist').appendChild(playListDiv);
+            e.stopPropagation();
+        }
+        
+        function removeFromPlayList(e){
+            var playListVideDiv = $(this).closest("div").remove();
+            e.stopPropagation();
+        }
+        
+        function playlist(){
+            $('#playlist div').attr("class","playListDiv");
+            var videoId = $(this).attr('data-videoId');
+            player.cueVideoById(videoId,0,'default').playVideo();
+            $('.playListDiv[data-videoid='+ videoId +']').addClass('playing');
         }

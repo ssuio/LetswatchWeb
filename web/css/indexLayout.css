@@ -14,7 +14,7 @@
 
 
 #header .leftBotton{
-    font-size: 2em;
+    font-size: 1.6em;
     width:60%;
     background: indianred;
     display:inline-block;
@@ -24,19 +24,18 @@
 #header .leftBotton li{
     margin: 15px 5px 5px 5px;
     float: left;
-    padding: 5px;
+    /*padding: 5px;*/
     background: indianred;
 }
 #header .leftBotton li a{
     display: block;
-    width: 100px;
 }
 
 
 
 #header .rightBotton{
     list-style: none;
-    font-size: 1.5em;
+    font-size: 1.3em;
     background: indianred;
     width: 20%;
     float: right;

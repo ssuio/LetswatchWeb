@@ -1,7 +1,7 @@
-<%@page import="lw.domain.Member"%>
+<%@page import="lw.domain.Member" info="首頁"%>
 <%@page pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/subview/header.jsp">
-<jsp:param name="sub_title" value="哈囉!P"/>
+    <jsp:param name="sub_title" value="<%=this.getServletInfo()%>"/>
 </jsp:include>
 
 

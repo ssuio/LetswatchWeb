@@ -35,7 +35,14 @@ var tag = document.createElement('script');
                   console.log('unstarted');
                   break;
                 case YT.PlayerState.ENDED:
-                  console.log('ended');
+                        var nowVideo = $(".playing");
+                    if($('.playListDiv').hasClass('playing')){
+                        var nextVideo = nowVideo.next();
+                        $('#playlist div').attr("class","playListDiv");
+                        nextVideo.addClass("playing");
+                        var nextVideoId = nextVideo.attr('data-videoId');
+                        player.cueVideoById(nextVideoId,0,'default').playVideo();
+                    }
                   break;
                 case YT.PlayerState.PLAYING:
                   console.log('playing on: ' + player.getCurrentTime() );
@@ -59,7 +66,7 @@ function syncRangeWithVideo(){
             var final = now/duration*1000;
             document.getElementById("videoBar").value= final;
         }
-        
+
 function playAt(){
     var afterClick = document.getElementById("videoBar").value;
     var duration = player.getDuration();
@@ -68,6 +75,27 @@ function playAt(){
     player.seekTo(final);
 }
 
+function play(){
+           player.playVideo();
+ }
+       function stop(){
+           player.stopVideo();
+ }
+          
+function pause(){
+    player.pauseVideo();
 
+}
 
+function searchResult(){
+             searchYoutube();
+             createSearchList();
+             
+         }
+         
+function playByClickDiv(){
+    $('#playlist div').attr("class","playListDiv");
+    var videoId = $(this).attr('data-videoId');
+    player.cueVideoById(videoId,0,'default').playVideo();
 
+}
