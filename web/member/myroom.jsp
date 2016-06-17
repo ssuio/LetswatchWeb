@@ -29,7 +29,6 @@
 
     }
     #memberlist ul{
-        width: 30%;
         float:left;
         background:grey;
         text-align: center;
@@ -163,7 +162,7 @@
     <button id="play" >play</button>
     <button id="stop" >stop</button>
     <button id="pause" >pause</button>
-    <input type="range" min="0" max="1000" id="videoBar">
+    <input type="range" min="0" max="1000" value="0" id="videoBar">
     <h1>Search Here</h1>
     <input type="text" id="searchKey"/>
     <button id="searchVideo">search</button>
