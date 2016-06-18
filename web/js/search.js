@@ -79,7 +79,7 @@ function createSearchList(){
         
         function addToPlayList(e){
             var playListvideo = $(this).closest("div").clone();
-            var playListButton = $(playListvideo).find('button').html("remove").attr("class","searchRemove");
+            var playListButton = $(playListvideo).find('button').html("Remove").attr("class","searchRemove");
             $(playListvideo).attr("class","playListDiv").appendTo('#playlist');
             $('.searchRemove').on("click",removeFromPlayList);
             $('.playListDiv').on("click",playlist);

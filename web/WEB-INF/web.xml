@@ -92,6 +92,10 @@
         <servlet-name>MyRoomServlet</servlet-name>
         <servlet-class>lw.controller.MyRoomServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PlayListServlet</servlet-name>
+        <servlet-class>PlayListServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>helloJSP</servlet-name>
         <url-pattern>/hello.php</url-pattern>
@@ -108,7 +112,6 @@
         <servlet-name>registerImageCheckServlet</servlet-name>
         <url-pattern>/Image/registerCheck.jpg</url-pattern>
     </servlet-mapping>
-    
     <servlet-mapping>
         <servlet-name>RoomCreateServlet</servlet-name>
         <url-pattern>/roomCreate.do</url-pattern>
@@ -116,6 +119,10 @@
     <servlet-mapping>
         <servlet-name>MyRoomServlet</servlet-name>
         <url-pattern>*.room</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PlayListServlet</servlet-name>
+        <url-pattern>/playlist.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
