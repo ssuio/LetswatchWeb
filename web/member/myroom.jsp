@@ -121,6 +121,7 @@
 <script src="../js/youtubeDAO.js" type="text/javascript"></script>
 <script src="../js/search.js" type="text/javascript"></script>
 <script src="../js/jquery-1.12.4.js" type="text/javascript"></script>
+<script src="../js/sync.js" type="text/javascript"></script>
 <script>
     window.addEventListener("load", init);
     var videoId;
@@ -149,96 +150,15 @@
         console.log(time);
     }
 
-    function pushPlayList(){
-        videoId = [];
-        videoTitle = [];
-        videoTime = [];
-        videoImg = [];
-        var what = $('.playListDiv').each(function(){
-            videoId.push($(this).attr('data-videoId'));
-            videoTitle.push($(this).find('p').first().text());
-            videoTime.push($(this).find('p').last().text());
-            videoImg.push($(this).find('img').attr('src'));
-        });
-        
-        time = Date.now();
-        
-        pushPlaylistObj = {
-           'videoId': videoId,
-           'videoTitle': videoTitle,
-           'videoTime': videoTime,
-           'videoImg': videoImg,
-           'action': 'push',
-           'time' : time
-        };
-        
-        console.log (pushPlaylistObj);
-        
-        $.ajax({
-            type:"POST",
-            url: "http://localhost:8084/LetsWatchWeb/playlist.do",
-            data: pushPlaylistObj,
-            success:function(response){
-                console.log(response);
-            }
-        });
-}
+    
 
 
-    function pullPlayList(e){
-            
-            $.ajax({
-            type:"POST",
-            url: "http://localhost:8084/LetsWatchWeb/playlist.do",
-            data: {'action':'pull',
-                   'time': time
-            },
-            success:pulltoPlayList,
-            error: function(){
-                console.log("ajax FAILED!");
-            }
-            
-        });
-    }
-    
-        function pulltoPlayList(response){
-                console.log('response: '+response);
-                console.log('Response time: '+response.time);
-                console.log('time: '+time);
-            if(response.time!=="same"){
-                    time=response.time;
-                $('.playListDiv').remove();
-                var length = $(response.videos).length;
-                console.log("the length is :"+ length);
-                for(i=0;i<length;i++){
-                    var videoDiv = document.createElement('div');
-                    videoDiv.className = 'playListDiv';
-                    var videoImg = document.createElement('img');
-                    videoImg.src = response.videos[i].videoImg;
-                    videoDiv.appendChild(videoImg);
-                    var videoTitle = document.createElement('p');
-                    t = response.videos[i].videoTitle;
-                    videoTitle.appendChild(document.createTextNode(t));
-                    videoDiv.appendChild(videoTitle);
-                    var videoTime = document.createElement('p');
-                    t = response.videos[i].videoTime;
-                    videoTime.appendChild(document.createTextNode(t));
-                    videoDiv.appendChild(videoTime); 
-                    videoDiv.setAttribute("data-videoId", response.videos[i].videoId);
-                    var videoRemove = document.createElement('BUTTON');
-                    var t = document.createTextNode('Remove');
-                    videoRemove.appendChild(t);
-                    videoRemove.className= 'searchRemove';
-                    videoDiv.appendChild(videoRemove);
-                    document.getElementById('playlist').appendChild(videoDiv);
-                }
-                $('.searchRemove').on("click",removeFromPlayList);
-                $('.playListDiv').on("click",playlist);
-            }
-            console.log("time is the same, didn't do anything");
-        }
     
     
+        
+    
+        
+        setInterval(pullPlayList, 500);
         setInterval(syncRangeWithVideo, 500);
 </script>
 

@@ -87,7 +87,7 @@ public class PlayListServlet extends HttpServlet {
             }else if(action.matches("pull")){
                 try {
                     String oldTime = pDAO.getTime(roomId);
-                    if(!time.matches(oldTime)){
+                    if(!time.matches(oldTime)&&!oldTime.matches("not set")){
                         try {
                             pList = pDAO.getAll(roomId);
                             if(pList!=null){
@@ -120,12 +120,12 @@ public class PlayListServlet extends HttpServlet {
                             Logger.getLogger(PlayListServlet.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }else{
-                        System.out.println("Time is the same!");
+                        System.out.println("Time is the same! or Time is not set yet");
                         JSONObject json = new JSONObject();
                         try {
                             json.put("time", "same");
                             response.setContentType("application/json");
-                                response.getWriter().write(json.toString());
+                            response.getWriter().write(json.toString());
                         } catch (JSONException ex) {
                             Logger.getLogger(PlayListServlet.class.getName()).log(Level.SEVERE, null, ex);
                         }

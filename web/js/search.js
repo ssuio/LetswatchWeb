@@ -85,11 +85,13 @@ function createSearchList(){
             $('.playListDiv').on("click",playlist);
             //alert();.clone().appendTo('#playlist')
 //            document.getElementById('playlist').appendChild(playListDiv);
+            pushPlayList();
             e.stopPropagation();
         }
         
         function removeFromPlayList(e){
             var playListVideDiv = $(this).closest("div").remove();
+            pushPlayList();
             e.stopPropagation();
         }
         
