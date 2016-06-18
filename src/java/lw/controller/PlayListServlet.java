@@ -1,3 +1,5 @@
+package lw.controller;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -88,53 +90,39 @@ public class PlayListServlet extends HttpServlet {
                 try {
                     String oldTime = pDAO.getTime(roomId);
                     if(!time.matches(oldTime)&&!oldTime.matches("not set")){
-                        try {
                             pList = pDAO.getAll(roomId);
                             if(pList!=null){
                                 jArr = new JSONArray();
                                 jObj= new JSONObject();
+                                
                                 for(PlayList pTmp: pList){
                                     address = new JSONObject();
-                                    try {
-                                        address.put("videoId", pTmp.getVideoId());
-                                        address.put("videoTitle", pTmp.getVideoTitle());
-                                        address.put("videoTime", pTmp.getVideoTime());
-                                        address.put("videoImg", pTmp.getVideoImg());
-                                        jArr.put(address);
-                                    } catch (JSONException ex) {
-                                        Logger.getLogger(PlayListServlet.class.getName()).log(Level.SEVERE, null, ex);
-                                    }
+                                    address.put("videoId", pTmp.getVideoId());
+                                    address.put("videoTitle", pTmp.getVideoTitle());
+                                    address.put("videoTime", pTmp.getVideoTime());
+                                    address.put("videoImg", pTmp.getVideoImg());
+                                    jArr.put(address);
                                 }
-                                try {
-                                    jObj.put("videos", jArr);
-                                    jObj.put("time",oldTime);
-                                } catch (JSONException ex) {
-                                    Logger.getLogger(PlayListServlet.class.getName()).log(Level.SEVERE, null, ex);
-                                }
+                                
+                                jObj.put("videos", jArr);
+                                jObj.put("time",oldTime);
                                 
                                 response.setContentType("application/json");
                                 response.getWriter().write(jObj.toString());
-                                
-                            }
-                        } catch (LWException ex) {
-                            Logger.getLogger(PlayListServlet.class.getName()).log(Level.SEVERE, null, ex);
                         }
+                        
                     }else{
                         System.out.println("Time is the same! or Time is not set yet");
                         JSONObject json = new JSONObject();
-                        try {
-                            json.put("time", "same");
-                            response.setContentType("application/json");
-                            response.getWriter().write(json.toString());
-                        } catch (JSONException ex) {
-                            Logger.getLogger(PlayListServlet.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+                        json.put("time", "same");
+                        response.setContentType("application/json");
+                        response.getWriter().write(json.toString());
                     }
                 } catch (LWException ex) {
                     Logger.getLogger(PlayListServlet.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
-                
+                }catch (JSONException ex) {
+                                    Logger.getLogger(PlayListServlet.class.getName()).log(Level.SEVERE, null, ex);
+                                }
             }else{
                 System.out.println("ACTION FLAG WRONG!");
             

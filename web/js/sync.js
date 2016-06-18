@@ -82,3 +82,31 @@ function pullPlayList(e){
             
         });
     }
+
+function pullMemberList(){
+            
+            $.ajax({
+            type:"POST",
+            url: "http://localhost:8084/LetsWatchWeb/memberList.do",
+            success:pullToMemberList,
+            error: function(){
+                console.log("ajax FAILED!");
+            }
+            
+        });
+    }
+    
+    function pullToMemberList(response){
+        var length = $(response.member).length;
+        $('.member').remove();
+        for(i=0; i<length;i++){
+            var name = response.member[i].name;
+            var nameP = document.createElement("p");
+            nameP.className="member";
+            var t = document.createTextNode(name);
+            nameP.appendChild(t);
+            $('#memberlist').append(nameP);
+        }
+        
+    }
+

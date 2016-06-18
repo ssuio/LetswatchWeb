@@ -132,6 +132,9 @@
     var pullPlaylistObj;
     var resultObj;
     var time='0';
+    var area;
+    var action;
+    var currentTime;
     function init() {
 
         document.getElementById("videoBar").addEventListener("click", playAt);
@@ -140,8 +143,9 @@
         document.getElementById("stop").addEventListener("click", stop);
         document.getElementById("pause").addEventListener("click", pause);
         document.getElementById("pushPlayList").addEventListener("click", pushPlayList);
+        document.getElementById("pullMemberList").addEventListener("click", pullMemberList);
         document.getElementById("pullPlayList").addEventListener("click", pullPlayList);
-        document.getElementById("getTime").addEventListener("click", getTime);
+        //document.getElementById("getTime").addEventListener("click", getTime);
         jQuery('#searchList').css("overflow-y", "scroll");
         jQuery('#playlist').css("overflow-y", "scroll");
     }
@@ -151,14 +155,112 @@
     }
 
     
-
-
     
     
+    
+
+function PullToPlay(){
+    videoId = '5IhmAI0jgSg';
+    area ="play";
+    action ="play";
+    if(area==='play'){
+        $('#playlist div').attr("class","playListDiv");
+        $('.playListDiv[data-videoid='+videoId+']').addClass("playing");
+        player.cueVideoById(videoId,0,'default').playVideo();
+    }
+    
+    if(area==='search'){
+        player.cueVideoById(videoId,0,'default').playVideo();
+    }
+}
+
+
+function pushPlayOnPlayList(){
+    area="play";
+    action="play";
+    time = Date.now();
+    var videoId = player.getVideoData()['video_id'];
+        $.ajax({
+            type:"POST",
+            url: "http://localhost:8084/LetsWatchWeb/syncVideo.do",
+            data: {'action':action,
+                   'area': area,
+                   'currentTime': '0',
+                   'videoId': videoId,
+                   'time' : time
+            },
+            success:pulltoPlayList,
+            error: function(){
+                console.log("ajax FAILED!");
+            }
+    });
+}
+
+function pushVideoPlayOnSearchList(){
+    area="search";
+    time = Date.now();
+    var videoId = player.getVideoData()['video_id'];
+     $.ajax({
+            type:"POST",
+            url: "http://localhost:8084/LetsWatchWeb/syncVideo.do",
+            data: {'action':action,
+                   'area': area,
+                   'currentTime': '0',
+                   'videoId': videoId,
+                   'time' : time
+            },
+            success:pulltoPlayList,
+            error: function(){
+                console.log("ajax FAILED!");
+            }
+    });
+    
+}
+
+function pushVideoPlayOnBar(){
+    currentTime = player.getCurrentTime();
+    time = Date.now();
+    action="play";
+    $.ajax({
+            type:"POST",
+            url: "http://localhost:8084/LetsWatchWeb/syncVideo.do",
+            data: {'action':action,
+                   'area': area,
+                   'currentTime': currentTime,
+                   'videoId': videoId,
+                   'time' : time
+            },
+            success:pulltoPlayList,
+            error: function(){
+                console.log("ajax FAILED!");
+            }
+    });
+}
+
+function pushVideoStop(){
+    action="stop";
+     $.ajax({
+            type:"POST",
+            url: "http://localhost:8084/LetsWatchWeb/syncVideo.do",
+            data: {'action':action,
+                   'area': area,
+                   'currentTime': currentTime,
+                   'videoId': videoId,
+                   'time' : time
+            },
+            success:pulltoPlayList,
+            error: function(){
+                console.log("ajax FAILED!");
+            }
+    });
+}
+    
+
         
     
         
-        setInterval(pullPlayList, 500);
+//        setInterval(pullMemberList, 500);
+//        setInterval(pullPlayList, 500);
         setInterval(syncRangeWithVideo, 500);
 </script>
 
@@ -166,14 +268,8 @@
     <h1><%=r.getRoomName()%></h1>
     <div>
         <div id="player"></div>
-        <div id="memberlist">
-            <h1>Member List</h1>
-            <ul>
-                <% for (Member mTmp : mList) {%>
-                <li><%=mTmp.getName()%></li>
-                    <%}%>
-            </ul>
-        </div>
+        <div id="memberlist"></div>
+        
 
         <div id="playlist"></div>
        
@@ -181,8 +277,10 @@
     <button id="play" >play</button>
     <button id="stop" >stop</button>
     <button id="pause" >pause</button>
+    <button id="pullMemberList" >pullMemberList</button>
     <button id="pushPlayList" >pushPlayList</button>
     <button id="pullPlayList" >pullPlayList</button>
+    <button id="test" >test</button>
     <button id="getTime" >getTime</button>
     <input type="range" min="0" max="1000" value="0" id="videoBar">
     <h1>Search Here</h1>
