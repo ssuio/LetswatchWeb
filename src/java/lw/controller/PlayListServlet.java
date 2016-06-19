@@ -43,13 +43,13 @@ public class PlayListServlet extends HttpServlet {
             throws ServletException, IOException {
             fixHeaders(response);
             request.setCharacterEncoding("utf-8");
-//            response.setContentType("text/html;charset=UTF-8");
+            response.setContentType("text/html;charset=UTF-8");
             List<PlayList> pList = new ArrayList<>();
             PlayListDAO pDAO = new PlayListDAO();
             PlayList p;
-            Member m;
-            String roomId;
-            HttpSession session = request.getSession();
+            //Member m;
+            String roomId = request.getParameter("roomId");
+            //HttpSession session = request.getSession();
             String[] vId = request.getParameterValues("videoId[]");
             String[] vTitle = request.getParameterValues("videoTitle[]");
             String[] vTime = request.getParameterValues("videoTime[]");
@@ -59,9 +59,9 @@ public class PlayListServlet extends HttpServlet {
             JSONObject jObj;
             JSONArray jArr;
             JSONObject address;
-            m = (Member)session.getAttribute("member");
-            System.out.println("MMMMMMMMMMMMMMMMMMMMMM:"+ m);
-            roomId = m.getRoomId();
+            //m = (Member)session.getAttribute("member");
+            
+            //System.out.println("MMMMMMMMMMMMMMMMMMMMMM:"+ m);
             
 
             if(action.matches("push")){
@@ -107,7 +107,7 @@ public class PlayListServlet extends HttpServlet {
 
                             jObj.put("videos", jArr);
                             jObj.put("time",oldTime);
-
+                            
                             response.setContentType("application/json");
                             response.getWriter().write(jObj.toString());
                             System.out.println("PULL PLAYLIST SUCCESSS!");
@@ -141,7 +141,7 @@ public class PlayListServlet extends HttpServlet {
     
     private void fixHeaders(HttpServletResponse response) {
 
-//    response.setContentType("text/html");
+    response.setContentType("text/html");
     response.setHeader("Cache-control", "no-cache, no-store");
     response.setHeader("Pragma", "no-cache");
     response.setHeader("Expires", "-1");

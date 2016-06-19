@@ -47,6 +47,7 @@ function pulltoPlayList(response){
         playListTime = Date.now();
         
         pushPlaylistObj = {
+            'roomId': roomId,
            'videoId': videoId,
            'videoTitle': videoTitle,
            'videoTime': videoTime,
@@ -72,8 +73,10 @@ function pullPlayList(e){
             $.ajax({
             type:"POST",
             url: "http://"+host+"/LetsWatchWeb/playlist.do",
-            data: {'action':'pull',
-                   'time': playListTime
+            data: {
+                'roomId': roomId,
+                'action':'pull',
+                'time': playListTime
             },
             success:pulltoPlayList,
             error: function(){
@@ -89,6 +92,9 @@ function pullMemberList(){
             type:"POST",
             url: "http://"+host+"/LetsWatchWeb/memberList.do",
             success:pullToMemberList,
+            data:{
+                'roomId': roomId
+            },
             error: function(){
                 console.log("ajax FAILED!");
             }

@@ -16,8 +16,6 @@
     Room r = dao.getOneById(roomId);
     RoomMemberListDAO rmlDAO = new RoomMemberListDAO();
     PlayListDAO pDAO = new PlayListDAO(); 
-    List<PlayList> pList = pDAO.getAll(roomId);
-    List<Member> mList = rmlDAO.getOneById(roomId);
     //Check the room is exist or redirect to room_search page
     if (r.getRoomId() == null) {
         response.sendRedirect("/LetsWatchWeb/member/room_search.jsp");
@@ -124,6 +122,7 @@
 <script src="../js/sync.js" type="text/javascript"></script>
 <script>
     window.addEventListener("load", init);
+    
     var gVideoId = 'j68LY3fKbrg';
     var videoTitle;
     var videoTime;
@@ -138,8 +137,8 @@
     var currentTime='0';
     //var host="localhost:8084";
     //var host="ssuio.idv.tw:58885";
-    var host="localhost:8084";
-     
+    var host="ssuio.idv.tw:58885";
+    var roomId ="<%=m.getRoomId()%>";
     function init() {
         var tag = document.createElement('script');
         tag.src = "https://www.youtube.com/iframe_api";
@@ -171,8 +170,9 @@
         jQuery('#searchList').css("overflow-y", "scroll");
         jQuery('#playlist').css("overflow-y", "scroll");
     }
-
+    
     function getTime(){
+        console.log("roomId: "+ roomId);
         console.log("action: "+action);
         console.log("currentTime: "+currentTime);
         console.log("area: "+area);
@@ -180,7 +180,6 @@
         console.log("time: "+time);
     }
 
-    
     
     
     
@@ -192,6 +191,7 @@ function PullToPlay(){
             url: "http://"+host+"/LetsWatchWeb/syncVideo.do",
             
             data:{
+                'roomId': roomId,
                 'remote': 'pull',
                 'time':time
             },
@@ -244,6 +244,7 @@ function pushPlayOnPlayList(videoId){
             type:"POST",
             url: "http://"+host+"/LetsWatchWeb/syncVideo.do",
             data: {
+                   'roomId': roomId,
                    'remote': 'push',
                    'action':action,
                    'area': area,
@@ -271,6 +272,7 @@ function pushPlayOnSearch(videoId){
             type:"POST",
             url: "http://"+host+"/LetsWatchWeb/syncVideo.do",
             data: {
+                   'roomId': roomId,
                    'remote': 'push',
                    'action':action,
                    'area': area,
@@ -301,6 +303,7 @@ function pushVideoPlayOnBar(){
             type:"POST",
             url: "http://"+host+"/LetsWatchWeb/syncVideo.do",
             data: {
+                   'roomId': roomId,
                    'remote': 'push',
                    'action':action,
                    'area': area,
@@ -325,6 +328,7 @@ function pushVideoStop(){
             type:"POST",
             url: "http://"+host+"/LetsWatchWeb/syncVideo.do",
             data: {
+                   'roomId': roomId,
                    'remote': 'push',
                    'action':action,
                    'area': area,
@@ -342,7 +346,6 @@ function pushVideoStop(){
 }
     
 
-        
     
        
     

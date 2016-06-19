@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import lw.domain.LWException;
 import lw.domain.Member;
 import lw.domain.PlayList;
@@ -46,13 +47,15 @@ public class TestJsonServlet extends HttpServlet {
         PlayListDAO pDAO = new PlayListDAO();
         PlayList p;
         Member m;
-        String roomId="r16060042";
+        String roomId="R16060042";
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
         JSONObject jObj = new JSONObject();
         JSONArray jArr;
         JSONObject address;
-        
+//        HttpSession session = request.getSession();
+//        m = (Member)session.getAttribute("member");
+//        roomId = m.getRoomId();
         try {
             String oldTime = pDAO.getTime(roomId);
            pList = pDAO.getAll(roomId);

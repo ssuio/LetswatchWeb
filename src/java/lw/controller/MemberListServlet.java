@@ -44,9 +44,9 @@ public class MemberListServlet extends HttpServlet {
             request.setCharacterEncoding("utf-8");
             response.setContentType("text/html");
             HttpSession session = request.getSession();
-            Member m = (Member)session.getAttribute("member");
+            //Member m = (Member)session.getAttribute("member");
             List<Member> mList ;
-            String roomId = m.getRoomId();
+            String roomId = request.getParameter("roomId");
             RoomMemberListDAO rmDAO = new RoomMemberListDAO();
             JSONArray jArr = new JSONArray();
             JSONObject jObj= new JSONObject();

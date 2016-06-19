@@ -42,9 +42,9 @@ public class SyncVideoServlet extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        Member m = (Member)session.getAttribute("member");
+//        Member m = (Member)session.getAttribute("member");
         RoomDAO rDAO = new RoomDAO();
-        String roomId = m.getRoomId();
+        String roomId = request.getParameter("roomId");
         String remote = request.getParameter("remote");
         String time = request.getParameter("time");
         String action;
