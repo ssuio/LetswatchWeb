@@ -333,11 +333,13 @@ function pushVideoStop(){
 
         
     
+        setInterval(PullToPlay, 1000);
+        setInterval(pullMemberList, 1000);
+        setInterval(pullPlayList, 1000);
+        setInterval(syncRangeWithVideo, 1000);
+    
         
-        setInterval(PullToPlay, 500);
-        setInterval(pullMemberList, 500);
-        setInterval(pullPlayList, 500);
-        setInterval(syncRangeWithVideo, 500);
+        
 </script>
 
 <div id="contentDiv">

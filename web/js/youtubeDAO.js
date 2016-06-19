@@ -97,7 +97,7 @@ function searchResult(){
 function playByClickDiv(){
     $('#playlist div').attr("class","playListDiv");
     var videoId = $(this).attr('data-videoId');
-    player.cueVideoById(Id,0,'default').playVideo();
+    player.cueVideoById(videoId,0,'default').playVideo();
     pushPlayOnSearch(videoId);
 }
 
