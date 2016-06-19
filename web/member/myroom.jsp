@@ -137,9 +137,15 @@
     var action;
     var currentTime='0';
     //var host="localhost:8084";
-    var host="192.168.0.155:8084";
+    var host="localhost:8084";
+     
     function init() {
-
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        var player;
+        
         document.getElementById("videoBar").addEventListener("click", pushVideoPlayOnBar);
         document.getElementById("searchVideo").addEventListener("click", searchResult);
         document.getElementById("play").addEventListener("click", play);
@@ -336,10 +342,7 @@ function pushVideoStop(){
 
         
     
-        setInterval(PullToPlay, 3000);
-        setInterval(pullMemberList, 3000);
-        setInterval(pullPlayList, 3000);
-        setInterval(syncRangeWithVideo, 3000);
+       
     
         
         

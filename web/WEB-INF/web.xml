@@ -52,6 +52,26 @@
         <dispatcher>INCLUDE</dispatcher>
         <dispatcher>FORWARD</dispatcher>
     </filter-mapping>
+    
+    
+    
+<!--    <filter>
+   <filter-name>Remote Address Filter</filter-name>
+   <filter-class>org.apache.catalina.filters.RemoteAddrFilter</filter-class>
+   <init-param>
+      <param-name>allow</param-name>  or deny 
+      <param-value>.*</param-value>  regexp for your ip adress 
+   </init-param>
+</filter>
+<filter-mapping>
+   <filter-name>Remote Address Filter</filter-name>
+   <url-pattern>/LetsWatchWeb/*</url-pattern>  the url of your admin page 
+</filter-mapping>-->
+    
+    
+    
+    
+    
     <listener>
         <description>ServletContextListener, HttpSessionListener</description>
         <listener-class>lw.web.VisitorsCountListener</listener-class>
