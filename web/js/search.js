@@ -74,6 +74,7 @@ function createSearchList(){
             document.getElementById('searchList').appendChild(videoDiv);
              }
              $('.searchVideo').on("click",playByClickDiv);
+             
              $('.searchAdd').on("click",addToPlayList);
         }
         
@@ -82,7 +83,7 @@ function createSearchList(){
             var playListButton = $(playListvideo).find('button').html("Remove").attr("class","searchRemove");
             $(playListvideo).attr("class","playListDiv").appendTo('#playlist');
             $('.searchRemove').on("click",removeFromPlayList);
-            $('.playListDiv').on("click",playlist);
+            $('.playListDiv').on("click",playlist).on("click",pushPlayOnPlayList);
             //alert();.clone().appendTo('#playlist')
 //            document.getElementById('playlist').appendChild(playListDiv);
             pushPlayList();
@@ -99,5 +100,11 @@ function createSearchList(){
             $('#playlist div').attr("class","playListDiv");
             var videoId = $(this).attr('data-videoId');
             player.cueVideoById(videoId,0,'default').playVideo();
+            pushPlayOnPlayList(videoId);
             $('.playListDiv[data-videoid='+ videoId +']').addClass('playing');
+            
         }
+        
+        
+        
+        

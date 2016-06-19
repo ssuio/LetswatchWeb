@@ -1,7 +1,7 @@
 function pulltoPlayList(response){
             if(response.time!=="same"){
                 console.log("Doing pull lists...");
-                    time=response.time;
+                    playListTime=response.time;
                 $('.playListDiv').remove();
                 var length = $(response.videos).length;
                 for(i=0;i<length;i++){
@@ -29,7 +29,7 @@ function pulltoPlayList(response){
                 $('.searchRemove').on("click",removeFromPlayList);
                 $('.playListDiv').on("click",playlist);
             }
-            console.log("time is the same, didn't do anything");
+            console.log("PlayListTime is the same, didn't do anything");
         }
         
         function pushPlayList(){
@@ -44,7 +44,7 @@ function pulltoPlayList(response){
             videoImg.push($(this).find('img').attr('src'));
         });
         
-        time = Date.now();
+        playListTime = Date.now();
         
         pushPlaylistObj = {
            'videoId': videoId,
@@ -52,7 +52,7 @@ function pulltoPlayList(response){
            'videoTime': videoTime,
            'videoImg': videoImg,
            'action': 'push',
-           'time' : time
+           'time' : playListTime
         };
         
         console.log (pushPlaylistObj);
@@ -73,7 +73,7 @@ function pullPlayList(e){
             type:"POST",
             url: "http://localhost:8084/LetsWatchWeb/playlist.do",
             data: {'action':'pull',
-                   'time': time
+                   'time': playListTime
             },
             success:pulltoPlayList,
             error: function(){

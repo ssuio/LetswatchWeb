@@ -90,25 +90,25 @@ public class PlayListServlet extends HttpServlet {
                 try {
                     String oldTime = pDAO.getTime(roomId);
                     if(!time.matches(oldTime)&&!oldTime.matches("not set")){
-                            pList = pDAO.getAll(roomId);
-                            if(pList!=null){
-                                jArr = new JSONArray();
-                                jObj= new JSONObject();
-                                
-                                for(PlayList pTmp: pList){
-                                    address = new JSONObject();
-                                    address.put("videoId", pTmp.getVideoId());
-                                    address.put("videoTitle", pTmp.getVideoTitle());
-                                    address.put("videoTime", pTmp.getVideoTime());
-                                    address.put("videoImg", pTmp.getVideoImg());
-                                    jArr.put(address);
-                                }
-                                
-                                jObj.put("videos", jArr);
-                                jObj.put("time",oldTime);
-                                
-                                response.setContentType("application/json");
-                                response.getWriter().write(jObj.toString());
+                        pList = pDAO.getAll(roomId);
+                        if(pList!=null){
+                            jArr = new JSONArray();
+                            jObj= new JSONObject();
+
+                            for(PlayList pTmp: pList){
+                                address = new JSONObject();
+                                address.put("videoId", pTmp.getVideoId());
+                                address.put("videoTitle", pTmp.getVideoTitle());
+                                address.put("videoTime", pTmp.getVideoTime());
+                                address.put("videoImg", pTmp.getVideoImg());
+                                jArr.put(address);
+                            }
+
+                            jObj.put("videos", jArr);
+                            jObj.put("time",oldTime);
+
+                            response.setContentType("application/json");
+                            response.getWriter().write(jObj.toString());
                         }
                         
                     }else{

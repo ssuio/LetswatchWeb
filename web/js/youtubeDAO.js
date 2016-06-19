@@ -71,8 +71,9 @@ function playAt(){
     var afterClick = document.getElementById("videoBar").value;
     var duration = player.getDuration();
     var final = afterClick*duration/1000;
-    var playnow = player.getCurrentTime();
+    //var playnow = player.getCurrentTime();
     player.seekTo(final);
+    
 }
 
 function play(){
@@ -96,6 +97,7 @@ function searchResult(){
 function playByClickDiv(){
     $('#playlist div').attr("class","playListDiv");
     var videoId = $(this).attr('data-videoId');
-    player.cueVideoById(videoId,0,'default').playVideo();
-
+    player.cueVideoById(Id,0,'default').playVideo();
+    pushPlayOnSearch(videoId);
 }
+
