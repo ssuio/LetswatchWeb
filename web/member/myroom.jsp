@@ -137,6 +137,7 @@
     var action;
     var currentTime='0';
     //var host="localhost:8084";
+    //var host="ssuio.idv.tw:58885";
     var host="localhost:8084";
      
     function init() {
@@ -189,6 +190,7 @@ function PullToPlay(){
     $.ajax({
             type:"POST",
             url: "http://"+host+"/LetsWatchWeb/syncVideo.do",
+            
             data:{
                 'remote': 'pull',
                 'time':time

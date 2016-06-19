@@ -1,6 +1,6 @@
 function pulltoPlayList(response){
             if(response.time!=="same"){
-                console.log("Doing pull lists...");
+                console.log("RESPONSE PLAYLIST is here: " +response);
                     playListTime=response.time;
                 $('.playListDiv').remove();
                 var length = $(response.videos).length;
@@ -97,6 +97,7 @@ function pullMemberList(){
     }
     
     function pullToMemberList(response){
+        console.log(response);
         var length = $(response.member).length;
         $('.member').remove();
         for(i=0; i<length;i++){

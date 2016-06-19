@@ -6,8 +6,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <script src="../js/jquery-1.12.4.js" type="text/javascript"></script>
-        
+        <!--<script src="../js/jquery-1.12.4.js" type="text/javascript"></script>-->
+        <script src="../js/jquery-3.0.0.min.js" type="text/javascript"></script>
     </head>
     <style>
         body{
@@ -45,11 +45,9 @@
             
              $.ajax({
             type:"POST",
-            url: "http://ssuio.idv.tw:58885/LetsWatchWeb/syncVideo.do",
-            data:{
-                'remote': 'pull',
-                'time':'1000'
-            },
+            url: "http://192.168.0.155:8084/LetsWatchWeb/json.do",
+            data:{"name":"hello!"},
+            crossDomain:true,
             success:function(response){
                 console.log(response);
             },
@@ -58,7 +56,7 @@
             }
     });
         }
-        setInterval(syncRangeWithVideo,500);
+//        setInterval(syncRangeWithVideo,500);
         </script>
         <button id="play" >play</button>
         <button id="stop" >stop</button>

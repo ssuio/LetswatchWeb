@@ -41,9 +41,9 @@ public class PlayListServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+            fixHeaders(response);
             request.setCharacterEncoding("utf-8");
-            response.setContentType("text/html");
+//            response.setContentType("text/html;charset=UTF-8");
             List<PlayList> pList = new ArrayList<>();
             PlayListDAO pDAO = new PlayListDAO();
             PlayList p;
@@ -60,6 +60,7 @@ public class PlayListServlet extends HttpServlet {
             JSONArray jArr;
             JSONObject address;
             m = (Member)session.getAttribute("member");
+            System.out.println("MMMMMMMMMMMMMMMMMMMMMM:"+ m);
             roomId = m.getRoomId();
             
 
@@ -109,6 +110,8 @@ public class PlayListServlet extends HttpServlet {
 
                             response.setContentType("application/json");
                             response.getWriter().write(jObj.toString());
+                            System.out.println("PULL PLAYLIST SUCCESSS!");
+
                         }
                         
                     }else{
@@ -128,9 +131,28 @@ public class PlayListServlet extends HttpServlet {
             
             }
             
-            
     }
 
+    
+//    @Override
+//    protected void doOptions(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        fixHeaders(resp);
+//    }
+    
+    private void fixHeaders(HttpServletResponse response) {
+
+//    response.setContentType("text/html");
+    response.setHeader("Cache-control", "no-cache, no-store");
+    response.setHeader("Pragma", "no-cache");
+    response.setHeader("Expires", "-1");
+
+    response.addHeader("Access-Control-Allow-Origin", "*"); // 授權的網址，星號代表接受所有
+    response.addHeader("Access-Control-Allow-Methods", "GET, PUT, POST, OPTIONS, DELETE"); // 接受的方式
+    response.addHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Content-Length");
+    response.addHeader("Access-Control-Max-Age", "86400");
+}
+    
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

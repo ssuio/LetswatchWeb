@@ -3,20 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lw.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import lw.domain.LWException;
 import lw.domain.Member;
-import lw.domain.Room;
-import lw.model.RoomDAO;
+import lw.domain.PlayList;
+import lw.model.PlayListDAO;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,7 +27,8 @@ import org.json.JSONObject;
  *
  * @author Cyruss
  */
-public class SyncVideoServlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/json.do"})
+public class TestJsonServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,88 +42,56 @@ public class SyncVideoServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         fixHeaders(response);
-        request.setCharacterEncoding("utf-8");
+        List<PlayList> pList = new ArrayList<>();
+        PlayListDAO pDAO = new PlayListDAO();
+        PlayList p;
+        Member m;
+        String roomId="r16060042";
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
-        Member m = (Member)session.getAttribute("member");
-        RoomDAO rDAO = new RoomDAO();
-        String roomId = m.getRoomId();
-        String remote = request.getParameter("remote");
-        String time = request.getParameter("time");
-        String action;
-        String area;
-        String currentTime;
-        String videoId;
-        String oldTime;
-        Room r;
-        JSONObject jObj;
-        
+        request.setCharacterEncoding("utf-8");
+        JSONObject jObj = new JSONObject();
+        JSONArray jArr;
+        JSONObject address;
         
         try {
-            if(remote!=null && remote.matches("push")){
-                action = request.getParameter("action");
-                area   = request.getParameter("area");
-                currentTime = request.getParameter("currentTime");
-                videoId = request.getParameter("videoId");
-                r = new Room();
-                r.setAction(action);
-                r.setArea(area);
-                r.setCurrentTime(currentTime);
-                r.setVideoId(videoId);
-                
-                rDAO.updateSyncInfo(r, roomId);
-                rDAO.updateTime(time, roomId);
+            String oldTime = pDAO.getTime(roomId);
+           pList = pDAO.getAll(roomId);
+                        if(pList!=null){
+                            jArr = new JSONArray();
+                            jObj= new JSONObject();
 
-            }else if(remote!=null && remote.matches("pull")){
-               oldTime = rDAO.getTime(roomId);
-               if(oldTime != null && time!=null && !time.matches(oldTime)){
-                   r = rDAO.getSyncInfo(roomId);
-                   action = r.getAction();
-                   area = r.getArea();
-                   currentTime = r.getCurrentTime();
-                   videoId = r.getVideoId();
-                   time = oldTime;
-                   jObj = new JSONObject();
-                   jObj.put("action", action);
-                   jObj.put("area", area);
-                   jObj.put("currentTime", currentTime);
-                   jObj.put("videoId", videoId);
-                   jObj.put("time", time);
-                   
-                   response.setContentType("application/json");
-                   response.getWriter().write(jObj.toString());
-                   
-                   
+                            for(PlayList pTmp: pList){
+                                address = new JSONObject();
+                                address.put("videoId", pTmp.getVideoId());
+                                address.put("videoTitle", pTmp.getVideoTitle());
+                                address.put("videoTime", pTmp.getVideoTime());
+                                address.put("videoImg", pTmp.getVideoImg());
+                                jArr.put(address);
+                            }
 
-               }else{
-                   System.out.println("Timestamp is the same!!");
-                   jObj = new JSONObject();
-                   jObj.put("time", "same");
-                   response.setContentType("application/json");
-                   response.getWriter().write(jObj.toString());
-               }
-               
-            }else{
-            
-                System.out.println("CAN'T FIND REMOTE VALUE!");
-            }
-           
-           
-           
-            
+                            jObj.put("videos", jArr);
+                            jObj.put("time",oldTime);
+
+                            response.setContentType("application/json");
+                            response.getWriter().write(jObj.toString());
+                        }
+    }   catch (JSONException ex) {
+            Logger.getLogger(TestJsonServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (LWException ex) {
-            Logger.getLogger(SyncVideoServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (JSONException ex) {
-            Logger.getLogger(SyncVideoServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TestJsonServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
 
-    @Override
-    protected void doOptions(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        fixHeaders(resp);
     }
     
-    private void fixHeaders(HttpServletResponse response) {
+    
+    
+//    @Override
+//protected void doOptions(HttpServletRequest req, HttpServletResponse resp)
+//                                                         throws ServletException, IOException {
+//    fixHeaders(resp);
+//}
+
+private void fixHeaders(HttpServletResponse response) {
 
     response.setContentType("text/html");
     response.setHeader("Cache-control", "no-cache, no-store");
@@ -132,7 +103,8 @@ public class SyncVideoServlet extends HttpServlet {
     response.addHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Content-Length");
     response.addHeader("Access-Control-Max-Age", "86400");
 }
-    
+
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

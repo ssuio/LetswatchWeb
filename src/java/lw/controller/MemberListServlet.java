@@ -40,6 +40,7 @@ public class MemberListServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+            fixHeaders(response);
             request.setCharacterEncoding("utf-8");
             response.setContentType("text/html");
             HttpSession session = request.getSession();
@@ -74,6 +75,20 @@ public class MemberListServlet extends HttpServlet {
             
     }
 
+    
+    private void fixHeaders(HttpServletResponse response) {
+
+    response.setContentType("text/html");
+    response.setHeader("Cache-control", "no-cache, no-store");
+    response.setHeader("Pragma", "no-cache");
+    response.setHeader("Expires", "-1");
+
+    response.addHeader("Access-Control-Allow-Origin", "*"); // 授權的網址，星號代表接受所有
+    response.addHeader("Access-Control-Allow-Methods", "GET, PUT, POST, OPTIONS, DELETE"); // 接受的方式
+    response.addHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Content-Length");
+    response.addHeader("Access-Control-Max-Age", "86400");
+}
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
