@@ -28,8 +28,6 @@
         }
         
     </style>
-    <script src="../js/search.js" type="text/javascript"></script>
-    <script src="../js/youtubeDAO.js" type="text/javascript"></script>
     <body>
         <div id="player"></div>
         <script>
@@ -37,14 +35,29 @@
         var resultObj;
         function init(){
             
-            document.getElementById("videoBar").addEventListener("click",playAt);
-            document.getElementById("searchVideo").addEventListener("click",searchResult);
             document.getElementById("play").addEventListener("click", play);
-            document.getElementById("stop").addEventListener("click", stop);
-            document.getElementById("pause").addEventListener("click", pause);
             
         }
         
+        
+        
+        function play(){
+            
+             $.ajax({
+            type:"POST",
+            url: "http://ssuio.idv.tw:58885/LetsWatchWeb/syncVideo.do",
+            data:{
+                'remote': 'pull',
+                'time':'1000'
+            },
+            success:function(response){
+                console.log(response);
+            },
+            error: function(){
+                console.log("ajax FAILED!");
+            }
+    });
+        }
         setInterval(syncRangeWithVideo,500);
         </script>
         <button id="play" >play</button>

@@ -136,6 +136,8 @@
     var area;
     var action;
     var currentTime='0';
+    //var host="localhost:8084";
+    var host="192.168.0.155:8084";
     function init() {
 
         document.getElementById("videoBar").addEventListener("click", pushVideoPlayOnBar);
@@ -180,7 +182,7 @@ function PullToPlay(){
     
     $.ajax({
             type:"POST",
-            url: "http://localhost:8084/LetsWatchWeb/syncVideo.do",
+            url: "http://"+host+"/LetsWatchWeb/syncVideo.do",
             data:{
                 'remote': 'pull',
                 'time':time
@@ -232,7 +234,7 @@ function pushPlayOnPlayList(videoId){
     gVideoId = videoId;
         $.ajax({
             type:"POST",
-            url: "http://localhost:8084/LetsWatchWeb/syncVideo.do",
+            url: "http://"+host+"/LetsWatchWeb/syncVideo.do",
             data: {
                    'remote': 'push',
                    'action':action,
@@ -242,6 +244,7 @@ function pushPlayOnPlayList(videoId){
                    'time' : time
             },
             success:function(response){
+                
             },
             error: function(){
                 console.log("ajax FAILED!");
@@ -258,7 +261,7 @@ function pushPlayOnSearch(videoId){
     
      $.ajax({
             type:"POST",
-            url: "http://localhost:8084/LetsWatchWeb/syncVideo.do",
+            url: "http://"+host+"/LetsWatchWeb/syncVideo.do",
             data: {
                    'remote': 'push',
                    'action':action,
@@ -288,7 +291,7 @@ function pushVideoPlayOnBar(){
     action="play";
     $.ajax({
             type:"POST",
-            url: "http://localhost:8084/LetsWatchWeb/syncVideo.do",
+            url: "http://"+host+"/LetsWatchWeb/syncVideo.do",
             data: {
                    'remote': 'push',
                    'action':action,
@@ -312,7 +315,7 @@ function pushVideoStop(){
     action="stop";
      $.ajax({
             type:"POST",
-            url: "http://localhost:8084/LetsWatchWeb/syncVideo.do",
+            url: "http://"+host+"/LetsWatchWeb/syncVideo.do",
             data: {
                    'remote': 'push',
                    'action':action,
@@ -333,10 +336,10 @@ function pushVideoStop(){
 
         
     
-        setInterval(PullToPlay, 1000);
-        setInterval(pullMemberList, 1000);
-        setInterval(pullPlayList, 1000);
-        setInterval(syncRangeWithVideo, 1000);
+        setInterval(PullToPlay, 3000);
+        setInterval(pullMemberList, 3000);
+        setInterval(pullPlayList, 3000);
+        setInterval(syncRangeWithVideo, 3000);
     
         
         

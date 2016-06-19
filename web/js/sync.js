@@ -59,7 +59,7 @@ function pulltoPlayList(response){
         
         $.ajax({
             type:"POST",
-            url: "http://localhost:8084/LetsWatchWeb/playlist.do",
+            url: "http://"+host+"/LetsWatchWeb/playlist.do",
             data: pushPlaylistObj,
             success:function(response){
                 console.log(response);
@@ -71,7 +71,7 @@ function pullPlayList(e){
             
             $.ajax({
             type:"POST",
-            url: "http://localhost:8084/LetsWatchWeb/playlist.do",
+            url: "http://"+host+"/LetsWatchWeb/playlist.do",
             data: {'action':'pull',
                    'time': playListTime
             },
@@ -87,7 +87,7 @@ function pullMemberList(){
             
             $.ajax({
             type:"POST",
-            url: "http://localhost:8084/LetsWatchWeb/memberList.do",
+            url: "http://"+host+"/LetsWatchWeb/memberList.do",
             success:pullToMemberList,
             error: function(){
                 console.log("ajax FAILED!");
