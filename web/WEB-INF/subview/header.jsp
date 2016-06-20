@@ -11,6 +11,7 @@
 <html>
     <head>
         <link href="/LetsWatchWeb/css/indexLayout.css" rel="stylesheet" type="text/css">
+        <script src="/LetsWatchWeb/js/jquery-1.12.4.js" type="text/javascript"></script>
         <title>
         <%=request.getParameter("sub_title")%>
     </title>

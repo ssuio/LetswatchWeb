@@ -3,7 +3,13 @@
 <jsp:include page="/WEB-INF/subview/header.jsp">
 <jsp:param name="sub_title" value="Profile!P"/>
 </jsp:include>
-
+<%
+    Member m = (Member)session.getAttribute("member");
+    if(m==null){
+        response.sendRedirect("/LetsWatchWeb/member/login.jsp");
+    }else{
+    System.out.println(m);
+%>
         <style>
             div{
                  width: 100%;
@@ -18,35 +24,59 @@
                 margin:15px;
                 font-size: 1.5em;
             }
+            #profile{
+                margin:auto;
+            }
+            #profile p{
+               width:200px; 
+            }
+           
         </style>
-   
+        <script>
+            window.addEventListener("load",init);
+            function init(){
+                $('#edit').on("click",editHandler);
+                $('#finish').on("click",finishHandler);
+                $('#finish').css('display','none');
+            }
+            
+            function editHandler(){
+                $('#finish').css('display','block');
+                $('#profile p').css({'border':"2px solid #C1E0FF"});
+                $('#profile p').attr('contenteditable','true');
+                $('#profile p:first').focus();
+                
+            }
+            
+            function finishHandler(){
+                $('#finish').css('display','none');
+                $('#profile p').attr('contenteditable','false');
+                $('#profile p').css({'border':"none"});
+            }
+        </script>
         <div>
-            <%Member m = (Member)session.getAttribute("member");%>
-            <form method="POST">
+            <div id="profile">
             <ul>
                 <li><img src="/LetsWatchWeb/picture/ninja.png"></li>
             </ul>
-            <p>
-                Name: <%=m.getName()%>
-            </p>
-            <p>
-                Gender: <%=m.getGender()%>
-            </p>
-            <p>
-                E-mail: <%=m.getEmail()%>
-            </p>
-            <p>
-                Birthday: <%=m.getBirthday()%>
-            </p>
-            <p>
-                Phone: <%=m.getPhone()%>
-            </p>
-            <p>
-                E-paper: <%=m.isEpaper()==true?"Yes":"No"%>
-            </p>
-            <p>
-                Introduction: <%=m.getIntroduction()%>
-            </p>
-            </form>
+                <label>Name:</label>
+                <p id="name"><%=m.getName()%></p>
+                <label >Gender:</label>
+                <p id="gender"><%=m.getGender()%></p>
+                <label>E-mail: </label>
+                 <p id="email"><%=m.getEmail()%></p>
+                <label>Birthday:</label>
+                <p id="birthday"><%=m.getBirthday()%></p>
+                <label>Phone: </label>
+                <p id="phone"><%=m.getPhone()%></p>
+                <label>E-paper: </label>
+               <p id="epaper"><%=m.isEpaper()==true?"Yes":"No"%></p>
+               <label>Introduction: </label>
+               <p id="introduction"><%=m.getIntroduction()%></p>
+            
+            <button type="submit" id="finish">Finish</button>
+            <button id="edit">Edit</button>
+            </div>
         </div>   
+        <%}%>
 <%@include file="/WEB-INF/subview/footer.jsp"%>
