@@ -3,95 +3,304 @@
     padding: 0px;
     list-style: none;
 }
-
-
-#header{
-    color:blanchedalmond;
-    width: 100%;
-    background: indianred;
-    height: 80px;
+/*-------*\
+  基本設定
+\*-------*/
+.wrapper{
+	width:1200px;
+	margin: 0 auto;
+}
+img{
+	width:100%;
 }
 
-
-#header .leftBotton{
-    font-size: 1.6em;
-    width:60%;
-    background: indianred;
-    display:inline-block;
-    float: left;
+.clearfix{
+	clear:both;
 }
 
-#header .leftBotton li{
-    margin: 15px 5px 5px 5px;
-    float: left;
-    /*padding: 5px;*/
-    background: indianred;
-}
-#header .leftBotton li a{
-    display: block;
+a{
+	text-decoration:none;
 }
 
-
-
-#header .rightBotton{
-    list-style: none;
-    font-size: 1.3em;
-    background: indianred;
-    width: 20%;
-    float: right;
-    display:inline-block;
-    margin: 25px 30px 5px 5px;
-
+/*-------*\
+  頂端區塊
+\*-------*/
+header{
+	width:100%;
+	background-color:#1d1a16;
+	font-family: "Century Gothic", "微軟正黑體";	
+}
+header .wrapper{
+	background-color:#1d1a16;
 }
 
-#header .rightBotton li{
-    margin: 5px;
-    float: right;
-    padding: 0px;
-    background: indianred;
+/*logo*/
+header .logo{
+	float:left;
+	width:150px;
+	margin:10px 10px 0 10px;
 }
 
-#header .rightBotton li a{
-    display: block;
+/*選單列*/
+nav{
+	float:left;
+	width:600px;
+	background-color:#1d1a16;
+}
+nav ul{}
+nav ul li{
+	float:left;
 }
 
-
-
-#indexContentDiv{
-    background: url("");
-    font-size: 5em;
-    text-align: center;
-    margin: 20% 10% -10% 0%;
-
-    width: 100%;
-    height: 600px; 
-    background: white;
-    
+nav ul li a{
+	display:block;
+	width:100px;
+	height:55px;
+	line-height:55px;
+	font-size:14px;
+	text-align:center;
+	color:#fff;
+	transition:color 0.3s ease;
+	-moz-transition:color 0.3s ease;
+	-ms-transition:color 0.3s ease;
+	-o-transition:color 0.3s ease;
+	-webkit-transition:color 0.3s ease;
+}
+nav ul li a:hover{
+	color:#efbf00;
+	font-weight:bold;
 }
 
-#indexContentDiv span{
-    color:brown;
-    
+/*login_logout*/
+header #login{
+	float:right;
+	width:200px;
 }
 
-#footer{
-    font-size:1em;
-    width: 100%;
-    height: 200px; 
-    background: indianred;
-    
+header #login ul{}
+header #login ul li{
+	float:left;
+}
+header #login ul li a{
+	display:block;
+	width:60px;
+	height:20px;
+	color:#FFF;
 }
 
-#greeting{
+header #login ul li a:hover{
+	color:#efbf00;
+}
+
+header #greeting{
     float:right;
-    font-size:1.5em;
-    color: green;
-    height: 200px; 
+    font-size:15px;
+    color:#fc0;
     margin-top: 15px;
 }
 
-div{
+header #greeting span{
+	color:#fff;
+}
+
+/*-------*\
+  內容區塊
+\*-------*/
+
+form{
+	padding: 10%;
+}
+
+form p{
+	margin:20px;
+}
+
+
+/*index頁面*/
+.content{
+	background-image:url(/LetsWatchWeb/picture/bg.jpg);
+	background-size:100vw;
+	background-repeat:no-repeat;
+	height:800px;
+}
+.content .box{
+	width:400px;
+	height:150px;
+	background-color:rgba(0,0,0,.5);
+	border-radius:5px;
+	margin:325px auto;
+}
+.content .box .logo{
+	width:200px;
+	margin:15px auto 0 auto;
+}
+.content .box .btn{
+	width:300px;
+	height:50px;
+	background-color:#DDB100;
+	color:#333;
+	border-radius:5px;
+	font-size:20px;
+	font-weight:bold;
+	text-align:center;
+	line-height:50px;
+	margin:0 auto;
+	cursor:pointer;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+    transition: all 0.5s ease 0s;
+	cursor:pointer;
+}
+.content .box .btn:hover{
+	background-color:#FC0;}
+
+/*login頁面*/
+.num_check{
+	width:200px;
+}
+
+/*createRoom頁面*/
+.create_room{}
+.create_room form{
+	width:100%;
+    height: 600px;
+    font-size: 1.5em;
+}
+.create_room form p{
+	margin:5px;
+}
+/*my room頁面*/
+.myroom{}
+
+video{
+	float:left;
+    margin:2% 0% 2% 5%;
+}
+
+.myroom #contentDiv{
+    background-color:#fff;
+}
+
+.myroom #contentDiv button{
+    float:left;
+    margin: 5px 10px 5px 0;
+}
+
+.myroom #player{
+    float:left;
+}
+
+
+.myroom #memberlist{
+    margin:auto;
+    float: left;
+    width:150px;
+    height: 300px;
+    background:#ccc;
+    float:left;
+}
+
+.myroom #memberlist ul{
+    float:left;
+    background:grey;
+    text-align: center;
+}
+
+.myroom #memberlist ul li{
+    background:darkred;
+    margin:5px;
+    color:bisque;
+    font-size: 1.5em;
+}
+
+.myroom #playlist{
+    margin:auto;
+    float: left;
+    width:150px;
+    height: 300px;
+    background:#5B5B5B;
+    float:left;
+}
+.myroom #playlist li{
+    background:darkred;
+    margin:5px;
+    color:bisque;
+    font-size: 1.5em;
+    float:left;
+}
+#seach_engine{
+    float:left;
+    width:20%;
+    height: 300px;
+    background:activecaption;
+}
+#videoBar{
     width: 100%;
-    height: 600px; 
-    
+    background: #ecf0f1;
+    border: 1px solid #bdc3c7;
+    height: 20px;
+    border-radius: 10px;
+    cursor : pointer;
+}
+#contentDiv #searchVideo{
+    float: none;
+}
+.searchVideo{
+    width: 220px;
+    cursor: pointer;
+    float:left;
+    margin: 0 5px 5px 0;
+}
+.myroom #contentDIV #searchList{
+    background-color: chocolate;
+    height:200px;
+}
+.playListDiv{
+    height:170px;
+    cursor: pointer;
+}
+.playing{
+    background-color: #aeaeae;
+}
+.holding{
+    background-color: white;
+}
+
+/*-------*\
+ Footer區塊
+\*-------*/
+footer{
+	background-color:#1d1a16;
+	color:#fff;}
+
+footer .wrapper .logo{
+	float:left;
+	width:150px;
+	margin:50px 30px 0 0;
+}
+
+footer .wrapper .contact{
+	float:left;
+	width:270px;
+	height:150px;
+	border-right:1px solid #ccc;
+	margin: 30px 0 0 0px;
+}
+
+footer .wrapper .menubox{
+	float:left;
+	width:120px;
+	height:150px;
+	border-right:1px solid #ccc;
+	margin: 30px 20px 0 0;
+}
+
+
+footer .wrapper .contact a,footer .wrapper .menubox a{
+	color:#ccc;
+}
+
+footer .wrapper .contact a:hover,footer .wrapper .menubox a:hover{
+	color:#fff;
 }

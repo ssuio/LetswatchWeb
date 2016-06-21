@@ -32,12 +32,31 @@
             }
            
         </style>
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <script>
+        </script>
         <script>
             window.addEventListener("load",init);
+            var name;
+            var gender;
+            var email;
+            var birthday;
+            var phone;
+            var epaper;
+            var introduction;
+            
             function init(){
                 $('#edit').on("click",editHandler);
                 $('#finish').on("click",finishHandler);
                 $('#finish').css('display','none');
+                 $(function() {
+                    $( "#datepicker" ).datepicker({
+                      changeMonth: true,
+                      changeYear: true
+                    });
+                });
+                alert(0);
             }
             
             function editHandler(){
@@ -45,13 +64,18 @@
                 $('#profile p').css({'border':"2px solid #C1E0FF"});
                 $('#profile p').attr('contenteditable','true');
                 $('#profile p:first').focus();
-                
+               
             }
             
             function finishHandler(){
                 $('#finish').css('display','none');
                 $('#profile p').attr('contenteditable','false');
                 $('#profile p').css({'border':"none"});
+                
+//                $.ajax({
+//                    
+//                    
+//                });
             }
         </script>
         <div>
@@ -73,7 +97,7 @@
                <p id="epaper"><%=m.isEpaper()==true?"Yes":"No"%></p>
                <label>Introduction: </label>
                <p id="introduction"><%=m.getIntroduction()%></p>
-            
+               <p>Date: <input type="text" id="datepicker"></p>
             <button type="submit" id="finish">Finish</button>
             <button id="edit">Edit</button>
             </div>

@@ -1,0 +1,97 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+
+
+#header{
+    color:blanchedalmond;
+    width: 100%;
+    background: indianred;
+    height: 80px;
+}
+
+
+#header .leftBotton{
+    font-size: 1.6em;
+    width:60%;
+    background: indianred;
+    display:inline-block;
+    float: left;
+}
+
+#header .leftBotton li{
+    margin: 15px 5px 5px 5px;
+    float: left;
+    /*padding: 5px;*/
+    background: indianred;
+}
+#header .leftBotton li a{
+    display: block;
+}
+
+
+
+#header .rightBotton{
+    list-style: none;
+    font-size: 1.3em;
+    background: indianred;
+    width: 20%;
+    float: right;
+    display:inline-block;
+    margin: 25px 30px 5px 5px;
+
+}
+
+#header .rightBotton li{
+    margin: 5px;
+    float: right;
+    padding: 0px;
+    background: indianred;
+}
+
+#header .rightBotton li a{
+    display: block;
+}
+
+
+
+#indexContentDiv{
+    background: url("");
+    font-size: 5em;
+    text-align: center;
+    margin: 20% 10% -10% 0%;
+
+    width: 100%;
+    height: 600px; 
+    background: white;
+    
+}
+
+#indexContentDiv span{
+    color:brown;
+    
+}
+
+#footer{
+    font-size:1em;
+    width: 100%;
+    height: 200px; 
+    background: indianred;
+    
+}
+
+#greeting{
+    float:right;
+    font-size:1.5em;
+    color: green;
+    height: 200px; 
+    margin-top: 15px;
+}
+
+div{
+    width: 100%;
+    height: 600px; 
+    
+}
