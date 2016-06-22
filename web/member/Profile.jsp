@@ -118,7 +118,6 @@
                             console.log("ajax FAILED!");
                         }
             });
-            alert(0);
         }
     </script>
 </head>
