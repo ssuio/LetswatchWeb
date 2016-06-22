@@ -12,17 +12,11 @@
 <meta charset="utf-8">
 <title>MyRoom</title>
 <link href="/LetsWatchWeb/css/indexLayout.css" rel="stylesheet" type="text/css">
-</head>
 <script src="../js/jquery-1.12.4.js" type="text/javascript"></script>
 <script src="../js/youtubeDAO.js" type="text/javascript"></script>
 <script src="../js/search.js" type="text/javascript"></script>
 <script src="../js/sync.js" type="text/javascript"></script>
 <script src="../js/myvideo.js" type="text/javascript"></script>
-<body>
-<!--header-->
-<jsp:include page="/WEB-INF/subview/header.jsp">
-    <jsp:param name="sub_title" value="哈囉!P"/>
-</jsp:include>
 <%
     Member m = (Member) session.getAttribute("member");
     RoomDAO dao = new RoomDAO();
@@ -37,6 +31,65 @@
         response.sendRedirect("/LetsWatchWeb/member/room_search.jsp");
     }
 %>
+<script>  
+    window.addEventListener("load", init);
+    
+    var gVideoId = 'j68LY3fKbrg';
+    var videoTitle;
+    var videoTime;
+    var videoImg;
+    var pushPlaylistObj;
+    var pullPlaylistObj;
+    var resultObj;
+    var playListTime='0';
+    var time='0';
+    var area;
+    var action;
+    var currentTime='0';
+    //var host="localhost:8084";
+    //var host="ssuio.idv.tw:58885";
+    var host="10.0.1.9:8084";
+    var roomId ="<%=m.getRoomId()%>";
+    function init() {
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        var player;
+        
+        document.getElementById("videoBar").addEventListener("click", pushVideoPlayOnBar);
+        document.getElementById("searchVideo").addEventListener("click", searchResult);
+        document.getElementById("play").addEventListener("click", play);
+        document.getElementById("stop").addEventListener("click", stop);
+        document.getElementById("pause").addEventListener("click", pause);
+        document.getElementById("pushPlayList").addEventListener("click", pushPlayList);
+        document.getElementById("pullMemberList").addEventListener("click", pullMemberList);
+        document.getElementById("pullPlayList").addEventListener("click", pullPlayList);
+        
+        
+        $('#pushVideoPlayOnBar').on("click",pushVideoPlayOnBar);
+        $('#pushPlayOnSearch').on("click",pushPlayOnSearch);
+        $('#getTime').on("click",getTime);
+        $('#pushVideoStop').on("click",pushVideoStop);
+        $('#PullToPlay').on("click",PullToPlay);
+        
+        
+        
+        
+        
+        //document.getElementById("getTime").addEventListener("click", getTime);
+        jQuery('#searchList').css("overflow-y", "scroll");
+        jQuery('#playlist').css("overflow-y", "scroll");
+    }
+</script>
+</head>
+
+<body>
+<!--header-->
+<jsp:include page="/WEB-INF/subview/header.jsp">
+    <jsp:param name="sub_title" value="哈囉!P"/>
+</jsp:include>
+
 
 <div class="myroom">
  <div class="wrapper">

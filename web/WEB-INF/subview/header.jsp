@@ -7,8 +7,6 @@
 <%@page import="lw.domain.Room"%>
 <%@page import="lw.domain.Member"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-
 
 <!--<title><%=request.getParameter("sub_title")%></title>-->
 

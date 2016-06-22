@@ -1,45 +1,8 @@
-// JavaScript Document
-    window.addEventListener("load", init);
-    var gVideoId = 'j68LY3fKbrg';
-    var videoTitle;
-    var videoTime;
-    var videoImg;
-    var pushPlaylistObj;
-    var pullPlaylistObj;
-    var resultObj;
-    var playListTime='0';
-    var time='0';
-    var area;
-    var action;
-    var currentTime='0';
-    function init() {
 
-        document.getElementById("videoBar").addEventListener("click", pushVideoPlayOnBar);
-        document.getElementById("searchVideo").addEventListener("click", searchResult);
-        document.getElementById("play").addEventListener("click", play);
-        document.getElementById("stop").addEventListener("click", stop);
-        document.getElementById("pause").addEventListener("click", pause);
-        document.getElementById("pushPlayList").addEventListener("click", pushPlayList);
-        document.getElementById("pullMemberList").addEventListener("click", pullMemberList);
-        document.getElementById("pullPlayList").addEventListener("click", pullPlayList);
-        
-        
-        $('#pushVideoPlayOnBar').on("click",pushVideoPlayOnBar);
-        $('#pushPlayOnSearch').on("click",pushPlayOnSearch);
-        $('#getTime').on("click",getTime);
-        $('#pushVideoStop').on("click",pushVideoStop);
-        $('#PullToPlay').on("click",PullToPlay);
-        
-        
-        
-        
-        
-        //document.getElementById("getTime").addEventListener("click", getTime);
-        jQuery('#searchList').css("overflow-y", "scroll");
-        jQuery('#playlist').css("overflow-y", "scroll");
-    }
-
+   
+    
     function getTime(){
+        console.log("roomId: "+ roomId);
         console.log("action: "+action);
         console.log("currentTime: "+currentTime);
         console.log("area: "+area);
@@ -50,14 +13,15 @@
     
     
     
-    
 
 function PullToPlay(){
     
     $.ajax({
             type:"POST",
-            url: "http://localhost:8084/LetsWatchWeb/syncVideo.do",
+            url: "http://"+host+"/LetsWatchWeb/syncVideo.do",
+            
             data:{
+                'roomId': roomId,
                 'remote': 'pull',
                 'time':time
             },
@@ -108,8 +72,9 @@ function pushPlayOnPlayList(videoId){
     gVideoId = videoId;
         $.ajax({
             type:"POST",
-            url: "http://localhost:8084/LetsWatchWeb/syncVideo.do",
+            url: "http://"+host+"/LetsWatchWeb/syncVideo.do",
             data: {
+                   'roomId': roomId,
                    'remote': 'push',
                    'action':action,
                    'area': area,
@@ -118,6 +83,7 @@ function pushPlayOnPlayList(videoId){
                    'time' : time
             },
             success:function(response){
+                
             },
             error: function(){
                 console.log("ajax FAILED!");
@@ -134,8 +100,9 @@ function pushPlayOnSearch(videoId){
     
      $.ajax({
             type:"POST",
-            url: "http://localhost:8084/LetsWatchWeb/syncVideo.do",
+            url: "http://"+host+"/LetsWatchWeb/syncVideo.do",
             data: {
+                   'roomId': roomId,
                    'remote': 'push',
                    'action':action,
                    'area': area,
@@ -164,8 +131,9 @@ function pushVideoPlayOnBar(){
     action="play";
     $.ajax({
             type:"POST",
-            url: "http://localhost:8084/LetsWatchWeb/syncVideo.do",
+            url: "http://"+host+"/LetsWatchWeb/syncVideo.do",
             data: {
+                   'roomId': roomId,
                    'remote': 'push',
                    'action':action,
                    'area': area,
@@ -188,8 +156,9 @@ function pushVideoStop(){
     action="stop";
      $.ajax({
             type:"POST",
-            url: "http://localhost:8084/LetsWatchWeb/syncVideo.do",
+            url: "http://"+host+"/LetsWatchWeb/syncVideo.do",
             data: {
+                   'roomId': roomId,
                    'remote': 'push',
                    'action':action,
                    'area': area,
@@ -207,10 +176,8 @@ function pushVideoStop(){
 }
     
 
-        
+    
+       
     
         
-        setInterval(PullToPlay, 500);
-        setInterval(pullMemberList, 500);
-        setInterval(pullPlayList, 500);
-        setInterval(syncRangeWithVideo, 500);
+        

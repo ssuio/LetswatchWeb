@@ -7,6 +7,7 @@
 <title>首頁</title>
 <link href="/LetsWatchWeb/css/indexLayout.css" rel="stylesheet" type="text/css">
 <link href="/LetsWatchWeb/css/resetcss.css" rel="stylesheet" type="text/css">
+
 </head>
 
 <body>
