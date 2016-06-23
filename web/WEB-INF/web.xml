@@ -124,6 +124,10 @@
         <servlet-name>MemberUpdateServlet</servlet-name>
         <servlet-class>lw.controller.MemberUpdateServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ChatServlet</servlet-name>
+        <servlet-class>lw.view.ChatServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>helloJSP</servlet-name>
         <url-pattern>/hello.php</url-pattern>
@@ -167,6 +171,10 @@
     <servlet-mapping>
         <servlet-name>MemberUpdateServlet</servlet-name>
         <url-pattern>/memberUpdate.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChatServlet</servlet-name>
+        <url-pattern>/chat.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
