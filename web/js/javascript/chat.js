@@ -14,7 +14,7 @@ function pushChat(){
         success:function(response){
                 $('span').remove();
                     for(i=0; i< $(response.talk).length;i++){
-                        $('#talkFrame').append('<span>'+ response.talk[i].time+ '   ' +'</sapn>'+'<span>'+ response.talk[i].name + ":>" +'</sapn>'+'<span>'+ response.talk[i].msg +'</sapn>'+'<br>');
+                        $('#talkFrame').append('<span>'+ response.talk[i].name + ":>" +'</sapn>'+'<span>'+ response.talk[i].msg +'</sapn>'+'<br>');
                     }       
                 $('#talkFrame').scrollTop($('#talkFrame').prop("scrollHeight"));
         },
@@ -45,7 +45,7 @@ function pullChat(){
                     ctime = response.serTime;
 
                     for(i=0; i< $(response.talk).length;i++){
-                        $('#talkFrame').append('<span>'+ response.talk[i].time + '   '+'</sapn>'+'<span>'+ response.talk[i].name+ ":>" +'</sapn>'+'<span>'+ response.talk[i].msg +'</sapn>'+'<br>');
+                        $('#talkFrame').append('<span>'+ response.talk[i].name+ ":>" +'</sapn>'+'<span>'+ response.talk[i].msg +'</sapn>'+'<br>');
                     }
             }else{
 

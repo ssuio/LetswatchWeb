@@ -96,6 +96,7 @@
 </script>
 <style>
     #talkFrame{
+        margin:5px;
         width:300px;
         height: 250px;
     }
