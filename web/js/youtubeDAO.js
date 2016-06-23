@@ -28,6 +28,8 @@
             setInterval(pullMemberList, 3000);
             setInterval(pullPlayList, 1000);
             setInterval(syncRangeWithVideo, 500);
+            setInterval(pullChat, 500);
+            
         }
         
         function onPlayerStateChange(e){

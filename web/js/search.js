@@ -61,10 +61,10 @@ function createSearchList(){
             t = resultObj.videosTitle[i];
             videoTitle.appendChild(document.createTextNode(t));
             videoDiv.appendChild(videoTitle);
-            var videoTime = document.createElement('p');
-            t = resultObj.videosTime[i];
-            videoTime.appendChild(document.createTextNode(t));
-            videoDiv.appendChild(videoTime); 
+//            var videoTime = document.createElement('p');
+//            t = resultObj.videosTime[i];
+//            videoTime.appendChild(document.createTextNode(t));
+//            videoDiv.appendChild(videoTime); 
             videoDiv.setAttribute("data-videoId", resultObj.videosId[i]);
             var videoAdd = document.createElement('BUTTON');
             var t = document.createTextNode('Add');

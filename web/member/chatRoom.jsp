@@ -19,16 +19,15 @@
         <script>
             $(document).ready(init);
             function init(){
-                $("#push").on("click",pushHandler);
-                $("#pull").on("click",pullHandler);
-                $("#test").on("click",testHandler);
+                $("#push").on("click",pushChat);
+                $("#pull").on("click",pullChat);
             }
             
-            var time = '1';
+            var ctime = '1';
             var host = 'localhost:8084';
             
-            function pushHandler(){
-                time = Date.now();
+            function pushChat(){
+                ctime = Date.now();
                 var msg = $('#sendText').val();
                 
                 $.ajax({
@@ -36,7 +35,7 @@
                     url: "http://"+host+"/LetsWatchWeb/chat.do",
                     data: {
                            'action': 'push',
-                           'time': time,
+                           'time': ctime,
                            'msg':msg
                            
                     },
@@ -55,13 +54,13 @@
             }
             
             
-            function pullHandler(){
+            function pullChat(){
                 $.ajax({
                     type:"POST",
                     url: "http://"+host+"/LetsWatchWeb/chat.do",
                     data: {
                            'action': 'pull',
-                           'time': time
+                           'time': ctime
                            
                     },
                     success:function(response){
@@ -70,7 +69,7 @@
                            console.log('serTime:'+response.serTime);
                            if(response.time!=='same'){
                                 $('span').remove();
-                                time = response.serTime;
+                                ctime = response.serTime;
                                 
                                 for(i=0; i< $(response.talk).length;i++){
                                     $('#talkFrame').after('<span>'+ response.talk[i].time +'</sapn>'+'<span>'+ response.talk[i].name +'</sapn>'+'<span>'+ response.talk[i].msg +'</sapn>'+'<br>');
@@ -85,11 +84,8 @@
                });
             }
             
-            function testHandler(){
-                console.log(time);
-            }
             
-            setInterval(pullHandler,500);
+//            setInterval(pullHandler,500);
             
             
         </script>

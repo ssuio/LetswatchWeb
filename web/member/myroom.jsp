@@ -17,6 +17,7 @@
 <script src="../js/search.js" type="text/javascript"></script>
 <script src="../js/sync.js" type="text/javascript"></script>
 <script src="../js/myvideo.js" type="text/javascript"></script>
+<script src="/LetsWatchWeb/js/javascript/chat.js" type="text/javascript"></script>
 <%
     Member m = (Member) session.getAttribute("member");
     RoomDAO dao = new RoomDAO();
@@ -43,12 +44,13 @@
     var resultObj;
     var playListTime='0';
     var time='0';
+    var ctime = '1';
     var area;
     var action;
     var currentTime='0';
     //var host="localhost:8084";
     //var host="ssuio.idv.tw:58885";
-    var host="10.0.1.9:8084";
+    var host="localhost:8084";
     var roomId ="<%=m.getRoomId()%>";
     function init() {
         var tag = document.createElement('script');
@@ -62,26 +64,45 @@
         document.getElementById("play").addEventListener("click", play);
         document.getElementById("stop").addEventListener("click", stop);
         document.getElementById("pause").addEventListener("click", pause);
-        document.getElementById("pushPlayList").addEventListener("click", pushPlayList);
-        document.getElementById("pullMemberList").addEventListener("click", pullMemberList);
-        document.getElementById("pullPlayList").addEventListener("click", pullPlayList);
         
+//        document.getElementById("pushPlayList").addEventListener("click", pushPlayList);
+//        document.getElementById("pullPlayList").addEventListener("click", pullPlayList);
+//        alert(0);
         
         $('#pushVideoPlayOnBar').on("click",pushVideoPlayOnBar);
         $('#pushPlayOnSearch').on("click",pushPlayOnSearch);
         $('#getTime').on("click",getTime);
         $('#pushVideoStop').on("click",pushVideoStop);
         $('#PullToPlay').on("click",PullToPlay);
-        
-        
-        
+        $('#pullChat').on("click",pullChat);
+        $('#pushChat').on("click",pushChat);
         
         
         //document.getElementById("getTime").addEventListener("click", getTime);
         jQuery('#searchList').css("overflow-y", "scroll");
         jQuery('#playlist').css("overflow-y", "scroll");
+        jQuery('#talkFrame').css("overflow-y", "scroll");
+        
+        $('#sendText').keypress(function(e) {
+            if(e.which === 13) {
+                pushChat();
+            }
+        });
+        
     }
+    
+        setTimeout(talkFrameDown,3000);
+            
 </script>
+<style>
+    #talkFrame{
+        width:300px;
+        height: 250px;
+    }
+    #pushChat{
+        text-align: right;
+    }
+</style>
 </head>
 
 <body>
@@ -99,12 +120,14 @@
     <div id="player"></div><!--影片播放位置-->
     <div id="memberlist">成員名單</div>
     <div id="playlist">播放清單</div>
+    <div id="talkFrame">ChatRoom<br></div>
+    <input type="text" id="sendText"/>
+    <button id="pushChat" >Enter</button>
    <div class="clearfix"></div>
    <button id="play" >play</button>
    <button id="stop" >stop</button>
    <button id="pause" >pause</button>
-   <button id="pullMemberList" >pullMemberList</button>
-   <button id="pushPlayList" >pushPlayList</button>
+   <button id="pullChat" >pullChat</button>
    <button id="pullPlayList" >pullPlayList</button>
    <button id="pushVideoPlayOnBar" >pushVideoPlayOnBar</button>
    <button id="pushPlayOnSearch" >pushPlayOnSearch</button>

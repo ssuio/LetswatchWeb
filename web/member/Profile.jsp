@@ -181,7 +181,6 @@
 <!--               <p>Date: <input type="text" id="datepicker"></p>-->
             <button type="submit" id="finish">Finish</button>
             <button id="edit">Edit</button>
-            <button id="test">test</button>
             </div>
         </div>   
                
