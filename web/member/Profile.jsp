@@ -140,6 +140,9 @@
                 width: 200px;
                 height:200px;
             }
+            form{
+                padding:0px;
+            }
         </style>
       
         
@@ -148,9 +151,11 @@
 </jsp:include>
         <div>
             <div id="profile">
-            <ul>
-                <li><img src="/LetsWatchWeb/picture/ninja.png" id="profile_pic"></li>
-            </ul>
+            <img src="/LetsWatchWeb/GetMemberPic.pic" id="profile_pic">
+            <form action="/LetsWatchWeb/upload.pic" method="post" enctype="multipart/form-data">
+            <input type="file" name="photo" accept="Image/*"/><br>
+            <input type="submit" value="Upload" name="upload"/>
+            </form>
                 <div>
                 <label>Name:</label>
                 <p id="name"><%=m.getName()%></p>

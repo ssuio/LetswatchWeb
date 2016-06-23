@@ -128,6 +128,14 @@
         <servlet-name>ChatServlet</servlet-name>
         <servlet-class>lw.view.ChatServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UploadPicture</servlet-name>
+        <servlet-class>lw.controller.UploadPicture</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetMemberPic</servlet-name>
+        <servlet-class>lw.controller.GetMemberPic</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>helloJSP</servlet-name>
         <url-pattern>/hello.php</url-pattern>
@@ -175,6 +183,14 @@
     <servlet-mapping>
         <servlet-name>ChatServlet</servlet-name>
         <url-pattern>/chat.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UploadPicture</servlet-name>
+        <url-pattern>/upload.pic</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetMemberPic</servlet-name>
+        <url-pattern>/GetMemberPic.pic</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

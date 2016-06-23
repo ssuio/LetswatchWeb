@@ -3,21 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package lw.controller;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.commons.fileupload.FileItem;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
+import lw.domain.LWException;
+import lw.domain.Member;
+import lw.model.PicDAO;
+
 /**
  *
- * @author adm
+ * @author Cyruss
  */
-@WebServlet(urlPatterns = {"/uploadPic.do"})
-public class UploadPic extends HttpServlet {
+public class UploadPicture extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,18 +39,33 @@ public class UploadPic extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet UploadPic</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet UploadPic at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        
+            //response.setContentType("text/html;charset=UTF-8");
+            //request.setCharacterEncoding("utf-8");
+            PicDAO pDAO = new PicDAO();
+            Part pic = request.getPart("photo");
+            HttpSession session = request.getSession();
+            Member m = (Member)session.getAttribute("member");
+            String memberId = m.getId();
+            String header = pic.getHeader("Content-Disposition");
+            try {
+            String filename = header.substring(
+                    header.indexOf("filename=\"") + 10, header.lastIndexOf("\""
+                    ));
+            System.out.println("header="+header+" filename:"+filename);
+            InputStream in = pic.getInputStream();
+//            String name = pic.getName();
+//            long size = pic.getSize();
+            System.out.println("111111111111111111111111");
+            pDAO.savePic(in, memberId);
+            System.out.println("22222222222222222222222");
+
+//            System.out.println("name:"+name+"  size:"+size);
+            in.close();
+            
+            response.sendRedirect("/LetsWatchWeb/member/Profile.jsp");
+        } catch (LWException ex) {
+            Logger.getLogger(UploadPicture.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

@@ -3,6 +3,19 @@
 <%@page import="java.util.List"%>
 <%@page import="lw.model.RoomDAO"%>
 <%@page pageEncoding="UTF-8"%>
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>首頁</title>
+    <link href="/LetsWatchWeb/css/indexLayout.css" rel="stylesheet" type="text/css">
+    <script src="/LetsWatchWeb/js/jquery-1.12.4.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link href="/LetsWatchWeb/css/indexLayout.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
 <jsp:include page="/WEB-INF/subview/header.jsp">
 <jsp:param name="sub_title" value="哈囉!P"/>
 </jsp:include>
@@ -38,3 +51,5 @@
         
 </div>
 <%@include file="/WEB-INF/subview/footer.jsp"%>
+</body>
+</html>
