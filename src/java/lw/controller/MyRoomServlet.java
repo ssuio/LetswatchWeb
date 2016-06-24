@@ -6,7 +6,6 @@
 package lw.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +18,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import lw.domain.LWException;
 import lw.domain.Member;
-import lw.model.PlayListDAO;
+import lw.domain.Room;
 import lw.model.RDBMemberDAO;
+import lw.model.RoomDAO;
 import lw.model.RoomMemberListDAO;
 import lw.model.RoomService;
 
@@ -45,44 +45,53 @@ public class MyRoomServlet extends HttpServlet {
             RDBMemberDAO mDAO = new RDBMemberDAO();
             RoomService rs = new RoomService();
             RoomMemberListDAO mlDAO = new RoomMemberListDAO();
-            PlayListDAO pDAO = new PlayListDAO();
+            RoomDAO rDAO = new RoomDAO();
             String roomId = request.getRequestURI();
             roomId = roomId.replaceAll(".*/", "");
             roomId = roomId.replaceAll(".room", "");
             HttpSession session = request.getSession();
             Member m = (Member)session.getAttribute("member");
+            int memberCoin = m.getwCoin();
+            Room r;
+            int roomPrice;
+            int difference;
+            
             if(m==null){
                 response.sendRedirect("/LetsWatchWeb/member/login.jsp");
                 return;
             }
             
             //Leaving the room user was in 
-            if (m.getRoomId()!=null){
+            if (m.getRoomId()!=null)
                     rs.leaveRoom(m, m.getRoomId());
-                }
+               
             
             //Check the old room if still hav member , if it's empty, delete it 
             List<Member> mlist = new ArrayList<>();
             try{
-            mlist = mlDAO.getOneById(m.getRoomId());
-            if(mlist.isEmpty()){
+                mlist = mlDAO.getOneById(m.getRoomId());
+                
+            if(mlist.isEmpty())
                 rs.deleteRoom(m.getRoomId());
-            }
-            }catch (SQLException ex){
-                Logger.getLogger(MyRoomServlet.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (LWException ex) {
-            Logger.getLogger(MyRoomServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
             
-            
-            if(m!=null)
+            //Pay for room 
+            r = rDAO.getOneById(roomId);
+            roomPrice = r.getwCoin();
+            difference = memberCoin - roomPrice;
+            if(difference>=0){
+                m.setwCoin(difference);
                 m.setRoomId(roomId);
-            session.setAttribute("member", m);
-            try {
+                session.setAttribute("member", m);
                 mDAO.update(m, m.getId());
                 rs.enterRoom(m, m.getRoomId());
-               
+            }else{
+                System.out.println("wCoin not enough!!!!");
+                response.sendRedirect("/LetsWatchWeb/member/room_search.jsp");
+                return;
+            }
             } catch (LWException ex) {
+            Logger.getLogger(MyRoomServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
             Logger.getLogger(MyRoomServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
             response.sendRedirect("/LetsWatchWeb/member/myroom.jsp");
