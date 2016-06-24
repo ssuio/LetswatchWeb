@@ -44,8 +44,8 @@
  </div>
  <div id="greeting">
   <ul>
-   <li>Hello,<span><%out.print(m.getName());%></span></li>
-   <li>wCoin：&nbsp;<span><%out.print(m.getwCoin());%></span></li>
+   <li>Hello,<span><%=m.getName()%></span></li>
+   <li>wCoin：&nbsp;<span><%=m.getwCoin()%></span></li>
   </ul>
  </div>
    <%}%>

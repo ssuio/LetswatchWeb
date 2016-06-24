@@ -78,11 +78,15 @@ public class MyRoomServlet extends HttpServlet {
             r = rDAO.getOneById(roomId);
             roomPrice = r.getwCoin();
             difference = memberCoin - roomPrice;
+            
             if(difference>=0){
-                m.setwCoin(difference);
+                String memberId = m.getId();
+                //m.setwCoin(difference);
                 m.setRoomId(roomId);
-                session.setAttribute("member", m);
                 mDAO.update(m, m.getId());
+                mDAO.updateWcoin(m, -roomPrice);
+                m = mDAO.getOneById(memberId);
+                session.setAttribute("member", m);
                 rs.enterRoom(m, m.getRoomId());
             }else{
                 System.out.println("wCoin not enough!!!!");
