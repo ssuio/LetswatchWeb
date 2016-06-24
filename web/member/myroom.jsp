@@ -69,13 +69,13 @@
 //        document.getElementById("pullPlayList").addEventListener("click", pullPlayList);
 //        alert(0);
         
-        $('#pushVideoPlayOnBar').on("click",pushVideoPlayOnBar);
-        $('#pushPlayOnSearch').on("click",pushPlayOnSearch);
-        $('#getTime').on("click",getTime);
-        $('#pushVideoStop').on("click",pushVideoStop);
-        $('#PullToPlay').on("click",PullToPlay);
-        $('#pullChat').on("click",pullChat);
-        $('#pushChat').on("click",pushChat);
+//        $('#pushVideoPlayOnBar').on("click",pushVideoPlayOnBar);
+//        $('#pushPlayOnSearch').on("click",pushPlayOnSearch);
+//        $('#getTime').on("click",getTime);
+//        $('#pushVideoStop').on("click",pushVideoStop);
+//        $('#PullToPlay').on("click",PullToPlay);
+//        $('#pullChat').on("click",pullChat);
+//        $('#pushChat').on("click",pushChat);
         
         
         //document.getElementById("getTime").addEventListener("click", getTime);
@@ -123,18 +123,21 @@
     <div id="playlist">播放清單</div>
     <div id="talkFrame">ChatRoom<br></div>
     <input type="text" id="sendText"/>
-    <button id="pushChat" >Enter</button>
+    <button id="pushChat" >Enter</button> 
    <div class="clearfix"></div>
    <button id="play" >play</button>
    <button id="stop" >stop</button>
    <button id="pause" >pause</button>
-   <button id="pullChat" >pullChat</button>
-   <button id="pullPlayList" >pullPlayList</button>
+   
+
+<!--  
+      <button id="pullChat" >pullChat</button>
+<button id="pullPlayList" >pullPlayList</button>
    <button id="pushVideoPlayOnBar" >pushVideoPlayOnBar</button>
    <button id="pushPlayOnSearch" >pushPlayOnSearch</button>
    <button id="pushVideoStop" >pushVideoStop</button>
    <button id="PullToPlay" >PullToPlay</button>
-   <button id="getTime" >getTime</button>
+   <button id="getTime" >getTime</button>-->
    <div class="clearfix"></div>
    
    <input type="range" min="0" max="1000" value="0" id="videoBar">

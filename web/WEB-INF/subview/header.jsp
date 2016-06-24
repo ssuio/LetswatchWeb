@@ -11,7 +11,7 @@
 <!--<title><%=request.getParameter("sub_title")%></title>-->
 
 <header>
- <div class="wrapper">
+ <div class="wrapper" id="wrapper_header">
 <!--logo-->
   <div class="logo"><a href="/LetsWatchWeb"><img src="/LetsWatchWeb/picture/logo.png"></a></div> 
 

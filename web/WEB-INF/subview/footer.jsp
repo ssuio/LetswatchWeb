@@ -6,7 +6,7 @@
 
 <%@page pageEncoding="UTF-8"%>
 <footer>
- <div class="wrapper">
+ <div class="wrapper" id="wrapper">
  <div class="logo"><a href="/LetsWatchWeb"><img src="/LetsWatchWeb/picture/logo.png"></a></div>
   <div class="menubox">
   <ul>

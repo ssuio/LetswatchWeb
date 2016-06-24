@@ -11,31 +11,11 @@
     <script src="/LetsWatchWeb/js/jquery-1.12.4.js" type="text/javascript"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <link href="/LetsWatchWeb/css/indexLayout.css" rel="stylesheet" type="text/css">
-</head>
-
-<body>
-<jsp:include page="/WEB-INF/subview/header.jsp">
-<jsp:param name="sub_title" value="哈囉!P"/>
-</jsp:include>
-<style>
-    p{
-       
-    }
+    <link href="/LetsWatchWeb/css/indexLayout.css" rel="stylesheet" type="text/css"/>
+    <style>
     
-    .room_search_ul li{
-        float:left;
-        width: 10%;
-        height:100px;
-        background-color: crimson;
-        color: aliceblue;
-        padding: 1em 0.5em;
-        margin: 1%;
-        text-align: center;
-        font-size:1.5em;
-        font-family:fantasy;
-    }
-    #room_search_content{
+    
+    #content{
         font-family:fantasy;
         width:100%;
         height: 600px;
@@ -114,8 +94,14 @@
     
     
 </style>
-<div id="room_search_content">        
-    <h1>Rooms Search</h1>
+</head>
+
+<body>
+<jsp:include page="/WEB-INF/subview/header.jsp">
+<jsp:param name="sub_title" value="哈囉!P"/>
+</jsp:include>
+
+<div id="content">
     <%RoomDAO dao = new RoomDAO();
     List<Room> rooms = new ArrayList<Room>();
             rooms = dao.getAll();
@@ -133,7 +119,6 @@
             <a href="/LetsWatchWeb/<%=r.getRoomId()%>.room" class="rooms_inside"><button class="rooms_inside" id="enter_btn">Enter</button></a>
     </div>
     <%}%>
-        
 </div>
 <%@include file="/WEB-INF/subview/footer.jsp"%>
 </body>

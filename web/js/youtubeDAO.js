@@ -10,7 +10,7 @@
                   'onStateChange': onPlayerStateChange
                 },
                 playerVars: { 
-               'autoplay': 1,
+               'autoplay': 0,
                'controls': 0,
                'rel': 0
                 }
