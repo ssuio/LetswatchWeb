@@ -44,6 +44,7 @@ public class LoginServlet extends HttpServlet {
        String password = request.getParameter("password");
        String checkCode = request.getParameter("checkCode");
        String remember = request.getParameter("remember");
+       HttpSession session = request.getSession();
         //when errors list ar not wrong
         if( email==null || (email=email.trim()).length()==0){
             errors.add("Must input email!");
@@ -53,10 +54,12 @@ public class LoginServlet extends HttpServlet {
             errors.add("Must input password!");
         }
         
-        if( checkCode==null || (checkCode=checkCode.trim()).length()==0){
+        if( checkCode==null || (checkCode=checkCode.trim()).length()==0 || !checkCode.matches((String)session.getAttribute("ImageCheckServlet"))){
             errors.add("Must input checkCode!");
+            System.out.println("1111");
         }else{
             //Add checkCode business logic
+            System.out.println("2222");
         }
         
         if(errors.isEmpty()){ 
@@ -84,7 +87,6 @@ public class LoginServlet extends HttpServlet {
                     }
                    response.addCookie(cookie2);
                    
-                   HttpSession session = request.getSession();
                    session.setAttribute("member", m);
                    RequestDispatcher dispatcher = request.getRequestDispatcher("/member/Profile.jsp");
                    dispatcher.forward(request, response);

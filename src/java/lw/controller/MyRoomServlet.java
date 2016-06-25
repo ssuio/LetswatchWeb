@@ -51,7 +51,7 @@ public class MyRoomServlet extends HttpServlet {
             roomId = roomId.replaceAll(".room", "");
             HttpSession session = request.getSession();
             Member m = (Member)session.getAttribute("member");
-            int memberCoin = m.getwCoin();
+            int memberCoin ;
             Room r;
             int roomPrice;
             int difference;
@@ -75,6 +75,7 @@ public class MyRoomServlet extends HttpServlet {
                 rs.deleteRoom(m.getRoomId());
             
             //Pay for room 
+            memberCoin = m.getwCoin();
             r = rDAO.getOneById(roomId);
             roomPrice = r.getwCoin();
             difference = memberCoin - roomPrice;

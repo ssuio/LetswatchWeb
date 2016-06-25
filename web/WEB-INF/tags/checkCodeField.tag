@@ -26,9 +26,11 @@
                 }
             
             %> 
+            
  <div id="login">
-        <form method="POST" action="/LetsWatchWeb/login.do">
-            <p>
+        <form method="POST" action="/LetsWatchWeb/login.do"> <fieldset>
+          <legend>Login</legend>
+          <p><br>
             <label for="email">E-mail:</label>
             <input type="text" id="userid" name="email" placeholder="輸入信箱" value="${cookie.email.value}">  
             <input type="checkbox" name="remember" id="remember" <%=remember%>><label for="remember" >  Remember</label>
@@ -43,11 +45,11 @@
             </p>
             <p>
             <img src="${imgSrc}" id="check_code_image">
-            <input type="button" onclick="refreshHandler()" value="refresh">
+            <input type="button" value="refresh" id="refresh">
             </p>
             <p>
-               <input type="submit" value="Confirm">
+               <input type="submit" value="Login" id="confirm_submit">
             </p>
         </form>
-            
+            </fieldset>
     </div>  

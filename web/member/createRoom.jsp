@@ -31,9 +31,6 @@
         width:100%;
         height:600px;
     }
-    #create_form{
-        
-    }
     fieldset {
         width:50%;
         height: 400px;
