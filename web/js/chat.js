@@ -6,6 +6,8 @@ function pushChat(){
         type:"POST",
         url: "http://"+host+"/LetsWatchWeb/chat.do",
         data: {
+                'roomId':roomId,
+                'memberName':memberName,
                'action': 'push',
                'time': ctime,
                'msg':msg
@@ -32,6 +34,7 @@ function pullChat(){
         type:"POST",
         url: "http://"+host+"/LetsWatchWeb/chat.do",
         data: {
+                'roomId':roomId,
                'action': 'pull',
                'time': ctime
 

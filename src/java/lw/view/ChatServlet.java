@@ -46,7 +46,8 @@ public class ChatServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
        HttpSession session = request.getSession();
        Member m = (Member)session.getAttribute("member");
-       String roomId = m.getRoomId();
+       String roomId = request.getParameter("roomId");
+        System.out.println("RRRRRRRRRRRRRRRRRRRRROOMid:"+roomId);
        String action = request.getParameter("action");
        String msg = request.getParameter("msg");
        String cliTime = request.getParameter("time");
@@ -84,7 +85,7 @@ public class ChatServlet extends HttpServlet {
                     System.out.println("PUSH_START"); 
                     c = new ChatUser();
                     time = cal.get(Calendar.HOUR)+":"+ cal.get(Calendar.MINUTE);
-                    memberName = m.getName();
+                    memberName = request.getParameter("memberName");
                     c.setTime(time);
                     c.setMsg(msg);
                     c.setName(memberName);

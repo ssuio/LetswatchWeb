@@ -94,6 +94,36 @@
     
     
 </style>
+<script>
+    var host = 'ssuio.idv.tw:58885';
+//    $(document).ready(init);
+//    function init(){
+//        $('.enterBtn').on("click",enterHandler);
+//        
+//    }
+//    
+//    function enterHandler(){
+//        var roomId = $(this).attr('data-roomId');
+//        var pwd = $(this).siblings("input").val();
+        
+//      $.ajax({
+//        type:"POST",
+//        url: "http://"+host+"/LetsWatchWeb/chat.do",
+//        data: {
+//                'roomId':roomId,
+//                'pwd':pwd
+//
+//        },
+//        success:function(response){
+//               
+//        },
+//        error: function(){
+//            console.log("ajax FAILED!");
+//        }
+//   });
+        
+    }
+</script>
 </head>
 
 <body>
@@ -116,7 +146,9 @@
             <input type="password" id="enterPwd" value=""class="rooms_inside"/>
             
             <%}%>
-            <a href="/LetsWatchWeb/<%=r.getRoomId()%>.room" class="rooms_inside"><button class="rooms_inside" id="enter_btn">Enter</button></a>
+            <a href="/LetsWatchWeb/<%=r.getRoomId()%>.room" class="rooms_inside">
+                <button class="enterBtn" class="rooms_inside"  id="enter_btn" data-roomId="<%=r.getRoomId()%>">Enter</button>
+            </a>
     </div>
     <%}%>
 </div>

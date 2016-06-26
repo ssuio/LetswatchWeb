@@ -17,7 +17,7 @@
 <script src="../js/search.js" type="text/javascript"></script>
 <script src="../js/sync.js" type="text/javascript"></script>
 <script src="../js/myvideo.js" type="text/javascript"></script>
-<script src="/LetsWatchWeb/js/javascript/chat.js" type="text/javascript"></script>
+<script src="/LetsWatchWeb/js/chat.js" type="text/javascript"></script>
 <%
     Member m = (Member) session.getAttribute("member");
     RoomDAO dao = new RoomDAO();
@@ -48,10 +48,10 @@
     var area;
     var action;
     var currentTime='0';
-    //var host="localhost:8084";
-    //var host="ssuio.idv.tw:58885";
-    var host="localhost:8084";
+   //var host="localhost:8084";
+    var host="ssuio.idv.tw:58885";
     var roomId ="<%=m.getRoomId()%>";
+    var memberName ="<%=m.getName()%>";
     function init() {
         var tag = document.createElement('script');
         tag.src = "https://www.youtube.com/iframe_api";
