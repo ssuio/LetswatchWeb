@@ -2,7 +2,7 @@
 <style>
             #profile{
                 width:280px;
-                background: #333;
+                background: black;
                 color: #DDD;
                 position:absolute;
                 left: 1100px;
@@ -11,9 +11,9 @@
                 border-radius: 25px;
             }
             #profile p{
-                padding:15px 0px 15px 30px;
+                padding:5px 0px 15px 30px;
                 font-size: 1.1em;
-                width:200px; 
+                width:160px; 
             }
             #profile_pic{
                 width: 200px;
@@ -28,12 +28,27 @@
             }
     
             #profile div,#edit{
-                margin:20px 0px 0px 40px;
+                margin:10px 0px 0px 40px;
+            }
+            
+            #profile input{
+                width:100px;
+                
+            }
+            
+            #gender_div input{
+                width:20px;
+                
+            }
+            #gender_div{
+                width:200px;
             }
             
 </style>
 <% 
     if (m!=null){%>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script>
         window.addEventListener("load",pinit);
         var name;
@@ -72,7 +87,7 @@
             date.id="datepicker";
             date.type="text";
             $('#birthday_lab').after(date);
-            $('#gender_lab').after('<div class="gender_radio"><input class="gender_radio" type="radio" name="gender" value="Male">Male<input type="radio" class="gender_radio" name="gender" value="Female">Female<div>');
+            $('#gender_lab').after('<div class="gender_radio" id="gender_div"><input class="gender_radio" type="radio" name="gender" value="Male">Male<input type="radio" class="gender_radio" name="gender" value="Female">Female<div>');
             $(function() {
                 $( "#datepicker" ).datepicker({
                   changeMonth: true,

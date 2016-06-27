@@ -44,99 +44,92 @@ public class ChatServlet extends HttpServlet {
         fixHeaders(response);
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-       HttpSession session = request.getSession();
-       Member m = (Member)session.getAttribute("member");
-       String roomId = request.getParameter("roomId");
-        System.out.println("RRRRRRRRRRRRRRRRRRRRROOMid:"+roomId);
-       String action = request.getParameter("action");
-       String msg = request.getParameter("msg");
-       String cliTime = request.getParameter("time");
-       ServletContext application = this.getServletContext();
-       String serTime =(String)application.getAttribute(roomId+"time");
-       ChatUser c;
-       String memberName;
-       Calendar cal = Calendar.getInstance();
-       String time;
-       
-       
-        System.out.println("action:"+action+" msg:"+msg+" cliTime:"+ cliTime+ " serTime:"+ serTime);
-       
-       
-       if (serTime==null){
-           serTime="0";
-           application.setAttribute(roomId+"time", serTime);
-       }
-       
-       List<ChatUser> clist;
-       JSONObject jObj;
-       JSONArray jArr;
-       
-        clist = (List<ChatUser>)application.getAttribute(roomId+"chat");
-        if (clist==null){
-            clist = new ArrayList<>();
-            application.setAttribute(roomId+"chat", clist);
+        HttpSession session = request.getSession();
+        Member m = (Member) session.getAttribute("member");
+        String roomId = request.getParameter("roomId");
+        String action = request.getParameter("action");
+        String msg = request.getParameter("msg");
+        String cliTime = request.getParameter("time");
+        ServletContext application = this.getServletContext();
+        String serTime = (String) application.getAttribute(roomId + "time");
+        ChatUser c;
+        String memberName;
+        Calendar cal = Calendar.getInstance();
+        String time;
+
+        if (serTime == null) {
+            serTime = "0";
+            application.setAttribute(roomId + "time", serTime);
         }
-            
-       try { 
-        
-            switch(action){
-                
+
+        List<ChatUser> clist;
+        JSONObject jObj;
+        JSONArray jArr;
+
+        clist = (List<ChatUser>) application.getAttribute(roomId + "chat");
+        if (clist == null) {
+            clist = new ArrayList<>();
+            application.setAttribute(roomId + "chat", clist);
+        }
+
+        try {
+
+            switch (action) {
+
                 case ("push"):
-                    System.out.println("PUSH_START"); 
+                    System.out.println("PUSH_START");
                     c = new ChatUser();
-                    time = cal.get(Calendar.HOUR)+":"+ cal.get(Calendar.MINUTE);
+                    time = cal.get(Calendar.HOUR) + ":" + cal.get(Calendar.MINUTE);
                     memberName = request.getParameter("memberName");
                     c.setTime(time);
                     c.setMsg(msg);
                     c.setName(memberName);
                     clist.add(c);
-                    application.setAttribute(roomId+"time", cliTime);
-                    System.out.println("PUSH_END"); 
+                    application.setAttribute(roomId + "time", cliTime);
+                    System.out.println("PUSH_END");
                     System.out.println("1111servTime:" + serTime);
+
                 case ("pull"):
-                    
-                    if (cliTime!=null&&!serTime.matches(cliTime)){
-                        System.out.println("PULL_START"); 
-                             jObj = new JSONObject();
-                             jArr = new JSONArray();
+                    if (cliTime != null && !serTime.matches(cliTime)) {
+                        System.out.println("PULL_START");
+                        jObj = new JSONObject();
+                        jArr = new JSONArray();
 
-                             for(ChatUser ctmp:clist){
-                                 JSONObject address = new JSONObject();
-                                 address.put("name", ctmp.getName());
-                                 address.put("time", ctmp.getTime());
-                                 address.put("msg", ctmp.getMsg());
+                        for (ChatUser ctmp : clist) {
+                            JSONObject address = new JSONObject();
+                            address.put("name", ctmp.getName());
+                            address.put("time", ctmp.getTime());
+                            address.put("msg", ctmp.getMsg());
 
-                                 jArr.put(address);
-                             }
+                            jArr.put(address);
+                        }
 
-                             jObj.put("talk", jArr);
-                             jObj.put("serTime", serTime);
-                             response.setContentType("application/json");
-                             response.getWriter().write(jObj.toString());
-                             System.out.println("PULL_END"); 
-                             System.out.println("333servTime:" + serTime);
+                        jObj.put("talk", jArr);
+                        jObj.put("serTime", serTime);
+                        response.setContentType("application/json");
+                        response.getWriter().write(jObj.toString());
+                        System.out.println("PULL_END");
+                        System.out.println("333servTime:" + serTime);
 
-                    }else{
-                            System.out.println("SAME START");
-                            jObj = new JSONObject();
-                            jObj.put("time", "same");
-                            response.setContentType("application/json");
-                            response.getWriter().write(jObj.toString());
-                            System.out.println("SAME END");
-                     }
+                    } else {
+                        System.out.println("SAME START");
+                        jObj = new JSONObject();
+                        jObj.put("time", "same");
+                        response.setContentType("application/json");
+                        response.getWriter().write(jObj.toString());
+                        System.out.println("SAME END");
+                    }
                     break;
                 default:
-                System.out.println("Can't verify action!");
+                    System.out.println("Can't verify action!");
             }
-       
-       }catch (JSONException ex) {
-                    Logger.getLogger(ChatServlet.class.getName()).log(Level.SEVERE, null, ex);
-       }
-       
+
+        } catch (JSONException ex) {
+            Logger.getLogger(ChatServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
-    
-    
     private void fixHeaders(HttpServletResponse response) {
 
         response.setContentType("text/html");
@@ -149,6 +142,7 @@ public class ChatServlet extends HttpServlet {
         response.addHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Content-Length");
         response.addHeader("Access-Control-Max-Age", "86400");
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

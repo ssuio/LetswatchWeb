@@ -14,6 +14,36 @@
         %>
         <link href="/LetsWatchWeb/css/indexLayout.css" rel="stylesheet" type="text/css">
         <link href="/LetsWatchWeb/css/resetcss.css" rel="stylesheet" type="text/css">
+        <script src="../js/jquery-1.12.4.js" type="text/javascript"></script>
+        <script>
+            var host = 'localhost:8084';
+            $(document).ready(init);
+            function init(){
+                $('.product').on("click",addCart);
+                
+                
+            }
+            
+            
+            function addCart(){
+                var pid = $(this).attr('data-pid');
+                
+                $.ajax({
+                    type:"POST",
+                    url: "http://"+host+"/LetsWatchWeb/add_cart.do",
+                    data: {
+                            'pid':pid
+                    },
+                success:function(response){
+                       
+                },
+                error: function(){
+                    console.log("ajax FAILED!");
+                }
+                });
+            }
+            
+        </script>
     </head>
     <body>
 <jsp:include page="/WEB-INF/subview/header.jsp">
@@ -28,8 +58,9 @@
 
 <div>
    <% for(Product pTmp : plist){%>
-   <p>
-       <%="Name:"+pTmp.getName()+" Description:"+pTmp.getDescription() + "URL:"+pTmp.getUrl()%>
+   
+   <p class="product" data-pid="<%=pTmp.getId()%>">
+       <%="Name:"+pTmp.getName()%>
    </p>
    <%}%>
     <a href=""><h1>Add Shop Cart</h1></a>
