@@ -88,8 +88,7 @@ public class LoginServlet extends HttpServlet {
                    response.addCookie(cookie2);
                    
                    session.setAttribute("member", m);
-                   RequestDispatcher dispatcher = request.getRequestDispatcher("/member/Profile.jsp");
-                   dispatcher.forward(request, response);
+                   response.sendRedirect("/LetsWatchWeb");
                    return;
                }catch(LWException ex){
                    errors.add(ex.getMessage());

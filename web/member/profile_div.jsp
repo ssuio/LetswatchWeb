@@ -1,30 +1,41 @@
 <%@page import="lw.domain.Member"%>
-<%@page pageEncoding="UTF-8"%>
+<style>
+            #profile{
+                width:280px;
+                background: #333;
+                color: #DDD;
+                position:absolute;
+                left: 1100px;
+                margin:auto;
+                border: 2px solid;
+                border-radius: 25px;
+            }
+            #profile p{
+                padding:15px 0px 15px 30px;
+                font-size: 1.1em;
+                width:200px; 
+            }
+            #profile_pic{
+                width: 200px;
+                height:200px;
+            }
+            form{
+                padding:0px;
+            }
 
-<%
-    Member m =(Member)session.getAttribute("member");
-//    if(m==null){
-//        response.sendRedirect("/LetsWatchWeb/member/login.jsp");
-//    }else{
-//    System.out.println(m);
-%>
-<!doctype html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>首頁</title>
-    <link href="/LetsWatchWeb/css/indexLayout.css" rel="stylesheet" type="text/css">
-    <script src="/LetsWatchWeb/js/jquery-1.12.4.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <style>
-        #datepicker{
-            margin: 20px;
+            #profile_li{
+                cursor: pointer;
+            }
+    
+            #profile div,#edit{
+                margin:20px 0px 0px 40px;
+            }
             
-        }
-    </style>
-    <script>
-        window.addEventListener("load",init);
+</style>
+<% 
+    if (m!=null){%>
+<script>
+        window.addEventListener("load",pinit);
         var name;
         var gender;
         var email;
@@ -32,15 +43,15 @@
         var phone;
         var epaper;
         var introduction;
-        var roomId;
-        var memberId;
-        var host="localhost:8084";
-        function init(){
+//        var roomId;
+//        var memberId;
+//        var host="localhost:8084";
+        function pinit(){
+            
             $('#test').on("click",testHandler);
             $('#edit').on("click",editHandler);
             $('#finish').on("click",finishHandler);
             $('#finish').css('display','none');
-             
         }
 
         function testHandler(){
@@ -119,41 +130,16 @@
                         }
             });
         }
-    </script>
-</head>
+    </script>  
 
-<body>
-        <style>
-            p{
-                margin:15px;
-                font-size: 1.1em;
-            }
-            #profile{
-                margin:auto;
-            }
-            #profile p{
-               width:200px; 
-            }
-            #profile_pic{
-                width: 200px;
-                height:200px;
-            }
-            form{
-                padding:0px;
-            }
-        </style>
-      
-        
-<jsp:include page="/WEB-INF/subview/header.jsp">
-    <jsp:param name="sub_title" value="<%=this.getServletInfo()%>"/>
-</jsp:include>
-        <div>
-            <div id="profile">
+<div id="profile">
+    <div>
             <img src="/LetsWatchWeb/GetMemberPic.pic" id="profile_pic">
             <form action="/LetsWatchWeb/upload.pic" method="post" enctype="multipart/form-data">
             <input type="file" name="photo" accept="Image/*"/><br>
             <input type="submit" value="Upload" name="upload"/>
             </form>
+    </div>
                 <div>
                 <label>Name:</label>
                 <p id="name"><%=m.getName()%></p>
@@ -184,9 +170,5 @@
 <!--               <p>Date: <input type="text" id="datepicker"></p>-->
             <button type="submit" id="finish">Finish</button>
             <button id="edit">Edit</button>
-            </div>
-        </div>   
-               
-<%@include file="/WEB-INF/subview/footer.jsp"%>
-</body>
-</html>
+</div>
+<%}%>

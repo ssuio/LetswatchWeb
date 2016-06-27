@@ -11,6 +11,26 @@
 <!--<title><%=request.getParameter("sub_title")%></title>-->
 
 <header>
+    <script src="/LetsWatchWeb/js/jquery-1.12.4.js" type="text/javascript"></script>
+    <script>
+        var flag=false;
+        $(document).ready(headerInit);
+        function headerInit(){
+            $('#profile').css('display','none');
+            $('#profile_li').on("click",profileSwitch);
+        }
+        
+        function profileSwitch(){
+            if (flag===true){
+                $('#profile').css('display','none');
+            }else if(flag===false){
+                $('#profile').css('display','block');
+            }
+            
+            flag=!flag;
+        }
+    </script>
+    
  <div class="wrapper" id="wrapper_header">
 <!--logo-->
   <div class="logo"><a href="/LetsWatchWeb"><img src="/LetsWatchWeb/picture/logo.png"></a></div> 
@@ -38,7 +58,8 @@
     <li><a class='menu' href="/LetsWatchWeb/member/register.jsp" title="登出">Register</a></li>
    <%}%>
    <%if(m!=null){%>
-    <li><a class='menu' href="/LetsWatchWeb/member/Profile.jsp" title="登出">Profile</a></li>
+<!--    <li><a class='menu' href="/LetsWatchWeb/member/Profile.jsp" title="登出">Profile</a></li>-->
+<li id="profile_li" ><a class='menu'  title="登出">Profile</a></li>
     <li><a class='menu' href="${sessionScope.member.roomId==null?"/LetsWatchWeb/member/room_search.jsp":"/LetsWatchWeb/member/myroom.jsp"}" title="登出">myRoom</a></li>
   </ul>
  </div>
@@ -52,3 +73,4 @@
   <div class="clearfix"></div> 
   </div><!--wrapper-->
 </header>
+<%@include file="/member/profile_div.jsp"%>

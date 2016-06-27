@@ -52,18 +52,15 @@ public class UploadPicture extends HttpServlet {
             String filename = header.substring(
                     header.indexOf("filename=\"") + 10, header.lastIndexOf("\""
                     ));
-            System.out.println("header="+header+" filename:"+filename);
             InputStream in = pic.getInputStream();
 //            String name = pic.getName();
 //            long size = pic.getSize();
-            System.out.println("111111111111111111111111");
             pDAO.savePic(in, memberId);
-            System.out.println("22222222222222222222222");
 
 //            System.out.println("name:"+name+"  size:"+size);
             in.close();
             
-            response.sendRedirect("/LetsWatchWeb/member/Profile.jsp");
+            response.sendRedirect("/LetsWatchWeb/");
         } catch (LWException ex) {
             Logger.getLogger(UploadPicture.class.getName()).log(Level.SEVERE, null, ex);
         }
