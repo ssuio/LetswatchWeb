@@ -4,6 +4,8 @@
     Author     : adm
 --%>
 
+<%@page import="java.util.Set"%>
+<%@page import="lw.domain.Product"%>
 <%@page import="lw.domain.Member"%>
 <%@page import="lw.domain.ShoppingCart"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -22,13 +24,17 @@
     <%} else {%>
     <%
         Member m = (Member) request.getSession().getAttribute("member");
-     %>
-        <p><%="Total: "+cart.getTotalAmount() + "<br> Total Q:"+ cart.getTotalQuentity()+"<br> cart ="+ cart%></p>
-    <%   
-        if(m==null){
+         if(m==null){
             
             response.sendRedirect("/LetsWatchWeb/member/login.jsp");
         }
+        Set<Product> keySet = cart.keySet();
+        for(Product p : keySet){
+     %>
+        <p><%="Total: "+cart.getTotalAmount() + "<br> Total Q:"+ cart.getTotalQuentity()+"<br> cart ="+ p.getName()%></p>
+    <%   
+       
+    }
     }%>
 </head>
 <body>
