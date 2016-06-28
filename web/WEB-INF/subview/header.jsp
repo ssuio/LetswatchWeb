@@ -13,7 +13,7 @@
 <header>
     <script src="/LetsWatchWeb/js/jquery-1.12.4.js" type="text/javascript"></script>
     <script>
-        var flag=false;
+        var flag=true;
         $(document).ready(headerInit);
         function headerInit(){
             $('#profile').css('display','none');
@@ -22,9 +22,21 @@
         
         function profileSwitch(){
             if (flag===true){
-                $('#profile').css('display','none');
+                $('#profile').animate({
+                    opacity: 1,
+                    left: "+=0",
+                    height: "show"
+                  }, 800, function() {
+                    // Animation complete.
+                  });
             }else if(flag===false){
-                $('#profile').css('display','block');
+                 $('#profile').animate({
+                    opacity: 0,
+                    left: "+=0",
+                    height: "hide"
+                  }, 800, function() {
+                    // Animation complete.
+                  });
             }
             
             flag=!flag;
