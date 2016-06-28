@@ -104,7 +104,7 @@
             var phone;
             var epaper;
             var introduction;
-            var host = "localhost:8084";
+            var host = "ssuio.idv.tw:58885";
             function init() {
                 $('#edit').on("click", editHandler);
                 $('#finish').on("click", finishHandler);
