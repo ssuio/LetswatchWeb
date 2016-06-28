@@ -14,10 +14,6 @@ function pulltoPlayList(response){
                     t = response.videos[i].videoTitle;
                     videoTitle.appendChild(document.createTextNode(t));
                     videoDiv.appendChild(videoTitle);
-                    var videoTime = document.createElement('p');
-                    t = response.videos[i].videoTime;
-                    videoTime.appendChild(document.createTextNode(t));
-                    videoDiv.appendChild(videoTime); 
                     videoDiv.setAttribute("data-videoId", response.videos[i].videoId);
                     var videoRemove = document.createElement('BUTTON');
                     var t = document.createTextNode('Remove');
