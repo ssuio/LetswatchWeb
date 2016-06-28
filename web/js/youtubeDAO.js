@@ -80,6 +80,7 @@ function playAt(){
 }
 
 function play(){
+           pushVideoPlay();
            player.playVideo();
  }
        function stop(){
@@ -87,8 +88,9 @@ function play(){
  }
           
 function pause(){
+    pushVideoStop();
     player.pauseVideo();
-
+    
 }
 
 function searchResult(){

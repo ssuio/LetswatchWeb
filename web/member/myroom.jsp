@@ -126,8 +126,7 @@
     <button id="pushChat" >Enter</button> 
    <div class="clearfix"></div>
    <button id="play" >play</button>
-   <button id="stop" >stop</button>
-   <button id="pause" >pause</button>
+   <button id="pause" >stop</button>
    
 
 <!--  

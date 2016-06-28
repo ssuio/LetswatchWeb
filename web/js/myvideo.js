@@ -34,7 +34,7 @@ function PullToPlay(){
                     time = response.time;
                     
                     if(action==='stop'){
-                        pause();
+                        player.pauseVideo();
 
                     }else if(area==='play' && currentTime==='0' && action==='play'){
                         $('#playlist div').attr("class","playListDiv");
@@ -154,6 +154,33 @@ function pushVideoPlayOnBar(){
 
 function pushVideoStop(){
     action="stop";
+    time = Date.now();
+    currentTime = player.getCurrentTime();
+     $.ajax({
+            type:"POST",
+            url: "http://"+host+"/LetsWatchWeb/syncVideo.do",
+            data: {
+                   'roomId': roomId,
+                   'remote': 'push',
+                   'action':action,
+                   'area': area,
+                   'currentTime': currentTime,
+                   'videoId': gVideoId,
+                   'time' : time
+            },
+            success:function(response){
+                console.log(response);
+            },
+            error: function(){
+                console.log("ajax FAILED!");
+            }
+    });
+}
+
+function pushVideoPlay(){
+    action="play";
+    time = Date.now();
+    currentTime = player.getCurrentTime();
      $.ajax({
             type:"POST",
             url: "http://"+host+"/LetsWatchWeb/syncVideo.do",
