@@ -52,7 +52,7 @@ public class PlayListServlet extends HttpServlet {
             //HttpSession session = request.getSession();
             String[] vId = request.getParameterValues("videoId[]");
             String[] vTitle = request.getParameterValues("videoTitle[]");
-            String[] vTime = request.getParameterValues("videoTime[]");
+            //String[] vTime = request.getParameterValues("videoTime[]");
             String[] vImg = request.getParameterValues("videoImg[]");
             String action=request.getParameter("action");
             String time = request.getParameter("time");
@@ -66,13 +66,13 @@ public class PlayListServlet extends HttpServlet {
 
             if(action.matches("push")){
                 System.out.println("IN PUSH");
-                if(vId!=null && vTitle!=null && vTime!=null && vImg!=null){
+                if(vId!=null && vTitle!=null  && vImg!=null){
 
                     for (int i=0; i< vId.length;i++){
                         p = new PlayList();
                         p.setVideoId(vId[i]);
                         p.setVideoTitle(vTitle[i]);
-                        p.setVideoTime(vTime[i]);
+                        //p.setVideoTime(vTime[i]);
                         p.setVideoImg(vImg[i]);
                         pList.add(p);
                     }
@@ -100,7 +100,7 @@ public class PlayListServlet extends HttpServlet {
                                 address = new JSONObject();
                                 address.put("videoId", pTmp.getVideoId());
                                 address.put("videoTitle", pTmp.getVideoTitle());
-                                address.put("videoTime", pTmp.getVideoTime());
+                                //address.put("videoTime", pTmp.getVideoTime());
                                 address.put("videoImg", pTmp.getVideoImg());
                                 jArr.put(address);
                             }

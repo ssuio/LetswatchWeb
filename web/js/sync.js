@@ -31,12 +31,12 @@ function pulltoPlayList(response){
         function pushPlayList(){
         videoId = [];
         videoTitle = [];
-        videoTime = [];
+        //videoTime = [];
         videoImg = [];
         var what = $('.playListDiv').each(function(){
             videoId.push($(this).attr('data-videoId'));
             videoTitle.push($(this).find('p').first().text());
-            videoTime.push($(this).find('p').last().text());
+            //videoTime.push($(this).find('p').last().text());
             videoImg.push($(this).find('img').attr('src'));
         });
         
@@ -46,7 +46,7 @@ function pulltoPlayList(response){
             'roomId': roomId,
            'videoId': videoId,
            'videoTitle': videoTitle,
-           'videoTime': videoTime,
+           //'videoTime': videoTime,
            'videoImg': videoImg,
            'action': 'push',
            'time' : playListTime
