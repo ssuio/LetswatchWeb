@@ -72,7 +72,7 @@
    <%if(m!=null){%>
 <!--    <li><a class='menu' href="/LetsWatchWeb/member/Profile.jsp" title="登出">Profile</a></li>-->
 <li id="profile_li" ><a class='menu'  title="登出">Profile</a></li>
-    <li><a class='menu' href="${sessionScope.member.roomId==null?"/LetsWatchWeb/member/room_search.jsp":"/LetsWatchWeb/member/myroom.jsp"}" title="登出">myRoom</a></li>
+    <li><a class='menu' href="<%=m.getRoomId()==null?"/LetsWatchWeb/member/room_search.jsp":"/LetsWatchWeb/member/"+m.getRoomId()+".room"%>" title="登出">myRoom</a></li>
   </ul>
  </div>
  <div id="greeting">

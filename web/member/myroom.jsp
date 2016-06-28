@@ -62,7 +62,6 @@
         document.getElementById("videoBar").addEventListener("click", pushVideoPlayOnBar);
         document.getElementById("searchVideo").addEventListener("click", searchResult);
         document.getElementById("play").addEventListener("click", play);
-        document.getElementById("stop").addEventListener("click", stop);
         document.getElementById("pause").addEventListener("click", pause);
         
 //        document.getElementById("pushPlayList").addEventListener("click", pushPlayList);
@@ -88,6 +87,26 @@
                 pushChat();
             }
         });
+        
+        
+        $(window).bind("beforeunload",function(){
+             $.ajax({
+            type:"POST",
+            url: "http://"+host+"/LetsWatchWeb/leaveRoom.do",
+            data: {
+                   'roomId': roomId,
+                   'memberId' : '<%=m.getId()%>'
+            },
+            success:function(response){
+                console.log(response);
+            },
+            error: function(){
+                console.log("ajax FAILED!");
+            }
+    });
+            
+        });
+        
         
     }
     
