@@ -58,9 +58,9 @@ public class MemberUpdateServlet extends HttpServlet {
                 m.setName(name);
             if(!email.matches(""))
                 m.setEmail(email);
-            if(!gender.matches("")&&gender.matches("Male"))
+            if(!gender.matches("")&&gender.matches("M"))
                 m.setGender('M');
-            if(!gender.matches("")&&gender.matches("Female"))
+            if(!gender.matches("")&&gender.matches("F"))
                 m.setGender('F');
             if(!birthday.matches(""))
                 m.setBirthday(birthday);

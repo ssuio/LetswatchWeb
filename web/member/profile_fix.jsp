@@ -1,102 +1,29 @@
 <%@page import="lw.domain.Member"%>
-<style>
-          #profile{
-                font-family: " AppleGothic", CenturyGothic, AppleGothic, sans-serif;
-                font-size: 1em;
-                font-style: normal;
-                font-variant: normal;
-                font-weight: 500;
-                width:300px;
-                height: 750px;
-                margin:auto;
-                background: black;
-                color: white;
-                position:absolute;
-                left: 1050px;
-                border: 2px solid;
-                border-radius: 25px;
+<%@page pageEncoding="UTF-8"%>
+
+<%
+    Member m = (Member) session.getAttribute("member");
+//    if(m==null){
+//        response.sendRedirect("/LetsWatchWeb/member/login.jsp");
+//    }else{
+//    System.out.println(m);
+%>
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>首頁</title>
+        <script src="/LetsWatchWeb/js/jquery-1.12.4.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <style>
+            #datepicker{
+                margin: 20px;
+
             }
-           
-            #profile_pic{
-                width: 200px;
-                height:200px;
-            }
-            #profile input{
-                font-family: " AppleGothic", CenturyGothic, AppleGothic, sans-serif;
-                font-size: 1em;
-                font-style: normal;
-                font-variant: normal;
-                font-weight: 500;
-                background: black;
-                color: white;
-                border-top: transparent !important;
-                border-left: transparent !important;
-                border-right: transparent !important;
-                border-bottom: transparent !important;
-                width:160px; 
-            }
-            #upload{
-                background:#DDD;
-            }
-            #introduction{
-                border-radius: 5px;
-                background: black;
-                color: white;
-                text-align: initial;
-                height: 150px;
-                width:200px;
-            }
-            #profile_inside{
-                margin:10px 0px 10px 50px;
-            }
-            
-            #edit,#finish {
-                -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
-                -webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
-                box-shadow:inset 0px 1px 0px 0px #ffffff;
-                background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f9f9f9), color-stop(1, #e9e9e9));
-                background:-moz-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
-                background:-webkit-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
-                background:-o-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
-                background:-ms-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
-                background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
-                filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#e9e9e9',GradientType=0);
-                background-color:#f9f9f9;
-                -moz-border-radius:6px;
-                -webkit-border-radius:6px;
-                border-radius:6px;
-                border:1px solid #dcdcdc;
-                display:inline-block;
-                cursor:pointer;
-                color:#666666;
-                font-family:Arial;
-                font-size:1.2em;
-                font-weight:bold;
-                padding:6px 24px;
-                text-decoration:none;
-                text-shadow:0px 1px 0px #ffffff;
-            }
-            #edit,#finish :hover {
-                background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e9e9e9), color-stop(1, #f9f9f9));
-                background:-moz-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
-                background:-webkit-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
-                background:-o-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
-                background:-ms-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
-                background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
-                filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#e9e9e9', endColorstr='#f9f9f9',GradientType=0);
-                background-color:#e9e9e9;
-            }
-            #edit,#finish :active {
-                position:relative;
-                top:1px;
-            }
-</style>
-<% 
-    if (m!=null){%>
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<script>
-         window.addEventListener("load", init);
+        </style>
+        <script>
+            window.addEventListener("load", init);
             var name;
             var gender;
             var email;
@@ -130,7 +57,6 @@
             function editHandler() {
                 $('#profile input').removeAttr('disabled');
                 $('#finish').css('display', 'block');
-                $('#edit').css('display', 'none');
                 $('#upload_form').css('display', 'block');
                 $('#introduction').removeAttr('disabled');
                 $(function () {
@@ -148,7 +74,7 @@
                 $('#upload').attr('disabled', 'true');
                 $('#upload_form').css('display', 'none');
                 $('#introduction').attr('disabled', 'true');
-                $('#edit').css('display', 'block');
+
                 name = $('#pname').val();
                 gender = $('#pgender').val();
                 birthday = $('#datepicker').val();
@@ -164,8 +90,8 @@
                 roomId = '<%=m.getRoomId()%>';
                 memberId = '<%=m.getId()%>';
 
-//                alert('name=' + name + ' gender=' + gender + ' birthday' + birthday + ' phone=' + phone + ' epaper=' + epaper + ' email=' + email
-//                        + ' introduction=' + introduction + ' roomId=' + roomId + 'memberId=' + memberId);
+                alert('name=' + name + ' gender=' + gender + ' birthday' + birthday + ' phone=' + phone + ' epaper=' + epaper + ' email=' + email
+                        + ' introduction=' + introduction + ' roomId=' + roomId + 'memberId=' + memberId);
 
                 $.ajax({
                     type: "POST",
@@ -189,13 +115,62 @@
                     }
                 });
             }
-    </script>  
+        </script>
+    </head>
 
-<div id="profile">
+    <body>
+        <style>
+            #profile{
+                font-family: " AppleGothic", CenturyGothic, AppleGothic, sans-serif;
+                font-size: 1em;
+                font-style: normal;
+                font-variant: normal;
+                font-weight: 500;
+                width:300px;
+                height: 680px;
+                margin:auto;
+                background: black;
+                color: white;
+            }
+            #profile_pic{
+                width: 200px;
+                height:200px;
+            }
+            #profile input{
+                font-family: " AppleGothic", CenturyGothic, AppleGothic, sans-serif;
+                font-size: 1em;
+                font-style: normal;
+                font-variant: normal;
+                font-weight: 500;
+                background: black;
+                color: white;
+                border-top: transparent !important;
+                border-left: transparent !important;
+                border-right: transparent !important;
+                border-bottom: transparent !important;
+                width:160px; 
+            }
+            #upload{
+                background:#DDD;
+            }
+            #introduction{
+                border-radius: 5px;
+                background: black;
+                color: white;
+                text-align: initial;
+                height: 150px;
+                width:200px;
+            }
+            #profile_inside{
+                margin:10px 0px 10px 50px;
+            }
+        </style>
+        <div>
+            <div id="profile">
                 <div id="profile_inside">
                     <img src="/LetsWatchWeb/GetMemberPic.pic" id="profile_pic">
                     <form action="/LetsWatchWeb/upload.pic" method="post" enctype="multipart/form-data" id="upload_form">
-                        <input type="file" name="photo" accept="Image/*" id="pick"/><br>
+                        <input type="file" name="photo" accept="Image/*"/><br>
                         <input type="submit" value="Upload" name="upload" id="upload"/>
                     </form>
                     <br>
@@ -210,4 +185,6 @@
                     <button id="edit">Edit</button>
                 </div>
             </div>
-<%}%>
+        </div>   
+    </body>
+</html>
