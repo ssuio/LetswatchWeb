@@ -40,7 +40,7 @@ public class StickersServlet extends HttpServlet {
 
         //request.setCharacterEncoding("uft-8");
         //request.getParameter("num");
-        int num = 2;
+        int num = Integer.parseInt(request.getParameter("get"));
         StickersDAO sDAO = new StickersDAO();
         byte[] pic;
         try {

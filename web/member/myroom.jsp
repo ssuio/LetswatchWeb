@@ -65,7 +65,7 @@
                 document.getElementById("play").addEventListener("click", play);
                 document.getElementById("pause").addEventListener("click", pause);
                 
-                $('.stickers').on("click",pasteSticker);
+                //$('.stickers').on("click",pasteSticker);
                 
                 jQuery('#searchList').css("overflow-y", "scroll");
                 jQuery('#playlist').css("overflow-y", "scroll");
