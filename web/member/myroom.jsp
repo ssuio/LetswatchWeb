@@ -1,3 +1,4 @@
+<%@page import="lw.model.StickersDAO"%>
 <%@page import="lw.domain.PlayList"%>
 <%@page import="lw.model.PlayListDAO"%>
 <%@page import="java.util.List"%>
@@ -82,6 +83,7 @@
                 jQuery('#playlist').css("overflow-y", "scroll");
                 jQuery('#talkFrame').css("overflow-y", "scroll");
                 jQuery('#memberlist').css("overflow-y", "scroll");
+                jQuery('#stickers').css("overflow-y", "scroll");
 
                 $('#sendText').keypress(function (e) {
                     if (e.which === 13) {
@@ -116,14 +118,24 @@
         </script>
         <style>
             #talkFrame{
+                float:left;
                 margin:5px;
-                width:300px;
-                height: 250px;
+                width:350px;
+                height: 225px;
             }
             #pushChat{
                 text-align: right;
             }
-
+            #stickers{
+                float:left;
+                width:70px;
+                height:225px;
+                margin:0px 0px 0px 10px;
+                background-color: yellow;
+            }
+            #sendText{
+                float:left;
+            }
         </style>
     </head>
 
@@ -144,8 +156,20 @@
                     <div id="playlist"></div>
                     <div id="memberlist"></div>
                     <div id="talkFrame">ChatRoom<br></div>
+                    <div id="stickers">
+                        <% 
+                            StickersDAO sDAO = new StickersDAO();
+                            List<Integer> nList = sDAO.getStickerNumber(m.getId());
+                            if(nList!=null){
+                            %>
+                            <img src="http://localhost:8084/LetsWatchWeb/sticker.pic">
+                            <img src="http://localhost:8084/LetsWatchWeb/sticker.pic">
+                            <img src="http://localhost:8084/LetsWatchWeb/sticker.pic">
+                            <%}%>
+                    </div>
                     <input type="text" id="sendText"/>
-                    <button id="pushChat" >Enter</button> 
+                    
+                    <!--<button id="pushChat" >Enter</button>--> 
                     <div class="clearfix"></div>
                     <button id="play" >play</button>
                     <button id="pause" >stop</button>

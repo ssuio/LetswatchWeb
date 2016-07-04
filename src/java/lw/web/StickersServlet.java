@@ -3,30 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lw.controller;
+package lw.web;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import lw.domain.LWException;
-import lw.domain.Member;
-import lw.domain.Room;
-import lw.model.RDBMemberDAO;
-import lw.model.RoomMemberListDAO;
-import lw.model.RoomService;
+import lw.model.StickersDAO;
 
 /**
  *
  * @author adm
  */
-public class RoomCreateServlet extends HttpServlet {
+@WebServlet(name = "StickersServlet", urlPatterns = {"/sticker.pic"})
+public class StickersServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,53 +37,30 @@ public class RoomCreateServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RoomService rs = new RoomService();
-        RoomMemberListDAO rmDAO = new RoomMemberListDAO();
-        RDBMemberDAO mDAO = new RDBMemberDAO();
-        Room r = new Room();
-        Member m;
-        List<String> errors = new ArrayList<>();
-        HttpSession session = request.getSession();
-        try {
 
-            String roomName = request.getParameter("roomName");
-            String roomPwd = request.getParameter("roomPwd");
-            String roomPrice = request.getParameter("roomPrice");
-            //String roomType = request.getParameter("roomType");
-            String roomId;
-            m = (Member)session.getAttribute("member");
-            if(roomName!=null)
-                r.setRoomName(roomName);
-            else
-                errors.add("Room name is null");
-            
-            if(roomPwd!=null)
-                r.setRoomPwd(roomPwd);
-            else
-                r.setRoomPwd("");
-            
-            if(roomPrice.matches("\\d++"))
-                r.setwCoin(Integer.parseInt(roomPrice));
-            else
-                r.setwCoin(0);
-                //r.setRoomType(Integer.parseInt(roomType));
-            
-            r.setOwnerId(m.getId());
-            roomId = rs.createRoom(r);
-            //Leaving the room user was in 
-            if (m.getRoomId()!=null){
-                    rs.leaveRoom(m, m.getRoomId());
+        //request.setCharacterEncoding("uft-8");
+        //request.getParameter("num");
+        int num = 2;
+        StickersDAO sDAO = new StickersDAO();
+        byte[] pic;
+        try {
+            pic = sDAO.getPic(num);
+            if (pic != null) {
+                response.setContentType("image/jpeg");
+                OutputStream out = response.getOutputStream();
+                ByteArrayInputStream bais = new ByteArrayInputStream(pic);
+
+                byte[] buf = new byte[1024];
+                int read = 0;
+                while ((read = bais.read(buf)) != -1) {
+                    out.write(buf);
                 }
-            m.setRoomId(roomId);
-            session.setAttribute("member", m);
-            mDAO.update(m, m.getId());
-            rmDAO.insert(m, roomId);
-            response.sendRedirect("/LetsWatchWeb/member/myroom.jsp");
-            
+
+                return;
+            }
         } catch (LWException ex) {
-            Logger.getLogger(RoomCreateServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StickersServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

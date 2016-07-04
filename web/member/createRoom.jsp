@@ -147,10 +147,10 @@
     <label for="email">Price:</label>
     <input type="text" id="roomPrice" name="roomPrice" placeholder="輸入房間價錢" value="" >
    </p>
-   <p>
+<!--   <p>
     <label for="email">Type:</label>
     <input type="text" id="roomType" name="roomType" placeholder="輸入房間類型" value="">
-   </p>
+   </p>-->
     <input type="submit" value="Create" id="create_submit">
    </fieldset>
   </form>
