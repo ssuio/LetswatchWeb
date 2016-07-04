@@ -164,7 +164,7 @@
                                 for(Integer n :nList){
                                     switch (n){
                                         case 1:
-                                            
+                                            Integer.
                                             break;
                                             
                                         case 2:
