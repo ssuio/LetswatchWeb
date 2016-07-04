@@ -64,21 +64,9 @@
                 document.getElementById("searchVideo").addEventListener("click", searchResult);
                 document.getElementById("play").addEventListener("click", play);
                 document.getElementById("pause").addEventListener("click", pause);
-
-                //        document.getElementById("pushPlayList").addEventListener("click", pushPlayList);
-                //        document.getElementById("pullPlayList").addEventListener("click", pullPlayList);
-                //        alert(0);
-
-                //        $('#pushVideoPlayOnBar').on("click",pushVideoPlayOnBar);
-                //        $('#pushPlayOnSearch').on("click",pushPlayOnSearch);
-                //        $('#getTime').on("click",getTime);
-                //        $('#pushVideoStop').on("click",pushVideoStop);
-                //        $('#PullToPlay').on("click",PullToPlay);
-                //        $('#pullChat').on("click",pullChat);
-                //        $('#pushChat').on("click",pushChat);
-
-
-                //document.getElementById("getTime").addEventListener("click", getTime);
+                
+                $('.stickers').on("click",pasteSticker);
+                
                 jQuery('#searchList').css("overflow-y", "scroll");
                 jQuery('#playlist').css("overflow-y", "scroll");
                 jQuery('#talkFrame').css("overflow-y", "scroll");
@@ -164,27 +152,24 @@
                                 for(Integer n :nList){
                                     switch (n){
                                         case 1:
-                                            Integer.
+                        %>
+                        <img src="http://localhost:8084/LetsWatchWeb/sticker.pic?get=1" class="stickers">
+                        <%
                                             break;
-                                            
                                         case 2:
-                                            
-                                            
+                        %>
+                        <img src="http://localhost:8084/LetsWatchWeb/sticker.pic?get=2" class="stickers">
+                        <%                  
                                             break;
-                                            
-                                            
                                         case 3:
-                                            
-                                            
+                        %>
+                        <img src="http://localhost:8084/LetsWatchWeb/sticker.pic?get=3" class="stickers">
+                        <%                   
                                             break;
                                     }
                                 
                                 }
-                            %>
-                            <img src="http://localhost:8084/LetsWatchWeb/sticker.pic">
-                            <img src="http://localhost:8084/LetsWatchWeb/sticker.pic">
-                            <img src="http://localhost:8084/LetsWatchWeb/sticker.pic">
-                            <%}%>
+                            }%>
                     </div>
                     <input type="text" id="sendText"/>
                     
@@ -215,7 +200,6 @@
                     <div id="searchList">
                         <div class="clearfix"></div><!--此行不要刪-->
                     </div>
-
 
                 </div>
             </div><!--wrapper-->
