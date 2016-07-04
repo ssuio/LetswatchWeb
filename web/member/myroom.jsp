@@ -161,6 +161,25 @@
                             StickersDAO sDAO = new StickersDAO();
                             List<Integer> nList = sDAO.getStickerNumber(m.getId());
                             if(nList!=null){
+                                for(Integer n :nList){
+                                    switch (n){
+                                        case 1:
+                                            
+                                            break;
+                                            
+                                        case 2:
+                                            
+                                            
+                                            break;
+                                            
+                                            
+                                        case 3:
+                                            
+                                            
+                                            break;
+                                    }
+                                
+                                }
                             %>
                             <img src="http://localhost:8084/LetsWatchWeb/sticker.pic">
                             <img src="http://localhost:8084/LetsWatchWeb/sticker.pic">
