@@ -53,7 +53,7 @@
    <li><a href="/LetsWatchWeb" title="首頁">HOME</a></li>
    <li><a href="/LetsWatchWeb/member/about.jsp" title="關於">ABOUT</a></li>
    <li><a href="/LetsWatchWeb/member/room_search.jsp" title="房間瀏覽">ROOMS</a></li>
-   <li><a href="/LetsWatchWeb/member/shop.jsp" title="購買W幣">BuyWcoin</a></li>
+   <li><a href="/LetsWatchWeb/member/shop.jsp" title="W商城">WSHOP</a></li>
    <li><a href="/LetsWatchWeb/member/suggestion.jsp" title="建議">SUGGESTION</a></li>
   </ul>
  </nav>
@@ -71,8 +71,8 @@
    <%}%>
    <%if(m!=null){%>
 <!--    <li><a class='menu' href="/LetsWatchWeb/member/Profile.jsp" title="登出">Profile</a></li>-->
-<li id="profile_li" ><a class='menu'  title="登出">Profile</a></li>
-    <li><a class='menu' href="<%=m.getRoomId()==null?"/LetsWatchWeb/member/room_search.jsp":"/LetsWatchWeb/member/"+m.getRoomId()+".room"%>" title="登出">myRoom</a></li>
+<li id="profile_li" ><a class='menu'  title="個人頁面">Profile</a></li>
+    <li><a class='menu' href="<%=m.getRoomId()==null?"/LetsWatchWeb/member/room_search.jsp":"/LetsWatchWeb/member/"+m.getRoomId()+".room"%>" title="我的房間">myRoom</a></li>
   </ul>
  </div>
  <div id="greeting">

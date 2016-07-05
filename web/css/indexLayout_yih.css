@@ -284,6 +284,7 @@ video{
 }
 .searchVideo{
     width: 220px;
+    height:300px;
     cursor: pointer;
     float:left;
     margin: 0 5px 5px 0;
@@ -293,48 +294,15 @@ video{
     height:200px;
 }
 .playListDiv{
-    height:170px;
+    height:120px;
     cursor: pointer;
 }
 .playing{
-    background-color: #aeaeae;
+    background-color: #5B5B5B;
 }
 .holding{
     background-color: white;
 }
-
-
-/*About頁面*/
- #main_about{
-	padding:10px 0;
-}
-#about_mainpic{
-    float:left;
-    width:550px;/* CSS3淡出淡入效果,1秒 */ 
-    -webkit-transition: opacity 1s ease-in-out; 
-    -moz-transition: opacity 1s ease-in-out; 
-    -o-transition: opacity 1s ease-in-out; 
-    transition: opacity 1s ease-in-out;
-   
-}
-	
-#about_mainpic:nth-of-type(2):hover{ opacity:0; /*滑鼠滑入時，透明度變0*/
-    
-}
-#about_maintxt{
-	float:right;
-	width:550px;
-}
-
-
-
-
-
-
-
-
-
-.about.hover mainpic:nth-of-type(2):hover{ opacity:0; /*滑鼠滑入時，透明度變0*/}
 
 /*-------*\
  Footer區塊

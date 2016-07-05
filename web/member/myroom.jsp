@@ -65,13 +65,17 @@
                 document.getElementById("play").addEventListener("click", play);
                 document.getElementById("pause").addEventListener("click", pause);
                 
-                //$('.stickers').on("click",pasteSticker);
+                $('.stickers').on("click",pasteSticker);
+                
+                $('.stickers').mouseenter(handlerIn).mouseleave(handlerOut);
+                
+                
                 
                 jQuery('#searchList').css("overflow-y", "scroll");
                 jQuery('#playlist').css("overflow-y", "scroll");
                 jQuery('#talkFrame').css("overflow-y", "scroll");
                 jQuery('#memberlist').css("overflow-y", "scroll");
-                jQuery('#stickers').css("overflow-y", "scroll");
+                //jQuery('#sticker').css("overflow-y", "scroll");
 
                 $('#sendText').keypress(function (e) {
                     if (e.which === 13) {
@@ -100,7 +104,23 @@
 
 
             }
-
+            
+            function handlerIn(){
+                $(this).animate({
+                        width: $(this).width() * 1.5,
+                        height: $(this).height() * 1.5
+                    });
+            
+            }
+            function handlerOut(){
+                $(this).animate({
+                        width: 60,
+                        height: 60
+                    });
+            
+            }
+            
+            
             setTimeout(talkFrameDown, 3000);
 
         </script>
@@ -111,18 +131,26 @@
                 width:350px;
                 height: 225px;
             }
+            #talkFrame img{
+                width: 150px;
+                height: 150px;
+            }
             #pushChat{
                 text-align: right;
             }
-            #stickers{
+            #sticker{
                 float:left;
                 width:70px;
                 height:225px;
                 margin:0px 0px 0px 10px;
-                background-color: yellow;
+                
             }
             #sendText{
                 float:left;
+            }
+            .stickers{
+                width:60px;
+                height:60px;
             }
         </style>
     </head>
@@ -144,7 +172,7 @@
                     <div id="playlist"></div>
                     <div id="memberlist"></div>
                     <div id="talkFrame">ChatRoom<br></div>
-                    <div id="stickers">
+                    <div id="sticker">
                         <% 
                             StickersDAO sDAO = new StickersDAO();
                             List<Integer> nList = sDAO.getStickerNumber(m.getId());

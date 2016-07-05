@@ -1,65 +1,108 @@
-function pushChat(){
+function pushChat() {
     ctime = Date.now();
     var msg = $('#sendText').val();
 
     $.ajax({
-        type:"POST",
-        url: "http://"+host+"/LetsWatchWeb/chat.do",
+        type: "POST",
+        url: "http://" + host + "/LetsWatchWeb/chat.do",
         data: {
-                'roomId':roomId,
-                'memberName':memberName,
-               'action': 'push',
-               'time': ctime,
-               'msg':msg
+            'roomId': roomId,
+            'memberName': memberName,
+            'action': 'push',
+            'time': ctime,
+            'msg': msg
 
         },
-        success:function(response){
-                $('span').remove();
-                    for(i=0; i< $(response.talk).length;i++){
-                        $('#talkFrame').append('<span>'+ response.talk[i].name + ":>" +'</sapn>'+'<span>'+ response.talk[i].msg +'</sapn>'+'<br>');
-                    }       
-                $('#talkFrame').scrollTop($('#talkFrame').prop("scrollHeight"));
+        success: function (response) {
+            $('span').remove();
+            for (i = 0; i < $(response.talk).length; i++) {
+                var reg = '^http://.*';
+                if ((response.talk[i].msg).match(reg))
+                    $('#talkFrame').append('<br>'+'<span>' + response.talk[i].name + ":>" + '</sapn>' + '<img src="' + response.talk[i].msg + '">' + '<br>');
+                else
+                    $('#talkFrame').append('<span>' + response.talk[i].name + ":>" + '</sapn>' + '<span>' + response.talk[i].msg + '</sapn>' + '<br>');
+
+            }
+            $('#talkFrame').scrollTop($('#talkFrame').prop("scrollHeight"));
         },
-        error: function(){
+        error: function () {
             console.log("ajax FAILED!");
         }
-   });
-   
-   $('#sendText').val("");
+    });
+
+    $('#sendText').val("");
 }
-            
-            
-function pullChat(){
+
+function pasteSticker() {
+    ctime = Date.now();
+    var msg = $(this).attr('src');
     $.ajax({
-        type:"POST",
-        url: "http://"+host+"/LetsWatchWeb/chat.do",
+        type: "POST",
+        url: "http://" + host + "/LetsWatchWeb/chat.do",
         data: {
-                'roomId':roomId,
-               'action': 'pull',
-               'time': ctime
+            'roomId': roomId,
+            'memberName': memberName,
+            'action': 'push',
+            'time': ctime,
+            'msg': msg
 
         },
-        success:function(response){
+        success: function (response) {
+            $('span').remove();
+            for (i = 0; i < $(response.talk).length; i++) {
+                var reg = '^http://.*';
+                if ((response.talk[i].msg).match(reg))
+                    $('#talkFrame').append('<br>'+'<span>' + response.talk[i].name + ":>" + '</sapn>' + '<img src="' + response.talk[i].msg + '">' + '<br>');
+                else
+                    $('#talkFrame').append('<span>' + response.talk[i].name + ":>" + '</sapn>' + '<span>' + response.talk[i].msg + '</sapn>' + '<br>');
 
-               console.log(response);
-               console.log('serTime:'+response.serTime);
-               if(response.time!=='same'){
-                    $('span').remove();
-                    ctime = response.serTime;
+            }
+            $('#talkFrame').scrollTop($('#talkFrame').prop("scrollHeight"));
+        },
+        error: function () {
+            console.log("ajax FAILED!");
+        }
+    });
 
-                    for(i=0; i< $(response.talk).length;i++){
-                        $('#talkFrame').append('<span>'+ response.talk[i].name+ ":>" +'</sapn>'+'<span>'+ response.talk[i].msg +'</sapn>'+'<br>');
-                    }
-            }else{
+    $('#sendText').val("");
+}
+
+function pullChat() {
+    $.ajax({
+        type: "POST",
+        url: "http://" + host + "/LetsWatchWeb/chat.do",
+        data: {
+            'roomId': roomId,
+            'action': 'pull',
+            'time': ctime
+
+        },
+        success: function (response) {
+
+            console.log(response);
+            console.log('serTime:' + response.serTime);
+            if (response.time !== 'same') {
+                $('span').remove();
+                ctime = response.serTime;
+
+                for (i = 0; i < $(response.talk).length; i++) {
+                    var reg = '^http://.*';
+                    if ((response.talk[i].msg).match(reg))
+                        $('#talkFrame').append('<br>'+'<span>' + response.talk[i].name + ":>" + '</sapn>' + '<img src="' + response.talk[i].msg + '">' + '<br>');
+                    else
+                        $('#talkFrame').append('<span>' + response.talk[i].name + ":>" + '</sapn>' + '<span>' + response.talk[i].msg + '</sapn>' + '<br>');
+                }
+                $('#talkFrame').scrollTop($('#talkFrame').prop("scrollHeight"));
+            } else {
 
             }
         },
-        error: function(){
+        error: function () {
             console.log("ajax FAILED!");
         }
-   });
+    });
 }
 
-function talkFrameDown(){
+function talkFrameDown() {
     $('#talkFrame').scrollTop($('#talkFrame').prop("scrollHeight"));
 }
