@@ -136,7 +136,9 @@
                 height: 150px;
             }
             #pushChat{
-                text-align: right;
+                margin: 0px 0px 0px 0px;
+                padding-top: 20px;
+                flaot:left;
             }
             #sticker{
                 float:left;
@@ -147,6 +149,7 @@
             }
             #sendText{
                 float:left;
+                margin: 20px 20px 0px 20px;
             }
             .stickers{
                 width:60px;
@@ -201,7 +204,7 @@
                     </div>
                     <input type="text" id="sendText"/>
                     
-                    <!--<button id="pushChat" >Enter</button>--> 
+                    <button id="pushChat" >Enter</button> 
                     <div class="clearfix"></div>
                     <button id="play" >play</button>
                     <button id="pause" >stop</button>
