@@ -18,7 +18,7 @@ function PullToPlay(){
     
     $.ajax({
             type:"POST",
-            url: "http://"+host+"/LetsWatchWeb/syncVideo.do",
+            url: "http://"+myhost+"/LetsWatchWeb/syncVideo.do",
             
             data:{
                 'roomId': roomId,
@@ -32,7 +32,7 @@ function PullToPlay(){
                     action =response.action;
                     currentTime =response.currentTime;
                     time = response.time;
-                    
+                    console.log(response);
                     if(action==='stop'){
                         player.pauseVideo();
 
@@ -64,6 +64,7 @@ function PullToPlay(){
 }
 
 
+
 function pushPlayOnPlayList(videoId){
     area="play";
     action="play";
@@ -72,7 +73,7 @@ function pushPlayOnPlayList(videoId){
     gVideoId = videoId;
         $.ajax({
             type:"POST",
-            url: "http://"+host+"/LetsWatchWeb/syncVideo.do",
+            url: "http://"+myhost+"/LetsWatchWeb/syncVideo.do",
             data: {
                    'roomId': roomId,
                    'remote': 'push',
@@ -100,7 +101,7 @@ function pushPlayOnSearch(videoId){
     
      $.ajax({
             type:"POST",
-            url: "http://"+host+"/LetsWatchWeb/syncVideo.do",
+            url: "http://"+myhost+"/LetsWatchWeb/syncVideo.do",
             data: {
                    'roomId': roomId,
                    'remote': 'push',
@@ -131,7 +132,7 @@ function pushVideoPlayOnBar(){
     action="play";
     $.ajax({
             type:"POST",
-            url: "http://"+host+"/LetsWatchWeb/syncVideo.do",
+            url: "http://"+myhost+"/LetsWatchWeb/syncVideo.do",
             data: {
                    'roomId': roomId,
                    'remote': 'push',
@@ -158,7 +159,7 @@ function pushVideoStop(){
     currentTime = player.getCurrentTime();
      $.ajax({
             type:"POST",
-            url: "http://"+host+"/LetsWatchWeb/syncVideo.do",
+            url: "http://"+myhost+"/LetsWatchWeb/syncVideo.do",
             data: {
                    'roomId': roomId,
                    'remote': 'push',
@@ -183,7 +184,7 @@ function pushVideoPlay(){
     currentTime = player.getCurrentTime();
      $.ajax({
             type:"POST",
-            url: "http://"+host+"/LetsWatchWeb/syncVideo.do",
+            url: "http://"+myhost+"/LetsWatchWeb/syncVideo.do",
             data: {
                    'roomId': roomId,
                    'remote': 'push',

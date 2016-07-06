@@ -49,9 +49,7 @@
             var area;
             var action;
             var currentTime = '0';
-            var host="localhost:8084";
-            //var host="10.0.1.12:8084";
-//            var host = "ssuio.idv.tw:58885";
+            var myhost='10.0.1.12:8084';
             var roomId = "<%=m.getRoomId()%>";
             var memberName = "<%=m.getName()%>";
             function init() {
@@ -88,7 +86,7 @@
                 $(window).bind("beforeunload", function () {
                     $.ajax({
                         type: "POST",
-                        url: "http://" + host + "/LetsWatchWeb/leaveRoom.do",
+                        url: "http://" + myhost + "/LetsWatchWeb/leaveRoom.do",
                         data: {
                             'roomId': roomId,
                             'memberId': '<%=m.getId()%>'
@@ -102,7 +100,8 @@
                     });
 
                 });
-
+                
+//                $('#test').on("click",testtestHandler);
 
             }
             
@@ -121,7 +120,10 @@
             
             }
             
-            
+//            function testtestHandler(){
+//                alert(myhost);
+//                PullToPlay();
+//            }
             setTimeout(talkFrameDown, 3000);
 
         </script>
@@ -185,17 +187,19 @@
                                     switch (n){
                                         case 1:
                         %>
-                        <img src="http://localhost:8084/LetsWatchWeb/sticker.pic?get=1" class="stickers">
+                        <script>
+                            document.write('<img src="http://'+myhost+'/LetsWatchWeb/sticker.pic?get=1" class="stickers">')
+                        </script>
                         <%
                                             break;
                                         case 2:
                         %>
-                        <img src="http://localhost:8084/LetsWatchWeb/sticker.pic?get=2" class="stickers">
+                        <script>document.write('<img src="http://'+myhost+'/LetsWatchWeb/sticker.pic?get=2" class="stickers">')</script>
                         <%                  
                                             break;
                                         case 3:
                         %>
-                        <img src="http://localhost:8084/LetsWatchWeb/sticker.pic?get=3" class="stickers">
+                        <script>document.write('<img src="http://'+myhost+'/LetsWatchWeb/sticker.pic?get=3" class="stickers">')</script>
                         <%                   
                                             break;
                                     }
@@ -209,6 +213,7 @@
                     <div class="clearfix"></div>
                     <button id="play" >play</button>
                     <button id="pause" >stop</button>
+                    <button id="test" >test</button>
 
 
                     <!--  

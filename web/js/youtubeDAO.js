@@ -18,17 +18,12 @@
         }
         
         function onPlayerReady(e){
-            //e.target.playVideo();
-//            var duration = player.getDuration();
-//            var now = player.getCurrentTime()+1;
-//            var final = now/duration*1000;
-//            document.getElementById("videoBar").value= final;
-            
-            setInterval(PullToPlay, 1000);
-            setInterval(pullMemberList, 3000);
-            setInterval(pullPlayList, 1000);
-            setInterval(syncRangeWithVideo, 500);
-            setInterval(pullChat, 500);
+          
+        setInterval(PullToPlay, 1000);
+        setInterval(pullMemberList, 3000);
+        setInterval(pullPlayList, 1000);
+        setInterval(syncRangeWithVideo, 500);
+        setInterval(pullChat, 500);
             
         }
         

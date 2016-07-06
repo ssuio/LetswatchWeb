@@ -56,7 +56,7 @@ function pulltoPlayList(response){
         
         $.ajax({
             type:"POST",
-            url: "http://"+host+"/LetsWatchWeb/playlist.do",
+            url: "http://"+myhost+"/LetsWatchWeb/playlist.do",
             data: pushPlaylistObj,
             success:function(response){
                 console.log(response);
@@ -68,7 +68,7 @@ function pullPlayList(e){
             
             $.ajax({
             type:"POST",
-            url: "http://"+host+"/LetsWatchWeb/playlist.do",
+            url: "http://"+myhost+"/LetsWatchWeb/playlist.do",
             data: {
                 'roomId': roomId,
                 'action':'pull',
@@ -86,7 +86,7 @@ function pullMemberList(){
             
             $.ajax({
             type:"POST",
-            url: "http://"+host+"/LetsWatchWeb/memberList.do",
+            url: "http://"+myhost+"/LetsWatchWeb/memberList.do",
             success:pullToMemberList,
             data:{
                 'roomId': roomId

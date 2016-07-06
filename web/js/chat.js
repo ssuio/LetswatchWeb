@@ -4,7 +4,7 @@ function pushChat() {
 
     $.ajax({
         type: "POST",
-        url: "http://" + host + "/LetsWatchWeb/chat.do",
+        url: "http://" + myhost + "/LetsWatchWeb/chat.do",
         data: {
             'roomId': roomId,
             'memberName': memberName,
@@ -38,7 +38,7 @@ function pasteSticker() {
     var msg = $(this).attr('src');
     $.ajax({
         type: "POST",
-        url: "http://" + host + "/LetsWatchWeb/chat.do",
+        url: "http://" + myhost + "/LetsWatchWeb/chat.do",
         data: {
             'roomId': roomId,
             'memberName': memberName,
@@ -70,7 +70,7 @@ function pasteSticker() {
 function pullChat() {
     $.ajax({
         type: "POST",
-        url: "http://" + host + "/LetsWatchWeb/chat.do",
+        url: "http://" + myhost + "/LetsWatchWeb/chat.do",
         data: {
             'roomId': roomId,
             'action': 'pull',
