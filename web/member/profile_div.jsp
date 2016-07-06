@@ -199,10 +199,10 @@
                         <input type="submit" value="Upload" name="upload" id="upload"/>
                     </form>
                     <br>
-                    <label>Name:</label><input id="pname" value="<%=m.getName()%>" ><br>
-                    <label>E-mail: </label> <input id="pemail" value="<%=m.getEmail()%>" ><br>
-                    <label>Gender: </label> <input id="pgender" value="<%=m.getGender() + "" == null ? "" : m.getGender() + ""%>"><br>
-                    <label>Birthday:</label><input id="datepicker" value="<%=m.getBirthday().toString() == null ? "" : m.getBirthday().toString()%>"><br>
+                    <label>Name:</label><input id="pname" value="<%=m.getName()==null?"":m.getName()%>" ><br>
+                    <label>E-mail: </label> <input id="pemail" value="<%=m.getEmail()==null?"":m.getEmail()%>" ><br>
+                    <label>Gender: </label> <input id="pgender" value="<%=m.getGender()+""== null ? "" : m.getGender() + ""%>"><br>
+                    <label>Birthday:</label><input id="datepicker" value="<%=m.getBirthday()== null ? "" : m.getBirthday().toString()%>"><br>
                     <label>Phone: </label><input id="pphone" value="<%=m.getPhone() == null ? "" : m.getPhone()%>"><br>
                     <label>E-paper: </label><%=m.isEpaper() == true ? "<input id=\"epaper\" type=\"checkbox\" checked><br>" : "<input id=\"epaper\" type=\"checkbox\"><br>"%><br>
                     <label>Introduction: </label> <br> <textarea type="textarea" id="introduction"><%=m.getIntroduction() == null ? "" : m.getIntroduction()%></textarea><br>
