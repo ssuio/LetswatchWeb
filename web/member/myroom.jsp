@@ -49,8 +49,8 @@
             var area;
             var action;
             var currentTime = '0';
-            //var host="localhost:8084";
-            var host = "ssuio.idv.tw:58885";
+            var host="localhost:8084";
+//            var host = "ssuio.idv.tw:58885";
             var roomId = "<%=m.getRoomId()%>";
             var memberName = "<%=m.getName()%>";
             function init() {

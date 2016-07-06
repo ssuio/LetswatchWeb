@@ -14,7 +14,7 @@ function pushChat() {
 
         },
         success: function (response) {
-            $('span').remove();
+            $('#talkFrame span').remove();
             for (i = 0; i < $(response.talk).length; i++) {
                 var reg = '^http://.*';
                 if ((response.talk[i].msg).match(reg))
@@ -48,7 +48,7 @@ function pasteSticker() {
 
         },
         success: function (response) {
-            $('span').remove();
+            $('#talkFrame span').remove();
             for (i = 0; i < $(response.talk).length; i++) {
                 var reg = '^http://.*';
                 if ((response.talk[i].msg).match(reg))
@@ -82,7 +82,7 @@ function pullChat() {
             console.log(response);
             console.log('serTime:' + response.serTime);
             if (response.time !== 'same') {
-                $('span').remove();
+                $('#talkFrame span').remove();
                 ctime = response.serTime;
 
                 for (i = 0; i < $(response.talk).length; i++) {
