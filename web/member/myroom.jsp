@@ -213,7 +213,7 @@
                     <div class="clearfix"></div>
                     <button id="play" >play</button>
                     <button id="pause" >stop</button>
-                    <button id="test" >test</button>
+                    <!--<button id="test" >test</button>-->
 
 
                     <!--  
