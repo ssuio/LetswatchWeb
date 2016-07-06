@@ -65,11 +65,9 @@
   <ul>
    <%if(m!=null){%>
     <li><a class='menu' href="/LetsWatchWeb/logout.do" title="登出">Logout</a></li>
-    <li><a class='menu' href="/LetsWatchWeb/member/cart.jsp" title="購物車">Cart</a></li>
     <%}else{%>
     <li><a class='menu' href="/LetsWatchWeb/member/login.jsp" title="登入">Login</a></li>
-    <li><a class='menu' href="/LetsWatchWeb/member/register.jsp" title="註冊">Register</a></li>
-    
+    <li><a class='menu' href="/LetsWatchWeb/member/register.jsp" title="登出">Register</a></li>
    <%}%>
    <%if(m!=null){%>
 <!--    <li><a class='menu' href="/LetsWatchWeb/member/Profile.jsp" title="登出">Profile</a></li>-->

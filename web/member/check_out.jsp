@@ -1,16 +1,28 @@
 <%-- 
     Document   : check_out
-    Created on : 2016/6/6, 下午 03:45:44
-    Author     : adm
+    Created on : 2016/7/6, 上午 10:35:34
+    Author     : Patty
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8" info="CheckOut確認"%>
+
+<%@page pageEncoding="utf-8"%>
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="../../css/indexLayout.css" rel="stylesheet" type="text/css">
+  <!--<link href="/LetsWatchWeb/css/indexLayout.css" rel="stylesheet" type="text/css">-->
+<title>About</title>
+<link href="/LetsWatchWeb/css/indexLayout.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
 <jsp:include page="/WEB-INF/subview/header.jsp">
-<jsp:param name="sub_title" value="哈囉!P"/>
+<jsp:param name="sub_title" value="Shop!P"/>
 </jsp:include>
-<div>
-     <h1>Hello World! <%=getServletInfo()%></h1>
-    
-</div>
-       
-<%@include file="/WEB-INF/subview/footer.jsp"%>
+<div class="wrapper">
+ <h1>check Page</h1>
+</div>     
+<%@include file="/WEB-INF/subview/footer.jsp"%>        
+</body>
+</html>

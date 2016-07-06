@@ -305,11 +305,18 @@ video{
 }
 
 
-/*About頁面*/
+ /*About頁面*/
  #main_about{
-	padding:10px 0;
+    padding:10px 0;
 }
-#about_mainpic{
+.hover {
+    
+    position:relative;
+    
+    height:400px;
+}
+.hover img{
+    position:absolute; 
     float:left;
     width:550px;/* CSS3淡出淡入效果,1秒 */ 
     -webkit-transition: opacity 1s ease-in-out; 
@@ -319,23 +326,14 @@ video{
    
 }
 	
-#about_mainpic:nth-of-type(2):hover{ opacity:0; /*滑鼠滑入時，透明度變0*/
+.hover img:nth-of-type(2):hover{ 
     
+    opacity:0; /*滑鼠滑入時，透明度變0*/
 }
-#about_maintxt{
+#about_txt{
 	float:right;
 	width:550px;
 }
-
-
-
-
-
-
-
-
-
-.about.hover mainpic:nth-of-type(2):hover{ opacity:0; /*滑鼠滑入時，透明度變0*/}
 
 /*-------*\
  Footer區塊
