@@ -141,12 +141,12 @@
          <img src="/LetsWatchWeb/picture/couch.png" alt="" class="roomImg" class="rooms_inside"/>
          <p class="rooms_inside"><%=r.getRoomName()%><br>wCoin:<%=r.getwCoin()==0?"FREE":r.getwCoin()%></p>
             <%
-               if (!r.getRoomPwd().matches("") && r.getRoomPwd()!=null){
+//               if (!r.getRoomPwd().matches("") && r.getRoomPwd()!=null){
             %>
-         <img src="/LetsWatchWeb/picture/key.png" alt="" id="key"/>
-            <input type="password" id="enterPwd" value=""class="rooms_inside"/>
+<!--         <img src="/LetsWatchWeb/picture/key.png" alt="" id="key"/>
+            <input type="password" id="enterPwd" value=""class="rooms_inside"/>-->
             
-            <%}%>
+            <% //}%>
             <a href="/LetsWatchWeb/<%=r.getRoomId()%>.room" class="rooms_inside">
                 <button class="enterBtn" class="rooms_inside"  id="enter_btn" data-roomId="<%=r.getRoomId()%>">Enter</button>
             </a>

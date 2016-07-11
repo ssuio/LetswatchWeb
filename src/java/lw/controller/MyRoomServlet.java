@@ -90,10 +90,13 @@ public class MyRoomServlet extends HttpServlet {
                 session.setAttribute("member", m);
                 rs.enterRoom(m, m.getRoomId());
             }else{
-                PrintWriter out = response.getWriter();
-                out.println("<script>alert('Dont have enough wCoin!');</script>");
-                response.sendRedirect("/LetsWatchWeb/member/room_search.jsp");
-                out.close();
+//                PrintWriter out = response.getWriter();
+//                out.println("<!DOCTYPE html>");
+//                out.println("<html>");
+//                out.println("<script>alert('Dont have enough wCoin!');</script>");
+//                out.println("</html>");
+                response.sendRedirect("/LetsWatchWeb/member/money.jsp");
+//                out.close();
                 return;
             }
             } catch (LWException ex) {
