@@ -140,10 +140,10 @@
     <label for="email">Name:</label>
     <input type="text" id="roomName" name="roomName" placeholder="輸入房間名稱" value="" required>
    </p>
-   <p>
+<!--   <p>
     <label for="email">Password:</label>
     <input type="password" id="roomPwd" name="roomPwd" placeholder="輸入房間密碼" value="">
-   </p>
+   </p>-->
    <p>
     <label for="email">Price:</label>
     <input type="text" id="roomPrice" name="roomPrice" placeholder="輸入房間價錢" value="" >
