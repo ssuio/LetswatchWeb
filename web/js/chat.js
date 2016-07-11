@@ -35,7 +35,7 @@ function pushChat() {
 
 function pasteSticker() {
     ctime = Date.now();
-    var msg = $(this).attr('src');
+    var msg = $(this).find('img').attr('src');
     $.ajax({
         type: "POST",
         url: "http://" + myhost + "/LetsWatchWeb/chat.do",
@@ -48,6 +48,7 @@ function pasteSticker() {
 
         },
         success: function (response) {
+            console.log(response);
             $('#talkFrame span').remove();
             for (i = 0; i < $(response.talk).length; i++) {
                 var reg = '^http://.*';

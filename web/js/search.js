@@ -67,7 +67,7 @@ function createSearchList(){
 //            videoDiv.appendChild(videoTime); 
             videoDiv.setAttribute("data-videoId", resultObj.videosId[i]);
             var videoAdd = document.createElement('BUTTON');
-            var t = document.createTextNode('Add');
+            var t = document.createTextNode('Add To Playlist');
             videoAdd.appendChild(t);
             videoAdd.className= 'searchAdd';
             videoDiv.appendChild(videoAdd);

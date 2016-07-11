@@ -1,56 +1,27 @@
-<%-- 
-    Document   : createRoom
-    Created on : 2016/6/8, 上午 11:10:07
-    Author     : adm
---%>
-
 <%@page import="lw.domain.Member"%>
-<%@page pageEncoding="UTF-8"%>
+<%@taglib prefix="lw" tagdir="/WEB-INF/tags"%>
+<%@page import="java.util.List"%>
+<%@page  pageEncoding="UTF-8" info="會員登入"%>
+
 <!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
-<title>CreateRoom</title>
+<title>會員登入</title>
 <link href="/LetsWatchWeb/css/indexLayout.css" rel="stylesheet" type="text/css">
-<link href="/LetsWatchWeb/css/resetcss.css" rel="stylesheet" type="text/css">
 </head>
-
 <body>
+
 <!--header-->
 <jsp:include page="/WEB-INF/subview/header.jsp">
-<jsp:param name="sub_title" value="哈囉!P"/>
+    <jsp:param name="sub_title" value="<%= this.getServletInfo() %>"/>
 </jsp:include>
-
-<!--content-->
-<% 
-    Member m = (Member)session.getAttribute("member");
-    if (m == null)
-        response.sendRedirect("/LetsWatchWeb/member/login.jsp");%>
-
 <style>
-    #create_room{
+     #login{
         width:100%;
         height:600px;
     }
-    fieldset {
-        width:50%;
-        height: 400px;
-	border:1px solid #999;
-	border-radius:20px;
-	box-shadow:0 0 10px #999;
-    }
-    
-    fieldset p{
-        font-family: " AppleGothic", CenturyGothic, AppleGothic, sans-serif;
-        font-size: 1em;
-        font-style: normal;
-        font-variant: normal;
-        font-weight: 500;
-        width:100%;
-        float:left;
-        padding: 7px;
-    }
-    legend {
+     legend {
         font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
         font-size: 2em;
         font-style: normal;
@@ -59,17 +30,39 @@
         line-height: 26.4px;
         background:#fff;
     }
+    fieldset {
+        margin:50px 0px 0px 300px;
+        width:500px;
+        height: 400px;
+	border:1px solid #999;
+	border-radius:20px;
+	box-shadow:0 0 10px #999;
+    }
+    form img{
+        width:100px;
+        height:30px;
+    }
+    fieldset p{
+        margin:10px 0px 10px 30px;
+        font-family: " AppleGothic", CenturyGothic, AppleGothic, sans-serif;
+        font-size: 1.2em;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 500;
+        width:100%;
+        float:left;
+    }
     
     input[type=submit]{
         font-size: 1.2em;
-        margin:20px 10px 0px 0px;
+        margin:30px 60px 20px 0px;
         float:right;
         float:bottom;
         width: 45%;
         height:70px;
     }
     
-    #create_submit {
+     #confirm_submit {
 	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
 	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
 	box-shadow:inset 0px 1px 0px 0px #ffffff;
@@ -95,7 +88,7 @@
 	text-decoration:none;
 	text-shadow:0px 1px 0px #ffffff;
 }
-#create_submit :hover {
+#confirm_submit :hover {
 	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e9e9e9), color-stop(1, #f9f9f9));
 	background:-moz-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
 	background:-webkit-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
@@ -105,13 +98,12 @@
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#e9e9e9', endColorstr='#f9f9f9',GradientType=0);
 	background-color:#e9e9e9;
 }
-#create_submit :active {
+#confirm_submit :active {
 	position:relative;
 	top:1px;
 }
 
-
-  input { 
+input[type=text],input[type=password] { 
     font-family: " AppleGothic", CenturyGothic, AppleGothic, sans-serif;
     font-size: 1em;
     font-style: normal;
@@ -128,36 +120,52 @@
     width: 50%;
     margin:auto;
    } 
- 
-
 </style>
-<div class="create_room" id="create_room">   
- <div class="wrapper" >        
-  <form method="POST" action="/LetsWatchWeb/roomCreate.do" autocomplete="off" id="create_form">
-      <fieldset>
-          <legend>Create Room</legend>
-          <p><br>
-    <label for="email">Name:</label>
-    <input type="text" id="roomName" name="roomName" placeholder="輸入房間名稱" value="" required>
-   </p>
-   <p>
-    <label for="email">Password:</label>
-    <input type="password" id="roomPwd" name="roomPwd" placeholder="輸入房間密碼" value="">
-   </p>
-   <p>
-    <label for="email">Price:</label>
-    <input type="text" id="roomPrice" name="roomPrice" placeholder="輸入房間價錢" value="" >
-   </p>
-<!--   <p>
-    <label for="email">Type:</label>
-    <input type="text" id="roomType" name="roomType" placeholder="輸入房間類型" value="">
-   </p>-->
-    <input type="submit" value="Create" id="create_submit">
-   </fieldset>
-  </form>
- </div><!--wrapper-->
-</div>
+<script src="../js/jquery-1.12.4.js" type="text/javascript"></script>
+<script>
+    $(document).ready(init);
+    function init(){
+        $('#refresh').on("click",refreshHandler);
+        
+    }
+    function refreshHandler(){
+        var check_img = document.getElementById("check_code_image");
+        check_img.src="/LetsWatchWeb/Image/check.jpg?get=" + new Date();
+    }
+</script>
 
+<!--內容-->
+<div class="wrapper">
+<%
+ List<String> errors = (List<String>)request.getAttribute("errors");
+ if(errors!=null && errors.size()>0){
+%>
+<ul>
+<% for (String msg: errors){%>
+ <li><%=msg%></li>
+<%}%>
+</ul>
+<%}%>
+            
+             <%--
+                //Member m = (Member)session.getAttribute("member");
+                String email="";
+                String remember="";
+                Cookie[] cookies =request.getCookies();
+                for(Cookie c:cookies){
+                    if(c.getName().equals("email")){
+                        email=c.getValue();
+                    }else if(c.getName().equals("remember")){
+                    remember = c.getValue();
+                    }
+                    
+                }
+            
+            --%> 
+ <div class="num_check">
+  <lw:checkCodeField imgSrc="/LetsWatchWeb/Image/check.jpg" name="checkCode"/>
+ </div>
+</div><!--wrapper-->
 <!--footer-->
 <%@include file="/WEB-INF/subview/footer.jsp"%>
 </body>

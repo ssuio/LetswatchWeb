@@ -13,7 +13,6 @@
         <meta charset="utf-8">
         <title>MyRoom</title>
         <link href="/LetsWatchWeb/css/indexLayout.css" rel="stylesheet" type="text/css">
-        <link href="/LetsWatchWeb/css/resetcss.css" rel="stylesheet" type="text/css">
         <script src="../js/jquery-1.12.4.js" type="text/javascript"></script>
         <script src="../js/youtubeDAO.js" type="text/javascript"></script>
         <script src="../js/search.js" type="text/javascript"></script>
@@ -50,9 +49,7 @@
             var area;
             var action;
             var currentTime = '0';
-            var myhost = "10.0.1.6:8084";
-            //var myhost="10.0.1.12:8084";
-//            var myhost = "ssuio.idv.tw:58885";
+            var myhost='10.0.1.6:8084';
             var roomId = "<%=m.getRoomId()%>";
             var memberName = "<%=m.getName()%>";
             function init() {
@@ -66,13 +63,13 @@
                 document.getElementById("searchVideo").addEventListener("click", searchResult);
                 document.getElementById("play").addEventListener("click", play);
                 document.getElementById("pause").addEventListener("click", pause);
-
-                $('.stickers').on("click", pasteSticker);
-
-                //$('.stickers').mouseenter(handlerIn).mouseleave(handlerOut);
-
-
-
+                
+                $('.stickers').on("click",pasteSticker);
+                
+                $('.stickers').mouseenter(handlerIn).mouseleave(handlerOut);
+                
+                
+                
                 jQuery('#searchList').css("overflow-y", "scroll");
                 jQuery('#playlist').css("overflow-y", "scroll");
                 jQuery('#talkFrame').css("overflow-y", "scroll");
@@ -84,6 +81,7 @@
                         pushChat();
                     }
                 });
+
 
                 $(window).bind("beforeunload", function () {
                     $.ajax({
@@ -103,33 +101,64 @@
 
                 });
                 
-//                $('#test').on("click",testHandler);
-                
+//                $('#test').on("click",testtestHandler);
+
             }
             
-            function testHandler(){
-            alert(0);
+            function handlerIn(){
+                $(this).animate({
+                        width: $(this).width() * 1.5,
+                        height: $(this).height() * 1.5
+                    });
+            
             }
-//   //         function handlerIn() {
-//                $(this).animate({
-//                  width: $(this).width() * 1.5,
-//                    height: $(this).height() * 1.5
-//                });
-//
+            function handlerOut(){
+                $(this).animate({
+                        width: 60,
+                        height: 60
+                    });
+            
+            }
+            
+//            function testtestHandler(){
+//                alert(myhost);
+//                PullToPlay();
 //            }
-//            function handlerOut() {
-//                $(this).animate({
-//                    width: 60,
-//                    height: 60
-//                });
-//
-//            }
-//
-
             setTimeout(talkFrameDown, 3000);
 
         </script>
-
+        <style>
+            #talkFrame{
+                float:left;
+                margin:5px;
+                width:350px;
+                height: 225px;
+            }
+            #talkFrame img{
+                width: 150px;
+                height: 150px;
+            }
+            #pushChat{
+                margin: 0px 0px 0px 0px;
+                padding-top: 20px;
+                flaot:left;
+            }
+            #sticker{
+                float:left;
+                width:70px;
+                height:225px;
+                margin:0px 0px 0px 10px;
+                
+            }
+            #sendText{
+                float:left;
+                margin: 20px 20px 0px 20px;
+            }
+            .stickers{
+                width:60px;
+                height:60px;
+            }
+        </style>
     </head>
 
     <body>
@@ -138,21 +167,19 @@
             <jsp:param name="sub_title" value="哈囉!P"/>
         </jsp:include>
 
-        <div class="wrapper">
-            <div class="myroom">
 
+        <div class="myroom">
+            <div class="wrapper">
                 <div id="contentDiv">
                     <h1><%=r.getRoomName()%></h1>
-
+                    
                     <div id="player"></div><!--影片播放位置-->
 
                     <div id="playlist"></div>
                     <div id="memberlist"></div>
                     <div id="talkFrame">ChatRoom<br></div>
-                    <input type="text" id="sendText"/>
-<!--                    <button id="pushChat" >Enter</button> -->
                     <div id="sticker">
-                       <% 
+                        <% 
                             StickersDAO sDAO = new StickersDAO();
                             List<Integer> nList = sDAO.getStickerNumber(m.getId());
                             if(nList!=null){
@@ -161,18 +188,18 @@
                                         case 1:
                         %>
                         <script>
-                            document.write('<div class="stickers"><img src="http://'+myhost+'/LetsWatchWeb/sticker.pic?get=1" ></div>')
+                            document.write('<img src="http://'+myhost+'/LetsWatchWeb/sticker.pic?get=1" class="stickers">')
                         </script>
                         <%
                                             break;
                                         case 2:
                         %>
-                        <script>document.write('<div class="stickers"><img src="http://'+myhost+'/LetsWatchWeb/sticker.pic?get=2" ></div>')</script>
+                        <script>document.write('<img src="http://'+myhost+'/LetsWatchWeb/sticker.pic?get=2" class="stickers">')</script>
                         <%                  
                                             break;
                                         case 3:
                         %>
-                        <script>document.write('<div class="stickers"><img src="http://'+myhost+'/LetsWatchWeb/sticker.pic?get=3" ></div>')</script>
+                        <script>document.write('<img src="http://'+myhost+'/LetsWatchWeb/sticker.pic?get=3" class="stickers">')</script>
                         <%                   
                                             break;
                                     }
@@ -180,9 +207,10 @@
                                 }
                             }%>
                     </div>
-
+                    <input type="text" id="sendText"/>
+                    
+                    <button id="pushChat" >Enter</button> 
                     <div class="clearfix"></div>
-                    <input type="range" min="0" max="1000" value="0" id="videoBar">
                     <button id="play" >play</button>
                     <button id="pause" >stop</button>
                     <!--<button id="test" >test</button>-->
@@ -198,11 +226,11 @@
                        <button id="getTime" >getTime</button>-->
                     <div class="clearfix"></div>
 
-                  
+                    <input type="range" min="0" max="1000" value="0" id="videoBar">
 
                     <!--搜尋bar-->
 
-                    <h3>Search Here</h3>
+                    <h1>Search Here</h1>
                     <input type="text" id="searchKey"/>
                     <button id="searchVideo">search</button>
                     <div class="clearfix"></div>   

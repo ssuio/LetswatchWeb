@@ -6,6 +6,7 @@
 package lw.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,12 +56,11 @@ public class MyRoomServlet extends HttpServlet {
             Room r;
             int roomPrice;
             int difference;
-            
             if(m==null){
                 response.sendRedirect("/LetsWatchWeb/member/login.jsp");
                 return;
             }
-            
+
             //Leaving the room user was in 
             if (m.getRoomId()!=null)
                     rs.leaveRoom(m, m.getRoomId());
@@ -90,8 +90,10 @@ public class MyRoomServlet extends HttpServlet {
                 session.setAttribute("member", m);
                 rs.enterRoom(m, m.getRoomId());
             }else{
-                System.out.println("wCoin not enough!!!!");
+                PrintWriter out = response.getWriter();
+                out.println("<script>alert('Dont have enough wCoin!');</script>");
                 response.sendRedirect("/LetsWatchWeb/member/room_search.jsp");
+                out.close();
                 return;
             }
             } catch (LWException ex) {

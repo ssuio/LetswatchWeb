@@ -37,10 +37,11 @@ public class AddCartServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String pid = request.getParameter("pid");
-        if (pid != null && pid.matches("\\d++")) {
+        String id = request.getParameter("pid");
+        if (id != null && id.matches("\\d++")) {
             try {
                 RDBProductDAO pDAO = new RDBProductDAO();
+                int pid = Integer.parseInt(id);
                 Product p = pDAO.get(pid);
                 if (p != null) {
                     ShoppingCart cart = (ShoppingCart) request.getSession().getAttribute("cart");

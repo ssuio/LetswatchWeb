@@ -1,6 +1,6 @@
 <%-- 
-    Document   : suggestion
-    Created on : 2016/7/6, 上午 10:35:34
+    Document   : check_out_ok
+    Created on : 2016/7/7, 下午 04:37:19
     Author     : Patty
 --%>
 
@@ -20,7 +20,7 @@
 </jsp:include>
 
 <div class="wrapper">
- <h1>Suggestion Page</h1>
+ <h1>OKPage</h1>
 </div>     
 <%@include file="/WEB-INF/subview/footer.jsp"%>        
 </body>

@@ -12,7 +12,6 @@
 <meta charset="utf-8">
 <title>CreateRoom</title>
 <link href="/LetsWatchWeb/css/indexLayout.css" rel="stylesheet" type="text/css">
-<link href="/LetsWatchWeb/css/resetcss.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>

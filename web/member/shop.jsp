@@ -10,11 +10,10 @@
 <!doctype html>
 <html>
 <head>
-    <!--<meta charset="utf-8">
-<link href="../../css/indexLayout.css" rel="stylesheet" type="text/css">!-->
-  
+<meta charset="utf-8">  
 <title>Wshop</title>
 <link href="/LetsWatchWeb/css/indexLayout.css" rel="stylesheet" type="text/css">
+<link href="/LetsWatchWeb/css/resetcss.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -27,22 +26,22 @@
    
 </script>
 
- <div id="article">
-   <div style='float: right'>
-        <form method="GET">    
-            <input style="width:20em" type='search' name='search' value="${param.search}"
-                    placeholder="請輸入產品名稱">
-            <input style="background: #E6E6E6 no-repeat 3px 3px;"type='image' src="/LetsWatchWeb/picture/search.gif">
-        </form>
-    </div>
-    <hr style='clear: both'>
+ <div id="article">  
+  <form class="shop" method="GET">    
+   <input class="shopsearch_bar" type='search' name='search' value="${param.search}"placeholder="請輸入產品名稱">
+   <input class="shopsearch_img" type='image' src="/LetsWatchWeb/picture/search.gif">
+  </form>
+   <h2>WSHOP</h2>
+  <hr class="clearfix">
     <%
         ProductService service = new ProductService();
         List<Product> list = null;
         String search = request.getParameter("search");
         if (search != null && search.matches("\\d+")) {
-            out.write("alert("+search+")");
-            Product p = service.get(search);
+            int id = Integer.parseInt(search);
+
+           // out.write("alert("+search+")");
+            Product p = service.get(id);
             list = new ArrayList<>();
             list.add(p);
         
@@ -52,28 +51,26 @@
         }
         if (list != null && list.size() > 0) {
     %>               
-    <ul>
-        <%for (Product p : list) {%>
-        <li 
-            style='display: inline-block;width:200px;height:300px;overflow:auto;padding: 2px;margin: 5px'>
-            <h3><%=p.getName()%></h3>
-            <a href="product.jsp?pid=<%=p.getId()%>">
-            <img style='width: 150px' src='<%= p.getUrl()%>'>
-            </a>
-            <p>
-                price:<%= p.getPrice()%> 
-                <a href='${pageContext.request.contextPath}/add_cart.do?pid=<%=p.getId()%>'>
-                    <img src="/LetsWatchWeb/picture/cart.png" style='width:32px' alt="加入購物車" title="加入購物車"/>
-                
-                </a>
-         
-            </p>
-
-        </li>
-        <%}%>
-    </ul>
+  <div id="shop_price">
+   <ul>
+    <%for (Product p : list) {%>
+    <li>
+     <h3><%=p.getName()%></h3>
+     <a href="#"><img src='<%= p.getUrl()%>'></a>
+     <!--shop.jsp?pid=<%=p.getId()%>-->
+     <div class="price">
+      <a href='${pageContext.request.contextPath}/add_cart.do?pid=<%=p.getId()%>'>
+       <p>price:<%= p.getPrice()%></p> 
+       <div class="cart_pic"><img src="/LetsWatchWeb/picture/cart.png" alt="加入購物車" title="加入購物車"/></div>
+       <div class="clearfix"></div>
+      </a>
+     </div>
+    </li>
     <%}%>
-</div>    
+   </ul>
+  </div>
+    <%}%>
+ </div>    
 </div>     
 <%@include file="/WEB-INF/subview/footer.jsp"%>        
 </body>

@@ -51,12 +51,12 @@ public class CheckOutServlet extends HttpServlet {
           request.getRequestDispatcher("/login.jsp").forward(request,response);
             return;
         }else{
-            user =(Member) session.getAttribute("user");
+            user =(Member) session.getAttribute("member");
              cart =(ShoppingCart)session.getAttribute("cart");
             if(user==null || cart == null){
-                errors.add("找不到購物車,請重新登入後繼續購物!");
+                errors.add("請重新登入後繼續購物!");
                 request.setAttribute("errors", errors);
-                request.getRequestDispatcher("/login.jsp").forward(request,response);
+                request.getRequestDispatcher("/member/login.jsp").forward(request,response);
                         return;
             }
         }
@@ -75,8 +75,14 @@ public class CheckOutServlet extends HttpServlet {
             PaymentType pType =PaymentType.values()[Integer.parseInt(payment)];
             order.setPaymentType(pType);
             order.setPaymentFee(pType.getFee());
-            
             service.create(order);
+//            if(pType!=null && pType==pType.OPAY){
+//                request.getRequestDispatcher("/member/OPay.do").forward(request,response);
+//                        return;
+//            }else{
+//                request.getRequestDispatcher("/member/ATM.do").forward(request,response);
+//            }
+
             session.removeAttribute("cart");
            //3.1 redirect to "/user/orders_history.jsp"
              response.sendRedirect(request.getContextPath()+"/member/orders_history.jsp");
@@ -89,7 +95,7 @@ public class CheckOutServlet extends HttpServlet {
         request.setAttribute("errors", errors);
         request.getRequestDispatcher("/member/check_out.jsp").forward(request,response);
     }
-}
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -114,11 +120,11 @@ public class CheckOutServlet extends HttpServlet {
 //     * @throws ServletException if a servlet-specific error occurs
 //     * @throws IOException if an I/O error occurs
 //     */
-//    @Override
-//    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//        processRequest(request, response);
-//    }
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
 //
 //    /**
 //     * Returns a short description of the servlet.
@@ -130,4 +136,4 @@ public class CheckOutServlet extends HttpServlet {
 //        return "Short description";
 //    }// </editor-fold>
 //
-//}
+}

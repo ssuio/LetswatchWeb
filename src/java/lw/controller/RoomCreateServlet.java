@@ -69,6 +69,10 @@ public class RoomCreateServlet extends HttpServlet {
             else
                 r.setwCoin(0);
                 //r.setRoomType(Integer.parseInt(roomType));
+            r.setVideoId("opjeWahwGWM");
+            r.setArea("play");
+            r.setCurrentTime("0");
+            
             
             r.setOwnerId(m.getId());
             roomId = rs.createRoom(r);

@@ -69,20 +69,24 @@
     <%}else{%>
     <li><a class='menu' href="/LetsWatchWeb/member/login.jsp" title="登入">Login</a></li>
     <li><a class='menu' href="/LetsWatchWeb/member/register.jsp" title="註冊">Register</a></li>
-    
    <%}%>
    <%if(m!=null){%>
 <!--    <li><a class='menu' href="/LetsWatchWeb/member/Profile.jsp" title="登出">Profile</a></li>-->
-<li id="profile_li" ><a class='menu'  title="個人頁面">Profile</a></li>
-    <li><a class='menu' href="<%=m.getRoomId()==null?"/LetsWatchWeb/member/room_search.jsp":"/LetsWatchWeb/member/"+m.getRoomId()+".room"%>" title="我的房間">myRoom</a></li>
+   <li id="profile_li" ><a class='menu'  title="個人頁面">Profile</a></li>
+   <li><a class='menu' href="<%=m.getRoomId()==null?"/LetsWatchWeb/member/room_search.jsp":"/LetsWatchWeb/member/"+m.getRoomId()+".room"%>" title="我的房間">myRoom</a></li>
   </ul>
- </div>
- <div id="greeting">
+
+  <div id="greeting">
   <ul>
    <li>Hello,<span><%=m.getName()%></span></li>
    <li>wCoin：&nbsp;<span><%=m.getwCoin()%></span></li>
   </ul>
  </div>
+
+
+
+ </div>
+
    <%}%>
   <div class="clearfix"></div> 
   </div><!--wrapper-->
