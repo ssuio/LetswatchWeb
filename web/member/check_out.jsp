@@ -21,7 +21,7 @@
 <meta charset="utf-8">
 <title>Payment</title>
 <link href="/LetsWatchWeb/css/indexLayout.css" rel="stylesheet" type="text/css">
-<!--<link href="/LetsWatchWeb/css/resetcss.css" rel="stylesheet" type="text/css">-->
+<link href="/LetsWatchWeb/css/resetcss.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -29,7 +29,10 @@
 <jsp:param name="sub_title" value="Shop!P"/>
 </jsp:include>
  <div class="wrapper">
-  <div id="article">
+  
+  <div id="main_checkout"> 
+    <h2>我要結賬</h2>
+    <hr>
    <form method="POST" action="check_out.do">
     <%
        ShoppingCart cart
@@ -39,23 +42,26 @@
     %>
     
     <h3>購物車是空的</h3>
+    
     <%} else{ %>
-    <table style="width:80%;padding: 2px; margin: auto">
+    <table class="check_table">
      <thead>
       <tr>
        <th>編號</th>
        <th>名稱</th>
        <th>價格</th>
        <th>數量</th>
+       <th>&nbsp;</th>
       </tr>
-     </thead>            
+     </thead>          
      <tbody>
       <% for (Product p : cart.keySet()) {%>
        <tr>
-        <th><%= p.getId()%></th>
-        <td><h4><%=p.getName()%></h4></td>
-        <td><p><%=p.getPrice()%></p></td>
-        <th><%= cart.getQuantity(p)%></th>
+           <th><%= p.getId()%></th>
+        <td class="goods_name"><h4><%=p.getName()%></h4></td>
+        <td class="goods_price"><p><%=p.getPrice()%></p></td>
+        <th class="goods_num"><%= cart.getQuantity(p)%></th>
+        <th>&nbsp;</th>
        </tr>    
       <% } %>
      </tbody>
@@ -64,7 +70,7 @@
        <td colspan="4" style="text-align: right">購物車內總金額:</td>
        <td><%= cart.getTotalAmount()%></td>
       </tr>
-      <td colspan="2">付款方式:
+      <td class="paymentway" colspan="4">付款方式:
        <select style="width:20ex" id="payment_type" name="paymentType" required onchange="calculateAmountHandler()" >
         <option value="">請選擇...</option>
         <% for (PaymentType pType : PaymentType.values()) {%>        
@@ -72,6 +78,7 @@
         <%}%>
        </select>
       </td>
+      <td>&nbsp;</td>
       <tr>
        <td colspan="4" style="text-align: right">含手續費總金額:</td>
        <td><h3 id="total_fee"><%= cart.getTotalAmount()%></h3></td>
@@ -100,14 +107,10 @@
           }
       }
 </script>
-  <div>
-   <div style="float:left">
+<div class="check_btn">
+  
     <input type="button" value="繼續購物" onclick="location.href = 'shop.jsp';">
-   </div>
-   
-   <div style="float:right">
     <input type="submit" value=" 確認結帳">
-   </div>
   </div>
  <%}%>
     </form><!--form-->

@@ -580,7 +580,7 @@ video{
 
 /*About頁面*/
 #main_about{
-    padding:10px 0;
+    padding:14px 0;
 }
 
 
@@ -591,24 +591,29 @@ video{
        float:left;
        width: 500px;
        height:400px;
+       margin: 20px 15px 0 0;
 }
 
 
 .main_about_img img{
     position:absolute; 
-    width:100%;/* CSS3淡出淡入效果,1秒 */ 
+    width:100%;/* CSS3淡出淡入效果,1秒 */   
     -webkit-transition: opacity 1s ease-in-out; 
     -moz-transition: opacity 1s ease-in-out; 
     -o-transition: opacity 1s ease-in-out; 
     transition: opacity 1s ease-in-out;
+    
 
 }
 .main_about_img img:hover{ 
    opacity:0; /*滑鼠滑入時，透明度變0*/
 }
 #about_txt{
-    float:right;
-    width:550px;
+   border: 2px solid #333;
+   text-align: center;
+   width: 550px;
+   margin: 20px 0 0 0;
+   height: 334px;
 }
 
 #about_txt p{
@@ -618,7 +623,7 @@ video{
  shop區塊
 \*-------*/
 #article h2{
-    padding:10px 0;
+    padding:14px 0;
 }
 .shop{
     width: 180px;
@@ -657,7 +662,7 @@ video{
 }
 
 #shop_price ul li .price:hover{
-    background-color:#fc0;
+    background-color:#efbf00;
 }
 
 #shop_price ul li .price a p{
@@ -693,7 +698,7 @@ video{
 \*-------*/
 .cart{
     width:70%;
-    margin:0 auto;
+    margin: 20px 0px 5px 65px;
     border:3px solid #333;
 }
 thead tr th{
@@ -724,12 +729,78 @@ tfoot tr td p{
 .cart_btn{
     width: 270px;
     float:right;
-    margin: 10px 210px 50px 0;
-}
+    margin: 10px 232px 100px 0;
+    
+}   
+
 
 .cart_btn input{
     margin: 0 0 0 20px;
+    color: #fff;
+    border-radius: 5px; 
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#4c4c4c+0,595959+12,666666+25,474747+39,2c2c2c+50,000000+51,111111+60,2b2b2b+76,1c1c1c+91,131313+100;Black+Gloss+%231 */
+    background: #4c4c4c; /* Old browsers */
+    background: -moz-linear-gradient(top,  #4c4c4c 0%, #595959 12%, #666666 25%, #474747 39%, #2c2c2c 50%, #000000 51%, #111111 60%, #2b2b2b 76%, #1c1c1c 91%, #131313 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #4c4c4c 0%,#595959 12%,#666666 25%,#474747 39%,#2c2c2c 50%,#000000 51%,#111111 60%,#2b2b2b 76%,#1c1c1c 91%,#131313 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #4c4c4c 0%,#595959 12%,#666666 25%,#474747 39%,#2c2c2c 50%,#000000 51%,#111111 60%,#2b2b2b 76%,#1c1c1c 91%,#131313 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#131313',GradientType=0 ); /* IE6-9 */
 }
+/*---------*\
+ CheckOut區塊
+\*---------*/
+#main_checkout h2{
+    padding:14px 0;
+    font-size: 20px;
+    font-weight:bold;
+    margin: 5px 0 0 0;
+}
+
+/*.check_table{
+    width: 770px;
+    height: 285px;
+    margin: -90px 0px 10px -26px;
+    border: 3px solid #333;
+}*/
+.check_table{
+    width:660px;
+    margin: 20px auto 5px auto;
+    border:3px solid #333;
+}
+
+.check_table tbody tr .goods_name{
+    width:300px;
+}
+.check_table tbody tr .goods_price{
+    width: 120px;
+}
+.check_table tbody tr .goods_num{
+    width: 40px;
+}
+
+
+.check_table tfoot td.paymentway{
+    text-align: center;
+    
+}
+.check_btn{
+    float:right;
+    margin: 20px 217px 100px 0;
+    width: 130px;
+}
+.check_btn input{
+    float: left;
+    margin: 0px 0px 0px 10px;
+    color: #fff;
+    border-radius: 5px; 
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#4c4c4c+0,595959+12,666666+25,474747+39,2c2c2c+50,000000+51,111111+60,2b2b2b+76,1c1c1c+91,131313+100;Black+Gloss+%231 */
+    background: #4c4c4c; /* Old browsers */
+    background: -moz-linear-gradient(top,  #4c4c4c 0%, #595959 12%, #666666 25%, #474747 39%, #2c2c2c 50%, #000000 51%, #111111 60%, #2b2b2b 76%, #1c1c1c 91%, #131313 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #4c4c4c 0%,#595959 12%,#666666 25%,#474747 39%,#2c2c2c 50%,#000000 51%,#111111 60%,#2b2b2b 76%,#1c1c1c 91%,#131313 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #4c4c4c 0%,#595959 12%,#666666 25%,#474747 39%,#2c2c2c 50%,#000000 51%,#111111 60%,#2b2b2b 76%,#1c1c1c 91%,#131313 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#131313',GradientType=0 ); /* IE6-9 */
+}
+
+
 /*-------*\
  Footer區塊
 \*-------*/
@@ -740,28 +811,30 @@ footer{
 footer .wrapper .logo{
     float:left;
     width:150px;
-    margin:50px 30px 0 0;
+    margin:15px 30px 0 0;
+ 
 }
 
 footer .wrapper .contact{
     float:left;
-    width:270px;
-    height:150px;
-    border-right:1px solid #ccc;
+    width:330px;
+    height:60px;
+  /*   border-right:1px solid #ccc;*/
     margin: 30px 0 0 0px;
 }
 
 footer .wrapper .menubox{
     float:left;
-    width:120px;
-    height:150px;
+    width:50px;
+/*    height:150px;
     border-right:1px solid #ccc;
-    margin: 30px 20px 0 0;
+    margin: 30px 20px 0 0;*/
 }
 
 
 footer .wrapper .contact a,footer .wrapper .menubox a{
-    color:#ccc;
+   margin:15px 30px 0 0;
+   color:#ccc;
 }
 
 footer .wrapper .contact a:hover,footer .wrapper .menubox a:hover{

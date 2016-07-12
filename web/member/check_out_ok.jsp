@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>About</title>
+<title> Payment OK</title>
 <link href="/LetsWatchWeb/css/indexLayout.css" rel="stylesheet" type="text/css">
 <link href="/LetsWatchWeb/css/resetcss.css" rel="stylesheet" type="text/css">
 </head>
@@ -20,8 +20,17 @@
 </jsp:include>
 
 <div class="wrapper">
- <h1>OKPage</h1>
-</div>     
+ <div id="article">
+ <h2>交易成功！</h2>
+ <div class="check_ok">
+    
+ <p>交易明細已傳送到您的會員信箱。</p>
+ <p>感謝您對LetsWatch支持，祝您使用愉快！</p>
+ <p><a href="/LetsWatchWeb/">如三秒後沒有跳轉，請點此回到首頁</a></p>
+
+ </div> 
+</div> 
+</div>
 <%@include file="/WEB-INF/subview/footer.jsp"%>        
 </body>
 </html>

@@ -8,7 +8,7 @@
 <footer>
  <div class="wrapper" id="wrapper">
  <div class="logo"><a href="/LetsWatchWeb"><img src="/LetsWatchWeb/picture/logo.png"></a></div>
-  <div class="menubox">
+ <!-- <div class="menubox">
   <ul>
    <li><a href="/LetsWatchWeb" title="首頁">HOME</a></li>
    <li><a href="/LetsWatchWeb/member/about.jsp" title="關於">ABOUT</a></li>
@@ -16,10 +16,10 @@
    <li><a href="/LetsWatchWeb/member/shop.jsp" title="W商城">WSHOP</a></li>
    <li><a href="/LetsWatchWeb/member/suggestion.jsp" title="建議">SUGGESTION</a></li>
   </ul>
-  </div>
+  </div>-->
  <div class="contact">
-  <h5>Contact us</h5>
-  <p><a href="email:letswatch@watch.com.tw">E-mail:letswatch@watch.com.tw</a></p>
+     <a href="Contact us:letswatch@watch.com.tw">Contact us: letswatch@watch.com.tw</a></p>
+  
   </div>
   
   

@@ -50,7 +50,7 @@
 <!--選單列-->
  <nav>
   <ul>
-   <li><a href="/LetsWatchWeb" title="首頁">HOME</a></li>
+   <li><a title="首頁">HOME</a></li>
    <li><a href="/LetsWatchWeb/member/about.jsp" title="關於">ABOUT</a></li>
    <li><a href="/LetsWatchWeb/member/room_search.jsp" title="房間瀏覽">ROOMS</a></li>
    <li><a href="/LetsWatchWeb/member/shop.jsp" title="W商城">WSHOP</a></li>

@@ -29,7 +29,7 @@
  <div id="article">  
   <form class="shop" method="GET">    
    <input class="shopsearch_bar" type='search' name='search' value="${param.search}"placeholder="請輸入產品名稱">
-   <input class="shopsearch_img" type='image' src="/LetsWatchWeb/picture/search.gif">
+   <input class="shopsearch_img" type='image' src="/LetsWatchWeb/picture/wsaerch.png">
   </form>
    <h2>WSHOP</h2>
   <hr class="clearfix">
