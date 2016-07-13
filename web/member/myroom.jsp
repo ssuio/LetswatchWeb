@@ -50,7 +50,7 @@
             var area;
             var action;
             var currentTime = '0';
-            var myhost = "ssuio.idv.tw:58885";
+            var myhost = "10.0.1.14:8084";
             //var myhost="10.0.1.12:8084";
 //            var myhost = "ssuio.idv.tw:58885";
             var roomId = "<%=m.getRoomId()%>";
