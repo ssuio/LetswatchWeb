@@ -18,9 +18,11 @@
 <script src="../js/jquery-1.12.4.js" type="text/javascript"></script>
 <script>
     $(document).ready(init);
+    var time;
     function init(){
-       
-        
+       $('#submit').on("click",getTime);
+       jQuery('#suggestions').css("overflow-y", "scroll");
+       $('#suggestions').scrollTop($('#suggestions').prop("scrollHeight"));
     }
     function getTime(){
         var time = new Date();
@@ -30,13 +32,14 @@
         var hour = time.getHours();
         var min = time.getMinutes();
         var sec = time.getSeconds();
+        time = Year + '/'+ Month + '/' + day + ' '+ hour + ':' + min +':' + sec;
         return Year + '/'+ Month + '/' + day + ' '+ hour + ':' + min +':' + sec;
     }
 </script>
 <style>
     #sInput{
         width:100%;
-        height:600px;
+        height:800px;
     }  
     form{
         text-align:center;
@@ -50,9 +53,10 @@
         height: 100px;
     }
     #suggestions{
-        text-align:center;
         width: 100%;
-        height:400px;
+        height:550px;
+        margin-bottom: 30px;
+        margin-top: 30px;
     }
     .suggestionHistory{
         text-align:center;
@@ -61,7 +65,10 @@
         border-radius: 20px;
     }
     fieldset{
-        width: 50%;
+        width: 30%;
+        padding:20px;
+        margin-left: 35%;
+        margin-top: 10px;
 	border:1px solid #999;
 	border-radius:20px;
 	box-shadow:0 0 10px #999;
@@ -92,11 +99,11 @@
         <%}
 }%>
     </div>
-    <form>
+    <form action="/LetsWatchWeb/suggestion.do">
         <label>Name:</label>
-        <input type="text" /><br>
-        <textarea></textarea><br>
-        <input type="submit" value="submit"/>
+        <input type="text" name ="name" /><br>
+        <textarea name="msg"></textarea><br>
+        <input type="submit" value="submit" id="submit"/>
     </form>
 </div>     
 <%@include file="/WEB-INF/subview/footer.jsp"%>        
