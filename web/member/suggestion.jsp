@@ -40,6 +40,7 @@
     }  
     form{
         text-align:center;
+        
     }
     form input[type='text']{
         width: 25%;
@@ -50,13 +51,20 @@
     }
     #suggestions{
         text-align:center;
-        width: 30%;
+        width: 100%;
         height:400px;
     }
     .suggestionHistory{
+        text-align:center;
         width:100%;
-        height:50px;
-        background: #FC0;
+        border: 2px;
+        border-radius: 20px;
+    }
+    fieldset{
+        width: 50%;
+	border:1px solid #999;
+	border-radius:20px;
+	box-shadow:0 0 10px #999;
     }
 </style>
 <%
@@ -72,11 +80,17 @@
 
 <div class="wrapper" id="sInput">
     <div id="suggestions">
-        <%if(sList!=null){%>
+        <%if(sList!=null){
+        
+        for(Suggestion s :sList){%>
+        <fieldset>
+          <legend><%=s.getName() + "  " + s.getTime()%></legend>
         <div class='suggestionHistory'>
-            
+            <%=s.getMsg()%>
         </div>
-        <%}%>
+        </fieldset>
+        <%}
+}%>
     </div>
     <form>
         <label>Name:</label>
