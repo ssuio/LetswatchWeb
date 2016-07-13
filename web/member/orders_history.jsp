@@ -61,7 +61,7 @@
                             <td><%= order.getCreatedTime()%></td>
                             <td><%= order.getPaymentType()%></td>
 
-                            <td><%= order.getTotalAmount()%></td>
+                            <td><%= order.getTotalAmount()+order.getPaymentFee()%></td>
                                 <% List<OrdersItem> oiList = order.getOrderItemList();
                                 for (OrdersItem oi : oiList){%>
                                     <%=oi.getProduct().getName()%>

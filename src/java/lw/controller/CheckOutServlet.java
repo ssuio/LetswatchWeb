@@ -17,9 +17,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import lw.domain.Member;
 import lw.domain.Order;
+import lw.domain.OrdersItem;
 import lw.domain.PaymentType;
 import lw.domain.ShoppingCart;
 import lw.model.OrderService;
+import lw.model.RDBMemberDAO;
 
 /**
  *
@@ -76,17 +78,33 @@ public class CheckOutServlet extends HttpServlet {
             order.setPaymentType(pType);
             order.setPaymentFee(pType.getFee());
             service.create(order);
-//            if(pType!=null && pType==pType.OPAY){
-//                request.getRequestDispatcher("/member/OPay.do").forward(request,response);
-//                        return;
-//            }else{
-//                request.getRequestDispatcher("/member/ATM.do").forward(request,response);
-//            }
+            
+            List<OrdersItem> oiList = order.getOrderItemList();
+            RDBMemberDAO mDAO = new RDBMemberDAO();
+            int sum =0;
+            for(OrdersItem oi : oiList){
+                int pQuantity = oi.getQuantity();
+                int pWcoin = oi.getProduct().getPrice() * 10;
+                sum += pQuantity * pWcoin;
+                //mDAO.updateWcoin(user, sum);
+            }
+            //user = mDAO.getOneById(user.getId());
+            session.setAttribute("sum", sum);
+            
+            if(pType!=null && pType==pType.OPAY){
+                request.getRequestDispatcher("/member/OPay.do").forward(request,response);
+                   session.removeAttribute("cart");
+                   return;
+            }else{
+                request.getRequestDispatcher("/member/ATM.do").forward(request,response);
+                session.removeAttribute("cart");
+                   return;
+            }
 
-            session.removeAttribute("cart");
+           
            //3.1 redirect to "/user/orders_history.jsp"
-             response.sendRedirect(request.getContextPath()+"/member/orders_history.jsp");
-             return;
+//             response.sendRedirect(request.getContextPath()+"/member/orders_history.jsp");
+//             return;
         }catch(Exception ex){
             errors.add(ex.toString());
         }

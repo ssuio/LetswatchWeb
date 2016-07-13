@@ -64,9 +64,9 @@ public class OPayServlet extends HttpServlet {
             oPayment.HashIV = "v77hoKGq4kWxNNIS";
             oPayment.MerchantID = "2000132";
             /* 基本參數 */
-            oPayment.Send.ReturnURL = "http://localhost:8080/LetsWatchWeb/member/check_out_ok.jsp";
-            oPayment.Send.ClientBackURL = "http://localhost:8080/LetsWatchWeb/member/check_out.jsp";
-            oPayment.Send.OrderResultURL = "http://localhost:8080/LetsWatchWeb/member/check_out_ok.jsp";
+            oPayment.Send.ReturnURL = "http://localhost:8084/LetsWatchWeb/member/check_out_ok.jsp";
+            oPayment.Send.ClientBackURL = "http://localhost:8084/LetsWatchWeb/member/check_out.jsp";
+            oPayment.Send.OrderResultURL = "http://localhost:8084/LetsWatchWeb/member/check_out_ok.jsp";
             // 傳servlet
             oPayment.Send.MerchantTradeNo = Math.abs(new Date().hashCode()) + "";
             oPayment.Send.MerchantTradeDate = new Date();//"<<您此筆訂單的交易時間>>"
