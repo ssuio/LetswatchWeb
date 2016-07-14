@@ -103,7 +103,7 @@
         <label>Name:</label>
         <input type="text" name ="name" /><br>
         <textarea name="msg"></textarea><br>
-        <input type="submit" value="submit" id="submit"/>
+        <input type="submit" value="submit" id="Comment"/>
     </form>
 </div>     
 <%@include file="/WEB-INF/subview/footer.jsp"%>        

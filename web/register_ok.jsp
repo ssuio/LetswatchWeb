@@ -4,6 +4,7 @@
     Author     : adm
 --%>
 
+<%@page import="lw.model.StickersDAO"%>
 <%@page import="java.util.List"%>
 <%@page import="lw.domain.Member"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -66,7 +67,8 @@
                 position:relative;
                 top:1px;
             }
-        </style>
+        </style>\
+        
     </head>
     <body>
 

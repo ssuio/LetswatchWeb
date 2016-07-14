@@ -1,3 +1,4 @@
+<%@page import="java.net.InetAddress"%>
 <%@page import="lw.model.StickersDAO"%>
 <%@page import="lw.domain.PlayList"%>
 <%@page import="lw.model.PlayListDAO"%>
@@ -50,7 +51,7 @@
             var area;
             var action;
             var currentTime = '0';
-            var myhost = "10.0.1.14:8084";
+            var myhost = "<%=InetAddress.getLocalHost().toString().replaceAll(".*/", "")%>:8084";
             //var myhost="10.0.1.12:8084";
 //            var myhost = "ssuio.idv.tw:58885";
             var roomId = "<%=m.getRoomId()%>";

@@ -20,6 +20,7 @@ import lw.domain.Member;
 import lw.model.IdGenerateService;
 import lw.model.MemberService;
 import lw.model.RDBMemberDAO;
+import lw.model.StickersDAO;
 
 /**
  *
@@ -76,6 +77,9 @@ public class RegisterServlet extends HttpServlet {
                     memberService.register(m);
                     session.removeAttribute("ImageCheckServlet");
                     //3.1 forward to register_ok.jsp
+                    StickersDAO sDAO = new StickersDAO();
+                    for(int i=1; i<=3; i++ )
+                        sDAO.buySticker(m.getId(), i);
                     RequestDispatcher dispatcher = request.getRequestDispatcher("/register_ok.jsp");
                     dispatcher.forward(request, response);
                     return;
