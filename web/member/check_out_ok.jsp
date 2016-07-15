@@ -14,14 +14,14 @@
 <link href="/LetsWatchWeb/css/indexLayout.css" rel="stylesheet" type="text/css">
 <link href="/LetsWatchWeb/css/resetcss.css" rel="stylesheet" type="text/css">
 <script>
-    window.addEventListener("load",init);
-    function init(){
-        setTimeout(three,3000);
-    }
-    function three(){
-        window.location="http://<%=InetAddress.getLocalHost().toString().replaceAll(".*/", "")%>:8084/LetsWatchWeb/member/orders_history.jsp";
-
-    }
+//    window.addEventListener("load",init);
+//    function init(){
+//        setTimeout(three,3000);
+//    }
+//    function three(){
+//        window.location="http://<%=InetAddress.getLocalHost().toString().replaceAll(".*/", "")%>:8084/LetsWatchWeb/member/orders_history.jsp";
+//
+//    }
 </script>
 </head>
 
