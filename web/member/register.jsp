@@ -150,11 +150,11 @@
                 </p>
                 <p>
                     <label for="password">Password:</label>
-                    <input type="password" id="pwd" name="password1" placeholder="輸入密碼" required>        
+                    <input type="password" id="pwd" name="password1" placeholder="輸入密碼:英文數字大小寫8位" required>        
                 </p>
                 <p>
                     <label for="password">Password Again:</label>
-                    <input type="password" id="pwd" name="password2" placeholder="輸入密碼" required>        
+                    <input type="password" id="pwd" name="password2" placeholder="再次輸入密碼" required>        
                 </p>
                 <p>
                     <label for="checkBox">Check Code:</label>

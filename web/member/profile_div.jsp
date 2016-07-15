@@ -15,6 +15,7 @@
             var epaper;
             var introduction;
             var host = "<%=InetAddress.getLocalHost().toString().replaceAll(".*/", "")%>:8084";
+            console.log(host);
             function init() {
                 $('#edit').on("click", editHandler);
                 $('#finish').on("click", finishHandler);
@@ -71,7 +72,7 @@
                 ;
                 email = $('#pemail').val();
                 introduction = $('#introduction').val();
-                roomId = '<%=m.getRoomId()%>';
+                roomId = '<%=m.getRoomId()==null?"":m.getRoomId()%>';
                 memberId = '<%=m.getId()%>';
 
 //                alert('name=' + name + ' gender=' + gender + ' birthday' + birthday + ' phone=' + phone + ' epaper=' + epaper + ' email=' + email
@@ -111,7 +112,7 @@
                     <br>
                     <label>Name:</label><input id="pname" value="<%=m.getName()%>" ><br>
                     <label>E-mail: </label> <input id="pemail" value="<%=m.getEmail()%>" ><br>
-                    <label>Gender: </label> <input id="pgender" value="<%=(m.getGender()+ "").matches("") ? "" : m.getGender()%>"><br>
+                    <label>Gender: </label> <input id="pgender" value="<%=m.getGender()==0 ? "" : m.getGender()%>"><br>
                     <label>Birthday:</label><input id="datepicker" value="<%=m.getBirthday() == null ? "" : m.getBirthday().toString()%>"><br>
                     <label>Phone: </label><input id="pphone" value="<%=m.getPhone() == null ? "" : m.getPhone()%>"><br>
                     <label>E-paper: </label><%=m.isEpaper() == true ? "<input id=\"epaper\" type=\"checkbox\" checked><br>" : "<input id=\"epaper\" type=\"checkbox\"><br>"%><br>
