@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>首頁</title>
+<title>Index</title>
 <link href="/LetsWatchWeb/css/indexLayout.css" rel="stylesheet" type="text/css">
 <link href="/LetsWatchWeb/css/resetcss.css" rel="stylesheet" type="text/css">
 

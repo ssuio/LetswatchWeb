@@ -18,11 +18,14 @@
         <title>pay</title>
         <link href="/LetsWatchWeb/css/indexLayout.css" rel="stylesheet" type="text/css">
         <link href="/LetsWatchWeb/css/resetcss.css" rel="stylesheet" type="text/css">
+<!--        <link rel="stylesheet" href="/resources/demos/style.css">-->
+        
     </head>
+   
     <%
         Member user = (Member) session.getAttribute("member");
         if (user == null) {
-            response.sendRedirect(request.getContextPath() + "/login.jsp");
+            response.sendRedirect(request.getContextPath() + "/member/login.jsp");
             return;
         }
     %>
@@ -32,7 +35,7 @@
         </jsp:include>
 
         <div class="wrapper">
-            <div id="article">
+            <div class="payment_history">
                 <%
                     RDBOrdersDAO dao = new RDBOrdersDAO();
                     List<Order> olist = dao.getOrdersByMemberId(user.getId());
@@ -47,7 +50,7 @@
                             <th>付款方式</th>
 
                             <th>總金額</th>
-
+                            
 
                             <th></th>
                         </tr>            
@@ -62,20 +65,17 @@
                             <td><%= order.getPaymentType()%></td>
 
                             <td><%= order.getTotalAmount()+order.getPaymentFee()%></td>
-                                <% List<OrdersItem> oiList = order.getOrderItemList();
-                                for (OrdersItem oi : oiList){%>
-                                    <%=oi.getProduct().getName()%>
-                                <%
-                                }%>
-
+                              
+                         
                         </tr>                        
                         <%}%>
                     </tbody>
                 </table>
                 <%}%>
 
-                <!--<div id="detail" title="產品明細"></div>
+<!--                <div id="detail" title="產品明細"></div>
                 <script>
+                    
                     $(function () {
                         $("#detail").dialog({
                             autoOpen: false, width: 500, height: 350,
@@ -90,24 +90,25 @@
                         });
                     });
                 
-                    function showOrder(orderId) {
-                        //alert(orderId);
-                        $.ajax({
-                            
-                            method: "POST",
-                            data: {oid: orderId}
-                        }).done(
-                                function (result) {
-                                    //alert(result);
-                                    $("#detail").html(result);
-                                    $("#detail").dialog("open");
-                                }
-                        ).fail(
-                                function (xhr, status) {
-                                    console.log(status);
-                                }
-                        );
-                    }
+               function showOrder(orderId) {
+        alert(orderId);
+        $.ajax({
+            url: "http://localhost:8080/LetsWatchWeb/member/show_order.jsp",
+            method: "POST",
+            data: {oid: orderId}
+        }).done(
+                function (result) {
+                    $("#detail").html(result);
+                    $("#detail").dialog("open");
+                }
+        ).fail(
+                function (xhr, status) {
+                    console.log(status);
+                }
+        );
+        alert('<%= request.getContextPath()%>');
+    }
+
                     
                 </script>-->
             </div>

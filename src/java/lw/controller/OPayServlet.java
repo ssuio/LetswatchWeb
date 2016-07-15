@@ -16,6 +16,7 @@ import AllPay.Payment.Integration.PaymentMethodItem;
 import AllPay.Payment.Integration.UseRedeem;
 import java.io.IOException;
 import static java.lang.System.out;
+import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -64,9 +65,9 @@ public class OPayServlet extends HttpServlet {
             oPayment.HashIV = "v77hoKGq4kWxNNIS";
             oPayment.MerchantID = "2000132";
             /* 基本參數 */
-            oPayment.Send.ReturnURL = "http://localhost:8084/LetsWatchWeb/member/check_out_ok.jsp";
-            oPayment.Send.ClientBackURL = "http://localhost:8084/LetsWatchWeb/member/check_out.jsp";
-            oPayment.Send.OrderResultURL = "http://localhost:8084/LetsWatchWeb/member/check_out_ok.jsp";
+            oPayment.Send.ReturnURL = "http://"+InetAddress.getLocalHost().toString().replaceAll(".*/", "")+":8084/LetsWatchWeb/member/check_out_ok.jsp";
+            oPayment.Send.ClientBackURL = "http://"+InetAddress.getLocalHost().toString().replaceAll(".*/", "")+":8084/LetsWatchWeb/member/check_out.jsp";
+            oPayment.Send.OrderResultURL = "http://"+InetAddress.getLocalHost().toString().replaceAll(".*/", "")+":8084/LetsWatchWeb/member/check_out_ok.jsp";
             // 傳servlet
             oPayment.Send.MerchantTradeNo = Math.abs(new Date().hashCode()) + "";
             oPayment.Send.MerchantTradeDate = new Date();//"<<您此筆訂單的交易時間>>"

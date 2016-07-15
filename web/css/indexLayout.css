@@ -16,6 +16,10 @@
     margin: 0 auto;
 }
 
+#article{
+    margin: 0 0 100px 0;
+}
+
 img{
     width:100%;
 }
@@ -230,8 +234,6 @@ header #login ul li a:hover{
     top:1px;
 }
 
-
-
 /*-------*\
   內容區塊
 \*-------*/
@@ -426,7 +428,7 @@ video{
     flaot:left;
 }
 
- .myroom #contentDiv #sticker{
+.myroom #contentDiv #sticker{
     float:left;
     width:290px;
     height:100px;
@@ -587,11 +589,11 @@ video{
 .hover {}
 
 .main_about_img{
-       position:relative;
-       float:left;
-       width: 500px;
-       height:400px;
-       margin: 20px 15px 0 0;
+    position:relative;
+    float:left;
+    width: 500px;
+    height:400px;
+    margin: 20px 15px 0 0;
 }
 
 
@@ -602,18 +604,18 @@ video{
     -moz-transition: opacity 1s ease-in-out; 
     -o-transition: opacity 1s ease-in-out; 
     transition: opacity 1s ease-in-out;
-    
+
 
 }
 .main_about_img img:hover{ 
-   opacity:0; /*滑鼠滑入時，透明度變0*/
+    opacity:0; /*滑鼠滑入時，透明度變0*/
 }
 #about_txt{
-   border: 2px solid #333;
-   text-align: center;
-   width: 550px;
-   margin: 20px 0 0 0;
-   height: 334px;
+    border: 2px solid #333;
+    text-align: center;
+    width: 550px;
+    margin: 20px 0 0 0;
+    height: 334px;
 }
 
 #about_txt p{
@@ -634,9 +636,9 @@ video{
 #shop_price{}
 #shop_price ul{}
 #shop_price ul li{
-     display: inline-block;
-     width:150px;
-     margin:33px 33px 53px 33px;
+    display: inline-block;
+    width:150px;
+    margin:33px 33px 53px 33px;
 }
 
 #shop_price ul li h3{
@@ -693,6 +695,12 @@ video{
     background: #E6E6E6 no-repeat 3px 3px;
     float: left;
 }
+/*------*\
+create room
+\*------*/
+
+
+
 /*-------*\
  cart區塊
 \*-------*/
@@ -730,7 +738,7 @@ tfoot tr td p{
     width: 270px;
     float:right;
     margin: 10px 232px 100px 0;
-    
+
 }   
 
 
@@ -777,10 +785,9 @@ tfoot tr td p{
     width: 40px;
 }
 
-
 .check_table tfoot td.paymentway{
     text-align: center;
-    
+
 }
 .check_btn{
     float:right;
@@ -800,7 +807,22 @@ tfoot tr td p{
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#131313',GradientType=0 ); /* IE6-9 */
 }
 
+.check_ok{
+    width: 800px;
+    margin: 50px auto;
+    padding:20px;
+    border:1px solid #333;
+    text-align: center;
+}
+.payment_history{
+    width:70%;
+    margin: 20px 0px 5px 65px;
+    border:3px solid #333;
+}
 
+.payment_history table tr td {
+    
+}
 /*-------*\
  Footer區塊
 \*-------*/
@@ -812,29 +834,29 @@ footer .wrapper .logo{
     float:left;
     width:150px;
     margin:15px 30px 0 0;
- 
+
 }
 
 footer .wrapper .contact{
     float:left;
     width:330px;
     height:60px;
-  /*   border-right:1px solid #ccc;*/
+    /*   border-right:1px solid #ccc;*/
     margin: 30px 0 0 0px;
 }
 
 footer .wrapper .menubox{
     float:left;
     width:50px;
-/*    height:150px;
-    border-right:1px solid #ccc;
-    margin: 30px 20px 0 0;*/
+    /*    height:150px;
+        border-right:1px solid #ccc;
+        margin: 30px 20px 0 0;*/
 }
 
 
 footer .wrapper .contact a,footer .wrapper .menubox a{
-   margin:15px 30px 0 0;
-   color:#ccc;
+    margin:15px 30px 0 0;
+    color:#ccc;
 }
 
 footer .wrapper .contact a:hover,footer .wrapper .menubox a:hover{

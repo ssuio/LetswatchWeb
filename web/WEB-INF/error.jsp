@@ -7,7 +7,7 @@
 <jsp:include page="/WEB-INF/subview/header.jsp">
 <jsp:param name="sub_title" value="哈囉!P"/>
 </jsp:include>
-
+<a href="traffic_404_error_pages/theme/404.html"></a>
 <title><%=getServletInfo()%></title>
 <div>
         <h1>系統發生錯誤:${requestScope["javax.servlet.error.request_uri"]}</h1>

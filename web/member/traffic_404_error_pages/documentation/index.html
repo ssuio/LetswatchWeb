@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<head lang="en">
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	<title>Traffic 404 Custom Error Page Documentation Template</title>
+	<!-- Framework CSS -->
+	<link rel="stylesheet" href="assets/blueprint-css/screen.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="assets/blueprint-css/print.css" type="text/css" media="print">
+	<!--[if lt IE 8]><link rel="stylesheet" href="assets/blueprint-css/ie.css" type="text/css" media="screen, projection"><![endif]-->
+	<link rel="stylesheet" href="assets/blueprint-css/plugins/fancy-type/screen.css" type="text/css" media="screen, projection">
+	<style type="text/css" media="screen">
+		p, table, hr, .box { margin-bottom:25px; }
+		.box p { margin-bottom:10px; }
+	</style>
+</head>
+
+
+<body>
+	<div class="container">
+	
+		<h3 class="center alt">&ldquo;Traffic 404 Custom Error Page&rdquo; Documentation by &ldquo;MogooLab&rdquo; v1.0</h3>
+		
+		<hr>
+		
+		<h1 class="center">&ldquo;Traffic 404 Custom Error Page&rdquo;</h1>
+		
+		<div class="borderTop">
+			<div class="span-6 colborder info prepend-1">
+				<p class="prepend-top">
+					<strong>
+					Created: 03/10/2011<br>
+					By: MogooLab<br>
+					Email: <a href="mailto:lab@mogoolab.com">lab@mogoolab.com</a><br>
+                    Web: <a href="http://www.mogoolab.com">www.mogoolab.com</a>
+					</strong>
+				</p>
+			</div><!-- end div .span-6 -->		
+	
+			<div class="span-12 last">
+				<p class="prepend-top append-0">If you have any questions that are beyond the scope of this help file, please feel free to email via my contact form <a href="http://mogoolab.com/contact">here</a>. Thanks so much!</p>
+			</div>
+		</div><!-- end div .borderTop -->
+		
+		<hr>
+		
+		<h2 id="toc" class="alt">Table of Contents</h2>
+		<ol class="alpha">
+			<li><a href="#htmlStructure">HTML Structure</a></li>
+			<li><a href="#cssFiles">CSS Files and Structure</a></li>
+            <li><a href="#javascript">JavaScript</a></li>
+            <li><a href="#credits">Sources and Credits</a></li>
+			<li><a href="#psdFiles">PSD Files</a></li>
+            
+		</ol>
+		
+		<hr>
+		
+		<h3 id="htmlStructure"><strong>A) HTML Structure</strong> - <a href="#toc">top</a></h3>
+		<p>This theme is a fixed layout with a center vertical aligment. All of the information within the main content area is nested within a div with a class of "wrapper". The main content (robot message, robot icon, 404 message) is within a div with a class of "mainWrapper".</p>
+		
+		<img src="assets/images/htmlstructure_1.png" alt="HTML Structure" />
+		
+
+        <p>If you would like to set up another Error Code change text from "errorNumber" &lt;div&gt;. In the "message" class &lt;div&gt; you could set the Error Message.</p>
+        
+
+		<hr>
+
+		<h3 id="cssFiles"><strong>B) CSS Files and Structure</strong> - <a href="#toc">top</a></h3>
+        
+		<p>The main positioning of the elements are located in /theme/style.css.</p>
+
+		<p>Many browser interpret the default behavior of html elements differently. By using a general reset CSS file, we can work round this. /theme/style.css file also contains some styling, such as margins, paddings, font-size, floating, background-color, font-color, border-color and images. Keep in mind, that these values might be overridden somewhere else in the file.</p> 
+
+		<p>CSS structure:</p>  
+
+<pre>	/* Reset default browser CSS */
+        /* default font */  
+        ...
+        /* page Wrapper */
+        ...
+        /* content wrapper */
+        ...
+        /* main holder */
+        ...
+        /* message text */
+        ...
+        /* error 404 */
+        ...
+        /*search holder */
+        ...
+        /* search input */
+        ...
+        /* search button */
+        ...
+        /* footer copy */
+        ...
+        /* footer menu */
+</pre>
+		
+		<p>If you would like to edit a specific section of the site, simply find the appropriate label in the CSS file, and then scroll down until you find the appropriate style that needs to be edited.</p> 
+
+		<p>Any images that are placed within the template are located in /theme/images. If you would like to edit the display of these images, find the "background" CSS property in the style sheet.</p>
+       
+		<p>Other CSS files loaded:</p>
+                      
+<ol>
+<li>js/impromptu/css.css</li>
+</ol>
+
+		<p>If you would like to change settings on these CSS style please refer to <a href="#credits">Sources and credits</a> section.</p>
+
+		<hr>
+		
+		<h3 id="javascript"><strong>C) JavaScript</strong> - <a href="#toc">top</a></h3>
+		
+		<p>This theme imports three Javascript files.</p>
+		
+		<ol>
+			<li>jQuery</li>
+            <li>impromptu - Custom Alert Messages on form submiting</li>
+		</ol>       
+
+			<p>jQuery is a Javascript library that greatly reduces the amount of code that you must write.</p>
+			<p>All JS functions are called inside the /theme/js/jquery-global.js file.</p>
+            <p>For more information about other JS plugins please refer to <a href="#credits">Sources and credits</a> section.</p>
+
+		
+		<hr>
+		
+		<h3 id="psdFiles"><strong>D) PSD Files</strong> - <a href="#toc">top</a></h3>
+		
+		<p>I've included one PSD.</p>
+
+		<p>The PSDs structure:</p>
+        
+<pre>	
+<b>Plane</b> - Message bullet
+<b>Bottom menu</b> - Bottom menu
+<b>Search Form</b> - Search form layers
+<b>Big Blue Sign</b> - Big 404 Sign
+<b>Stop light</b>
+<b>Trees</b>
+<b>Plants</b>
+<b>Sun</b>
+<b>Road signs</b>
+<b>Backgrounds</b>
+</pre>        
+		<hr>
+		
+		<h3 id="credits"><strong>E) Sources and Credits</strong> - <a href="#toc">top</a></h3>
+		
+		<ul>
+			<li><a href="http://trentrichardson.com/Impromptu/">Impromptu</a></li>
+            <li>Icons from <a href="http://www.freeiconsweb.com/Free-Downloads.asp?id=1291">Free Icons Web</a> and <a href="http://www.freeiconsweb.com/Free-Downloads.asp?id=602">Free Icons Web</a></li>
+		</ul>
+        
+        
+		<hr>
+		
+		<p> As I said at the beginning, I'd be glad to help you if you have any questions relating to this theme. No guarantees, but I'll do my best to assist.</p> 
+		
+		<p class="append-bottom alt large"><strong>MogooLab</strong></p>
+		<p><a href="#toc">Go To Table of Contents</a></p>
+		
+		<hr class="space">
+	</div><!-- end div .container -->
+</body>
+</html>

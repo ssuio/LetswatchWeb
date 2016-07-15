@@ -8,11 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
 <head>
-<jsp:include page="/WEB-INF/subview/header.jsp">
-<jsp:param name="sub_title" value="Shop!P"/>
-</jsp:include>
 <meta charset="UTF-8">
 <link href="/LetsWatchWeb/css/indexLayout.css" rel="stylesheet" type="text/css">
 <link href="/LetsWatchWeb/css/resetcss.css" rel="stylesheet" type="text/css">
@@ -20,6 +16,9 @@
 </head>
 
 <body>
+<jsp:include page="/WEB-INF/subview/header.jsp">
+<jsp:param name="sub_title" value="Shop!P"/>
+</jsp:include>    
  <div class="wrapper">
   <div id="article">
    <h2>購物車</h2>

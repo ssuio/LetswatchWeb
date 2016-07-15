@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>About</title>
+<title>Suggestion</title>
 <link href="/LetsWatchWeb/css/indexLayout.css" rel="stylesheet" type="text/css">
 <link href="/LetsWatchWeb/css/resetcss.css" rel="stylesheet" type="text/css">
 <script src="../js/jquery-1.12.4.js" type="text/javascript"></script>

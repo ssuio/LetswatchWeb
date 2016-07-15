@@ -20,19 +20,18 @@
 <head>
 <meta charset="utf-8">
 <title>Payment</title>
-<link href="/LetsWatchWeb/css/indexLayout.css" rel="stylesheet" type="text/css">
 <link href="/LetsWatchWeb/css/resetcss.css" rel="stylesheet" type="text/css">
+<link href="/LetsWatchWeb/css/indexLayout.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <jsp:include page="/WEB-INF/subview/header.jsp">
 <jsp:param name="sub_title" value="Shop!P"/>
 </jsp:include>
- <div class="wrapper">
-  
+ <div class="wrapper">  
   <div id="main_checkout"> 
-    <h2>我要結賬</h2>
-    <hr>
+   <h2>我要結賬</h2>
+   <hr>
    <form method="POST" action="check_out.do">
     <%
        ShoppingCart cart
@@ -40,9 +39,7 @@
        cart.setUser((Member)session.getAttribute("member"));
        if (cart == null || cart.isEmpty()) {
     %>
-    
     <h3>購物車是空的</h3>
-    
     <%} else{ %>
     <table class="check_table">
      <thead>
@@ -57,7 +54,7 @@
      <tbody>
       <% for (Product p : cart.keySet()) {%>
        <tr>
-           <th><%= p.getId()%></th>
+        <th><%= p.getId()%></th>
         <td class="goods_name"><h4><%=p.getName()%></h4></td>
         <td class="goods_price"><p><%=p.getPrice()%></p></td>
         <th class="goods_num"><%= cart.getQuantity(p)%></th>
@@ -107,16 +104,14 @@
           }
       }
 </script>
-<div class="check_btn">
-  
-    <input type="button" value="繼續購物" onclick="location.href = 'shop.jsp';">
-    <input type="submit" value=" 確認結帳">
-  </div>
+    <div class="check_btn">  
+     <input type="button" value="繼續購物" onclick="location.href = 'shop.jsp';">
+     <input type="submit" value=" 確認結帳">
+    </div>
  <%}%>
-    </form><!--form-->
+   </form><!--form-->
   </div><!--article-->
  </div><!--wrapper-->
-    
 <%@include file="/WEB-INF/subview/footer.jsp"%>        
 </body>
 </html>

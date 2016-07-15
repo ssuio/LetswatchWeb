@@ -1,3 +1,4 @@
+<%@page import="java.net.InetAddress"%>
 <%@page import="lw.domain.Member"%>
 
 <% 
@@ -13,7 +14,7 @@
             var phone;
             var epaper;
             var introduction;
-            var host = "localhost:8084";
+            var host = "<%=InetAddress.getLocalHost().toString().replaceAll(".*/", "")%>:8084";
             function init() {
                 $('#edit').on("click", editHandler);
                 $('#finish').on("click", finishHandler);
