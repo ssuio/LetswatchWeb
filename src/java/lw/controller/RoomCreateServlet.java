@@ -19,6 +19,7 @@ import lw.domain.LWException;
 import lw.domain.Member;
 import lw.domain.Room;
 import lw.model.RDBMemberDAO;
+import lw.model.RoomDAO;
 import lw.model.RoomMemberListDAO;
 import lw.model.RoomService;
 
@@ -42,6 +43,7 @@ public class RoomCreateServlet extends HttpServlet {
         RoomService rs = new RoomService();
         RoomMemberListDAO rmDAO = new RoomMemberListDAO();
         RDBMemberDAO mDAO = new RDBMemberDAO();
+        RoomDAO rDAO = new RoomDAO();
         Room r = new Room();
         Member m;
         List<String> errors = new ArrayList<>();
@@ -69,13 +71,16 @@ public class RoomCreateServlet extends HttpServlet {
             else
                 r.setwCoin(0);
                 //r.setRoomType(Integer.parseInt(roomType));
-            r.setVideoId("opjeWahwGWM");
-            r.setArea("play");
+            r.setVideoId("w7ZccglSfu4");
+            r.setArea("search");
             r.setCurrentTime("0");
+            r.setAction("play");
             
             
             r.setOwnerId(m.getId());
             roomId = rs.createRoom(r);
+            rDAO.updateSyncInfo(r, roomId);
+            rDAO.updateTime("0", roomId);
             //Leaving the room user was in 
             if (m.getRoomId()!=null){
                     rs.leaveRoom(m, m.getRoomId());

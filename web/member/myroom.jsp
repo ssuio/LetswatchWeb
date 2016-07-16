@@ -38,7 +38,7 @@
         <script>
             window.addEventListener("load", init);
 
-            var gVideoId = 'j68LY3fKbrg';
+            var gVideoId = 'w7ZccglSfu4';
             var videoTitle;
             var videoTime;
             var videoImg;
@@ -46,7 +46,7 @@
             var pullPlaylistObj;
             var resultObj;
             var playListTime = '0';
-            var time = '0';
+            var time = '10';
             var ctime = '1';
             var area;
             var action;
