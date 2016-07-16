@@ -40,9 +40,6 @@ public class MemberUpdateServlet extends HttpServlet {
             fixHeaders(response);
             request.setCharacterEncoding("utf-8");
             response.setContentType("text/html;charset=UTF-8");
-            RDBMemberDAO mDAO = new RDBMemberDAO();
-            HttpSession session = request.getSession();
-            Member m = (Member)session.getAttribute("member");
             String name = request.getParameter("name");
             String email = request.getParameter("email");
             String gender = request.getParameter("gender");
@@ -50,8 +47,10 @@ public class MemberUpdateServlet extends HttpServlet {
             String phone = request.getParameter("phone");
             String epaper = request.getParameter("epaper");
             String introduction = request.getParameter("introduction");
-            String roomId = m.getRoomId();
-            String memberId = m.getId();
+            String roomId = request.getParameter("roomId");
+            String memberId = request.getParameter("memberId");
+            Member m = new Member();
+            RDBMemberDAO mDAO = new RDBMemberDAO();
             try {
             if(!name.matches(""))
                 m.setName(name);

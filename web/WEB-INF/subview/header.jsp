@@ -4,6 +4,7 @@
     Author     : adm
 --%>
 
+<%@page import="lw.model.RDBMemberDAO"%>
 <%@page import="lw.domain.Room"%>
 <%@page import="lw.domain.Member"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -58,12 +59,16 @@
   </ul>
  </nav>
   <%
+  RDBMemberDAO mDAO = new RDBMemberDAO();
   Member m = (Member)session.getAttribute("member");
   %>
 <!--login/logout--> 
  <div id="login"> 
   <ul>
-   <%if(m!=null){%>
+   <%if(m!=null){
+   m = mDAO.getOneById(m.getId());
+   session.setAttribute("member", m);
+   %>
     <li><a class='menu' href="/LetsWatchWeb/logout.do" title="登出">Logout</a></li>
     <li><a class='menu' href="/LetsWatchWeb/member/cart.jsp" title="購物車">Cart</a></li>
     <%}else{%>

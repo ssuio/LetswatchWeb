@@ -25,7 +25,6 @@ public class VisitorsCountListener implements ServletContextListener, HttpSessio
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        System.out.println("lw contextInitialized...");
         ServletContext application = sce.getServletContext();
         Properties props= new Properties();
         String path = application.getRealPath("/WEB-INF/lw.properties");
@@ -55,25 +54,20 @@ public class VisitorsCountListener implements ServletContextListener, HttpSessio
     public void contextDestroyed(ServletContextEvent sce) {
         ServletContext application = sce.getServletContext();
         Properties props= new Properties();
-        System.out.println("lw contextDestroyed...");
         String path = application.getRealPath("/WEB-INF/lw.properties");
         File file = new File(path);
-        System.out.println("Path: "+ path);
         Enumeration<String> names = application.getAttributeNames();
         
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         while(names.hasMoreElements()){
             String name = names.nextElement();
             Object value = application.getAttribute(name);
             if(name.indexOf("lw.app.")==0)
-                System.out.println(name +":" + value);
             if(name.indexOf("lw.app.")==0)
                 props.setProperty(name, value.toString());
         }
         try(FileWriter writer = new FileWriter(file);) {
             props.store( writer, "Visit Counter!");
             application.log("Record Visit Counter SUCCESSFULLY");
-            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             
         } catch (Exception ex) {
             application.log("Record Visit Counter FAILED!");
@@ -82,7 +76,6 @@ public class VisitorsCountListener implements ServletContextListener, HttpSessio
 
     @Override
     public void sessionCreated(HttpSessionEvent se) {
-        System.out.println("lw contextInitialized...");
         ServletContext application = se.getSession().getServletContext();
         Properties props= new Properties();
         String path = application.getRealPath("/WEB-INF/lw.properties");
