@@ -118,7 +118,7 @@
     </servlet>
     <servlet>
         <servlet-name>updateProfileServlet</servlet-name>
-        <servlet-class>updateProfile.updateProfileServlet</servlet-class>
+        <servlet-class>lw.controller.updateProfileServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>MemberUpdateServlet</servlet-name>

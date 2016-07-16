@@ -7,7 +7,6 @@ package lw.controller;
  */
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -37,12 +36,13 @@ public class MemberUpdateServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        
-            RDBMemberDAO mDAO = new RDBMemberDAO();
-            HttpSession session = request.getSession();
-            Member m = (Member)session.getAttribute("member");
+           
             fixHeaders(response);
             request.setCharacterEncoding("utf-8");
             response.setContentType("text/html;charset=UTF-8");
+            RDBMemberDAO mDAO = new RDBMemberDAO();
+            HttpSession session = request.getSession();
+            Member m = (Member)session.getAttribute("member");
             String name = request.getParameter("name");
             String email = request.getParameter("email");
             String gender = request.getParameter("gender");
@@ -52,7 +52,6 @@ public class MemberUpdateServlet extends HttpServlet {
             String introduction = request.getParameter("introduction");
             String roomId = m.getRoomId();
             String memberId = m.getId();
-            
             try {
             if(!name.matches(""))
                 m.setName(name);
@@ -77,7 +76,6 @@ public class MemberUpdateServlet extends HttpServlet {
             //if(birthday=="")
             System.out.println("name: "+ name+" email:"+email+" gender:"+ gender +" birthday"+ birthday+" phone:"+phone
                     +" epaper:"+ epaper + " introduction:"+ introduction + " roomId:" + roomId + " memberId:"+memberId);
-            System.out.println("!!!!!!"+m);
         } catch (LWException ex) {
             Logger.getLogger(MemberUpdateServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

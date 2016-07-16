@@ -14,8 +14,8 @@
             var phone;
             var epaper;
             var introduction;
-            var host = "<%=InetAddress.getLocalHost().toString().replaceAll(".*/", "")%>:8084";
-            console.log(host);
+            var myhost = "<%=InetAddress.getLocalHost().toString().replaceAll(".*/", "")%>:8084";
+            
             function init() {
                 $('#edit').on("click", editHandler);
                 $('#finish').on("click", finishHandler);
@@ -74,13 +74,13 @@
                 introduction = $('#introduction').val();
                 roomId = '<%=m.getRoomId()==null?"":m.getRoomId()%>';
                 memberId = '<%=m.getId()%>';
-
+                console.log(name + gender + email + birthday);
 //                alert('name=' + name + ' gender=' + gender + ' birthday' + birthday + ' phone=' + phone + ' epaper=' + epaper + ' email=' + email
 //                        + ' introduction=' + introduction + ' roomId=' + roomId + 'memberId=' + memberId);
 
                 $.ajax({
                     type: "POST",
-                    url: "http://" + host + "/LetsWatchWeb/memberUpdate.do",
+                    url: "http://" + myhost + "/LetsWatchWeb/memberUpdate.do",
                     data: {
                         'name': name,
                         'email': email,
