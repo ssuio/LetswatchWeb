@@ -19,10 +19,12 @@
     <%
         RDBMemberDAO mDAO = new RDBMemberDAO();
         Member m = (Member)session.getAttribute("member");
-        int sum = (Integer)session.getAttribute("sum");
-        mDAO.updateWcoin(m, sum);
-        m = mDAO.getOneById(m.getId());
-        session.setAttribute("member", m);
+        if (session.getAttribute("sum")!=null){
+            int sum = (Integer)session.getAttribute("sum");
+            mDAO.updateWcoin(m, sum);
+            m = mDAO.getOneById(m.getId());
+            session.setAttribute("member", m);
+        }
         
     %>
     window.addEventListener("load",init);
