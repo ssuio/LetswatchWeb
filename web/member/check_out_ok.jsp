@@ -4,6 +4,8 @@
     Author     : Patty
 --%>
 
+<%@page import="lw.domain.Member"%>
+<%@page import="lw.model.RDBMemberDAO"%>
 <%@page import="java.net.InetAddress"%>
 <%@page pageEncoding="utf-8"%>
 <!doctype html>
@@ -14,14 +16,23 @@
 <link href="/LetsWatchWeb/css/indexLayout.css" rel="stylesheet" type="text/css">
 <link href="/LetsWatchWeb/css/resetcss.css" rel="stylesheet" type="text/css">
 <script>
-//    window.addEventListener("load",init);
-//    function init(){
-//        setTimeout(three,3000);
-//    }
-//    function three(){
-//        window.location="http://<%=InetAddress.getLocalHost().toString().replaceAll(".*/", "")%>:8084/LetsWatchWeb/member/orders_history.jsp";
-//
-//    }
+    <%
+        RDBMemberDAO mDAO = new RDBMemberDAO();
+        Member m = (Member)session.getAttribute("member");
+        int sum = (Integer)session.getAttribute("sum");
+        mDAO.updateWcoin(m, sum);
+        m = mDAO.getOneById(m.getId());
+        session.setAttribute("member", m);
+        
+    %>
+    window.addEventListener("load",init);
+    function init(){
+        setTimeout(three,3000);
+    }
+    function three(){
+        window.location="http://<%=InetAddress.getLocalHost().toString().replaceAll(".*/", "")%>:8084/LetsWatchWeb/member/orders_history.jsp";
+
+    }
 </script>
 </head>
 
