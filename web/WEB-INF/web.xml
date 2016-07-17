@@ -6,7 +6,7 @@
     </error-page>
     <error-page>
         <error-code>404</error-code>
-        <location>/WEB-INF/error.js</location>
+        <location>/WEB-INF/error.jsp</location>
     </error-page>
     <filter>
         <filter-name>PerformanceFilter</filter-name>
