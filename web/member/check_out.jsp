@@ -32,7 +32,8 @@
   <div id="main_checkout"> 
    <h2>我要結賬</h2>
    <hr>
-   <form method="POST" action="check_out.do">
+   <div class="check_out_info">
+  <form method="POST" action="check_out.do">
     <%
        ShoppingCart cart
                = (ShoppingCart) request.getSession().getAttribute("cart");
@@ -109,7 +110,15 @@
      <input type="submit" value=" 確認結帳">
     </div>
  <%}%>
-   </form><!--form-->
+   </form><!--form-->     
+       
+       
+       
+   </div>
+   <div class="website_logo">
+      <img src="/LetsWatchWeb/picture/website-logo.png">
+  </div>
+  <div class="clearfix"></div>
   </div><!--article-->
  </div><!--wrapper-->
 <%@include file="/WEB-INF/subview/footer.jsp"%>        

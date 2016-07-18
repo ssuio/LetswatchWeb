@@ -71,6 +71,7 @@
    %>
     <li><a class='menu' href="/LetsWatchWeb/logout.do" title="登出">Logout</a></li>
     <li><a class='menu' href="/LetsWatchWeb/member/cart.jsp" title="購物車">Cart</a></li>
+    <li><a class='menu' href="/LetsWatchWeb/member/orders_history.jsp" title="購物車">Order</a></li>
     <%}else{%>
     <li><a class='menu' href="/LetsWatchWeb/member/login.jsp" title="登入">Login</a></li>
     <li><a class='menu' href="/LetsWatchWeb/member/register.jsp" title="註冊">Register</a></li>

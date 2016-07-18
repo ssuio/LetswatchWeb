@@ -52,6 +52,7 @@ public class OPayServlet extends HttpServlet {
         ShoppingCart cart
                = (ShoppingCart)session.getAttribute("cart");
         System.out.println(cart);
+        
         /*
 * 產生訂單的範例程式碼。
          */
@@ -92,7 +93,7 @@ public class OPayServlet extends HttpServlet {
             oPayment.Send.Items.add(a1);
          
     
-     }
+         }
             System.out.println();
             /* 產生訂單 */
             enErrors.addAll(oPayment.CheckOut(response.getWriter()));

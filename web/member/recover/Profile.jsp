@@ -14,6 +14,7 @@
     <meta charset="utf-8">
     <title>首頁</title>
     <link href="/LetsWatchWeb/css/indexLayout.css" rel="stylesheet" type="text/css">
+    <link href="/LetsWatchWeb/css/resetcss.css" rel="stylesheet" type="text/css">
     <script src="/LetsWatchWeb/js/jquery-1.12.4.js" type="text/javascript"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>

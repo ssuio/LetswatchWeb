@@ -81,6 +81,7 @@ public class CheckOutServlet extends HttpServlet {
             
             List<OrdersItem> oiList = order.getOrderItemList();
             RDBMemberDAO mDAO = new RDBMemberDAO();
+            
             int sum =0;
             for(OrdersItem oi : oiList){
                 int pQuantity = oi.getQuantity();
@@ -89,7 +90,9 @@ public class CheckOutServlet extends HttpServlet {
                 //mDAO.updateWcoin(user, sum);
             }
             //user = mDAO.getOneById(user.getId());
-            session.setAttribute("sum", sum);
+                mDAO.updateWcoin(user, sum);
+                user = mDAO.getOneById(user.getId());
+                session.setAttribute("member", user);
             
             if(pType!=null && pType==pType.OPAY){
                 request.getRequestDispatcher("/member/OPay.do").forward(request,response);

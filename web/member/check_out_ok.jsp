@@ -16,17 +16,6 @@
 <link href="/LetsWatchWeb/css/indexLayout.css" rel="stylesheet" type="text/css">
 <link href="/LetsWatchWeb/css/resetcss.css" rel="stylesheet" type="text/css">
 <script>
-    <%
-        RDBMemberDAO mDAO = new RDBMemberDAO();
-        Member m = (Member)session.getAttribute("member");
-        if (session.getAttribute("sum")!=null){
-            int sum = (Integer)session.getAttribute("sum");
-            mDAO.updateWcoin(m, sum);
-            m = mDAO.getOneById(m.getId());
-            session.setAttribute("member", m);
-        }
-        
-    %>
     window.addEventListener("load",init);
     function init(){
         setTimeout(three,3000);

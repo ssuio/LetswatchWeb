@@ -122,72 +122,76 @@
         }
     </script>
 </head>
-
-<body>
-        <style>
-            p{
-                margin:15px;
-                font-size: 1.1em;
-            }
-            #profile{
-                margin:auto;
-            }
-            #profile p{
-               width:200px; 
-            }
-            #profile_pic{
-                width: 200px;
-                height:200px;
-            }
-            form{
-                padding:0px;
-            }
-        </style>
+<style>
+p{
+    margin:15px;
+    font-size: 1.1em;
+}
+#profile{
+    margin:auto;
+}
+#profile p{
+    width:200px; 
+}
+#profile_inside #profile_pic{
+    width: 150px;
+    height:150px;
+}
+#profile_inside #profile_pic img{
+    width: 100%;
+    height: auto;
+}
+form{
+    padding:0px;
+}
+</style>
       
+<body>
+
         
-<jsp:include page="/WEB-INF/subview/header.jsp">
-    <jsp:param name="sub_title" value="<%=this.getServletInfo()%>"/>
-</jsp:include>
-        <div>
-            <div id="profile">
-            <img src="/LetsWatchWeb/GetMemberPic.pic" id="profile_pic">
-            <form action="/LetsWatchWeb/upload.pic" method="post" enctype="multipart/form-data">
-            <input type="file" name="photo" accept="Image/*"/><br>
-            <input type="submit" value="Upload" name="upload"/>
-            </form>
-                <div>
-                <label>Name:</label>
-                <p id="name"><%=m.getName()%></p>
-                </div>
-                <div>
-                <label id="gender_lab">Gender:</label><br>
-                </div>
-                <div>
-                <label>E-mail: </label>
-                 <p id="email"><%=m.getEmail()%></p>
-                </div>
-                <div>
-                <label id="birthday_lab">Birthday:</label>
-                <p class="birthday_p"><%=m.getBirthday()==null?"":m.getBirthday()%></p>
-                </div>
-                <div>
-                <label>Phone: </label>
-                <p id="phone"><%=m.getPhone()==null?"":m.getPhone()%></p>
-                </div>
-                <div>
-                <label>E-paper: </label>
-               <%=m.isEpaper()==true?"<input id=\"epaper\" type=\"checkbox\" checked><br>":"<input id=\"epaper\" type=\"checkbox\"><br>"%>
-                </div>
-                <div>
-               <label>Introduction: </label>
-               <p id="introduction"><%=m.getIntroduction()==null?"":m.getIntroduction()%></p>
-               </div>
-<!--               <p>Date: <input type="text" id="datepicker"></p>-->
-            <button type="submit" id="finish">Finish</button>
-            <button id="edit">Edit</button>
-            </div>
-        </div>   
-               
-<%@include file="/WEB-INF/subview/footer.jsp"%>
+ <jsp:include page="/WEB-INF/subview/header.jsp">
+  <jsp:param name="sub_title" value="<%=this.getServletInfo()%>"/>
+ </jsp:include>
+        
+    <div id="profile">
+     <div id="profile_pic">
+      <img src="/LetsWatchWeb/GetMemberPic.pic">
+     </div>
+     <form action="/LetsWatchWeb/upload.pic" method="post" enctype="multipart/form-data">
+      <input type="file" name="photo" accept="Image/*"/><br>
+      <input type="submit" value="Upload" name="upload"/>
+     </form>
+     <div>
+      <label>Name:</label>
+      <p id="name"><%=m.getName()%></p>
+     </div>
+      <div>
+      <label id="gender_lab">Gender:</label><br>
+     </div>
+     <div>
+      <label>E-mail: </label>
+      <p id="email"><%=m.getEmail()%></p>
+     </div>
+     <div>
+      <label id="birthday_lab">Birthday:</label>
+      <p class="birthday_p"><%=m.getBirthday()==null?"":m.getBirthday()%></p>
+     </div>
+     <div>
+      <label>Phone: </label>
+      <p id="phone"><%=m.getPhone()==null?"":m.getPhone()%></p>
+     </div>
+     <div>
+      <label>E-paper: </label>
+      <%=m.isEpaper()==true?"<input id=\"epaper\" type=\"checkbox\" checked><br>":"<input id=\"epaper\" type=\"checkbox\"><br>"%>
+     </div>
+     <div>
+      <label>Introduction: </label>
+      <p id="introduction"><%=m.getIntroduction()==null?"":m.getIntroduction()%></p>
+     </div>
+     <!--<p>Date: <input type="text" id="datepicker"></p>-->
+     <button type="submit" id="finish">Finish</button>
+     <button id="edit">Edit</button>
+    </div>  
+ <%@include file="/WEB-INF/subview/footer.jsp"%>
 </body>
 </html>

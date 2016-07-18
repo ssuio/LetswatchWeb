@@ -23,6 +23,7 @@
   <div id="article">
    <h2>購物車</h2>
    <hr class="clearfix">
+   <div class="cart_info">
    <form method="POST" action="update_cart.do">
    <%
        ShoppingCart cart
@@ -73,7 +74,17 @@
     </div>
     <div class="clearfix"></div>
     <%}%>
-   </form>
+   </form>       
+       
+       
+       
+       
+   </div>
+   <div class="website_logo">
+    <img src="/LetsWatchWeb/picture/website-logo.png">
+   </div>
+   <div class="clearfix"></div>   
+
   </div><!--article-->
  </div> <!--wrapper-->
  <%@include file="/WEB-INF/subview/footer.jsp"%>  
